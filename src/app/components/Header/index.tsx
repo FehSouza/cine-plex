@@ -1,7 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsPerson } from 'react-icons/bs'
-import Logo from '../../../public/logo.svg'
+import Logo from '../../../../public/logo.svg'
 import S from './styles.module.scss'
 
 const menu = [
@@ -10,7 +12,27 @@ const menu = [
   { id: 'depart-3', name: 'Nossas Sugestões', link: '/sugestoes' },
 ]
 
+const getWindowSize = () => {
+  if (typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined') {
+    return { width: window.innerWidth }
+  }
+  return { width: 0 }
+}
+
+const resize = () => {
+  if (typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined') {
+    window.addEventListener('resize', () => {
+      const size = getWindowSize()
+      const isMobile = size.width <= 768
+      console.log(isMobile)
+      return isMobile
+    })
+  }
+}
+
 export const Header = () => {
+  const size = resize()
+
   return (
     <header className={S.header}>
       <div className={S.container}>

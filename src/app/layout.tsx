@@ -1,7 +1,7 @@
 import { Roboto } from 'next/font/google'
 import '../styles/globals.scss'
 
-const inter = Roboto({ subsets: ['latin'], weight: ['400', '700', '900'] })
+const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
 export const metadata = {
   title: 'Cine Plex',

@@ -1,4 +1,4 @@
-import { Layout } from '@/components'
+import { Layout } from '@/app/components'
 import S from './styles.module.scss'
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import { Layout } from '@/components'
+import { Layout } from '@/app/components'
 
 export default function Account() {
   return (
