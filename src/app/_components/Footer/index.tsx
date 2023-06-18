@@ -11,7 +11,7 @@ export const Footer = () => {
         <div className={S.footer__top}>
           <Link className={S.logo} href="/" aria-label="Navegue para a Home">
             <Image className={S.logo__image} src={Logo} alt="Logo Cine Plex" />
-            <h2 className={S.logo__name}>Cine Plex</h2>
+            Cine Plex
           </Link>
         </div>
 

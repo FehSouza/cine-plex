@@ -1,9 +1,9 @@
-import { Layout } from '@/app/components'
+import S from './styles.module.scss'
 
 export default function Premieres() {
   return (
-    <Layout>
-      <div>Próximas Estreias</div>
-    </Layout>
+    <main className={S.main}>
+      <div className={S.container}>Próximas Estreias</div>
+    </main>
   )
 }

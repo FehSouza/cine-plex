@@ -1,9 +1,9 @@
-import { Layout } from '@/app/components'
+import S from './styles.module.scss'
 
 export default function Theaters() {
   return (
-    <Layout>
-      <div>Em Cartaz</div>
-    </Layout>
+    <main className={S.main}>
+      <div className={S.container}>Em Cartaz</div>
+    </main>
   )
 }

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  gap: 64px;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    gap: 48px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+    padding-top: 32px;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid #b9bbbd;
+    flex: 1;
+  }
+
+  .item {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    transition-duration: 350ms;
+
+    &:hover {
+      color: #cd244a;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: 18px;
+    }
+  }
+}

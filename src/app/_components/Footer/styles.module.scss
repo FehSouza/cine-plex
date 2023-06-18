@@ -25,17 +25,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    font-size: 24px;
+    font-weight: 700;
+    color: #cd244a;
+    
     &__image {
       width: 64px;
       height: 64px;
-    }
-
-    &__name {
-      margin-top: 8px;
-      font-size: 24px;
-      font-weight: 700;
-      color: #cd244a;
+      margin-bottom: 8px;
     }
   }
 }

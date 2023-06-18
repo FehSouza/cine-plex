@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 112px;
+  height: 96px;
   display: flex;
   background-color: #010b13;
   position: fixed;
@@ -33,31 +33,8 @@
       }
     }
 
-    .navbar {
-      display: flex;
-      gap: 64px;
-
-      @media (max-width: 1024px) {
-        gap: 48px;
-      }
-
-      &__item {
-        font-size: 20px;
-        font-weight: 700;
-        color: #ffffff;
-        transition-duration: 350ms;
-
-        &:hover {
-          color: #cd244a;
-        }
-
-        @media (max-width: 1024px) {
-          font-size: 18px;
-        }
-      }
-    }
-
     .account {
+      display: flex;
       width: 32px;
       height: 32px;
 

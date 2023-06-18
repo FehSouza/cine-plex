@@ -1,9 +1,9 @@
-import { Layout } from '@/app/components'
+import S from './styles.module.scss'
 
 export default function Suggestions() {
   return (
-    <Layout>
-      <div>Nossas sugestões</div>
-    </Layout>
+    <main className={S.main}>
+      <div className={S.container}>Nossas sugestões</div>
+    </main>
   )
 }

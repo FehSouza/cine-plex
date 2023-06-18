@@ -1,0 +1,15 @@
+.main {
+  flex: 1;
+  background-color: #010b13;
+  display: flex;
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+  }
+}

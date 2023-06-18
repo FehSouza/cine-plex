@@ -1,9 +1,9 @@
-import { Layout } from '@/app/components'
+import S from './styles.module.scss'
 
 export default function Account() {
   return (
-    <Layout>
-      <div>Conta</div>
-    </Layout>
+    <main className={S.main}>
+      <div className={S.container}>Conta</div>
+    </main>
   )
 }

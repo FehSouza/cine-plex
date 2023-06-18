@@ -1,5 +1,7 @@
 import { Roboto } from 'next/font/google'
 import '../styles/globals.scss'
+import { Footer, Header } from './_components'
+import S from './styles.module.scss'
 
 const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
@@ -10,8 +12,14 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={inter.className}>
+        <Header />
+        <div className={S.container}>
+          {children}
+          <Footer />
+        </div>
+      </body>
     </html>
   )
 }
