@@ -1,41 +1,36 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { BsFacebook, BsInstagram, BsYoutube } from 'react-icons/bs'
-import Logo from '../../../../public/logo.svg'
+import { Logo } from '../Logo'
 import S from './styles.module.scss'
 
 export const Footer = () => {
   return (
     <footer className={S.footer}>
       <div className={S.container}>
-        <div className={S.footer__top}>
-          <Link className={S.logo} href="/" aria-label="Navegue para a Home">
-            <Image className={S.logo__image} src={Logo} alt="Logo Cine Plex" />
-            Cine Plex
-          </Link>
+        <div className={S.footerTop}>
+          <Logo hasText={true} />
         </div>
 
-        <div className={S.footer__bottom}>
+        <div className={S.footerBottom}>
           <div className={S.infos}>
-            <span className={S.infos__title}>Institucional</span>
-            <span className={S.infos__item}>Conheça a Cine Plex</span>
-            <span className={S.infos__item}>Política de privacidade</span>
-            <span className={S.infos__item}>Política de pagamento</span>
-            <span className={S.infos__item}>Trocas e devoluções</span>
+            <span className={S.infosTitle}>Institucional</span>
+            <span className={S.infosItem}>Conheça a Cine Plex</span>
+            <span className={S.infosItem}>Política de privacidade</span>
+            <span className={S.infosItem}>Política de pagamento</span>
+            <span className={S.infosItem}>Trocas e devoluções</span>
           </div>
 
           <div className={S.infos}>
-            <span className={S.infos__title}>Minha conta</span>
-            <span className={S.infos__item}>Meus dados</span>
-            <span className={S.infos__item}>Meus pedidos</span>
+            <span className={S.infosTitle}>Minha conta</span>
+            <span className={S.infosItem}>Meus dados</span>
+            <span className={S.infosItem}>Meus pedidos</span>
           </div>
 
           <div className={S.infos}>
-            <span className={S.infos__title}>Contatos</span>
-            <span className={S.infos__item}>(11) 5050-5050</span>
-            <span className={S.infos__item}>www.cineplex.com.br</span>
+            <span className={S.infosTitle}>Contatos</span>
+            <span className={S.infosItem}>(11) 5050-5050</span>
+            <span className={S.infosItem}>www.cineplex.com.br</span>
 
-            <div className={S.infos__social}>
+            <div className={S.infosSocial}>
               <a href="https://pt-br.facebook.com/" target="_blank" aria-label="Link para o Facebook">
                 <BsFacebook />
               </a>
