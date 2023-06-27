@@ -1,13 +1,161 @@
-.wrapper {
-  max-height: 800px;
+.embla {
   overflow: hidden;
+  position: relative;
+}
+
+.emblaContainer {
+  display: flex;
+}
+
+.emblaSlide {
+  min-width: 0;
+  max-height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .image {
-  background-position: left calc((50vw - 170px) - 340px) top;
-  max-width: 100%;
+  width: 100%;
   height: auto;
+}
+
+.info {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 40px;
+
+  @media (max-width: 1242px) {
+    left: 0px;
+    bottom: 16px;
+  }
+
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: 0;
+    width: calc(100% - 32px);
+    left: 16px;
+  }
+}
+
+.infoWrapper {
+  width: 520px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #00000000;
+  box-shadow: 0 4px 30px #0000001a;
+  backdrop-filter: blur(11.7px);
+  -webkit-backdrop-filter: blur(11.7px);
+
+  @media (max-width: 1024px) {
+    width: 420px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+
+  @media (max-width: 1024px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.description {
+  margin-top: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  @media (max-width: 1024px) {
+    -webkit-line-clamp: 2;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.grade {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & > svg {
+    fill: #f4b41e;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.emblaArrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #cd244a;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc((100% - 1200px) / 2);
+  transition-duration: 350ms;
+
+  &:hover {
+    background-color: #ac1b3a;
+  }
+
+  & > svg {
+    fill: #ffffff;
+    margin-right: 2px;
+  }
+
+  @media (max-width: 1242px) {
+    left: 16px;
+  }
+
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.emblaNext {
+  left: unset;
+  right: calc((100% - 1200px) / 2);
+
+  & > svg {
+    margin-right: 0px;
+    margin-left: 2px;
+  }
+
+  @media (max-width: 1242px) {
+    right: 16px;
+  }
 }

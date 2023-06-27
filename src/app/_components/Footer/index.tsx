@@ -19,9 +19,9 @@ export const Footer = () => {
     setSelected((prev) => (prev === i ? null : i))
   }
 
-  const styleInstitutional = { height: '130px', opacity: '1' }
-  const styleAccount = { height: '90px', opacity: '1' }
-  const styleContact = { height: '150px', opacity: '1' }
+  const styleInstitutional = { height: '122px', opacity: '1' }
+  const styleAccount = { height: '82px', opacity: '1' }
+  const styleContact = { height: '142px', opacity: '1' }
 
   return (
     <footer className={S.footer}>

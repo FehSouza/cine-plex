@@ -1,5 +1,5 @@
 .footer {
-  border-top: 1px solid #b9bbbd;
+  border-top: 1px solid #b9bbbd40;
   background-color: #010b13;
   padding: 40px 0;
   display: flex;
@@ -116,6 +116,7 @@
 
   @media (max-width: 768px) {
     margin: 8px 0;
+    min-height: 20px;
   }
 }
 
