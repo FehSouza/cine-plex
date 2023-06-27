@@ -1,8 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin-top: 112px;
-  height: calc(100vh - 112px);
+  margin-top: 96px;
+  height: calc(100vh - 96px);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -15,10 +15,10 @@
 
 .content {
   width: 100%;
-  max-width: 1200px;
+  // max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 16px;
+  // padding: 0 16px;
   display: flex;
   flex-direction: column;
 }

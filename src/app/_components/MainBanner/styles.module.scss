@@ -1,0 +1,13 @@
+.wrapper {
+  max-height: 800px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  background-position: left calc((50vw - 170px) - 340px) top;
+  max-width: 100%;
+  height: auto;
+}
