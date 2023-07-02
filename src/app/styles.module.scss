@@ -21,3 +21,14 @@
   flex-direction: column;
   padding-bottom: 40px;
 }
+
+.division {
+  height: 1px;
+  width: calc(100% - 32px);
+  max-width: 1232px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background-color: #b9bbbd40;
+  border: none;
+  margin: 0 auto;
+}

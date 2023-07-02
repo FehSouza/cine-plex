@@ -3,7 +3,7 @@ import S from './styles.module.scss'
 
 const menu = [
   { id: 'depart-1', name: 'Em Cartaz', link: '/cartaz' },
-  { id: 'depart-2', name: 'Próximas Estreias', link: '/estreias' },
+  { id: 'depart-2', name: 'Em Breve', link: '/estreias' },
   { id: 'depart-3', name: 'Nossas Sugestões', link: '/sugestoes' },
 ]
 

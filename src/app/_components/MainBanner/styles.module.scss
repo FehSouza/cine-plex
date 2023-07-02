@@ -16,6 +16,7 @@
   flex: 0 0 100%;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 16/9;
 }
 
 .image {
@@ -25,10 +26,11 @@
 
 .info {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1232px;
   height: auto;
   margin: 0 auto;
   padding: 0 16px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: absolute;

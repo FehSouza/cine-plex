@@ -17,3 +17,17 @@ export async function getBestMovies() {
   const response = (await res.json()) as { results: Movie[] }
   return response.results
 }
+
+export async function getNowPlaying() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
+
+  const response = (await res.json()) as { results: Movie[] }
+  return response.results
+}
+
+export async function getUpcoming() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
+
+  const response = (await res.json()) as { results: Movie[] }
+  return response.results
+}
