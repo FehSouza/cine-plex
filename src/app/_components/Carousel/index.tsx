@@ -1,6 +1,7 @@
 'use client'
 
 import { Movie } from '@/@types'
+import { formatDate } from '@/utils'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
 import { useCallback } from 'react'
@@ -32,6 +33,7 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
             const src = `https://image.tmdb.org/t/p/original${movie.poster_path}`
             const grade = movie.vote_average
             const title = movie.title
+            const date = movie.release_date
 
             return (
               <div className={S.emblaSlide} key={id}>
@@ -43,7 +45,7 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
                     <BsFillStarFill /> {grade}
                   </span>
                 )}
-                {upcoming && <span className={S.upcoming}>Estreia</span>}
+                {upcoming && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
                 <span className={S.titleMovie}>{title}</span>
                 <button className={S.seeMore}>Veja detalhes</button>
               </div>
