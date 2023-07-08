@@ -1,4 +1,4 @@
-import { Movie } from '@/@types'
+import { Movie, MovieDetail } from '@/@types'
 
 const options = {
   method: 'GET',
@@ -42,4 +42,10 @@ export async function getPopular() {
   const response = (await res.json()) as { results: Movie[] }
   const filteredList = response.results.filter((result) => result.poster_path)
   return filteredList
+}
+
+export async function getMovie(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
+  const response = (await res.json()) as MovieDetail
+  return response
 }

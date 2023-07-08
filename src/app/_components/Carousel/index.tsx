@@ -3,7 +3,8 @@
 import { Movie } from '@/@types'
 import { formatDate } from '@/utils'
 import useEmblaCarousel from 'embla-carousel-react'
-import Image from 'next/image'
+import Image, { ImageLoader } from 'next/image'
+import Link from 'next/link'
 import { useCallback } from 'react'
 import { BsFillStarFill } from 'react-icons/bs'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
@@ -13,6 +14,21 @@ interface CarouselProps {
   title: string
   movies: Movie[]
   upcoming?: boolean
+}
+
+const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
+  const DICTIONARY_WIDTH = {
+    640: 'w200',
+    750: 'w200',
+    828: 'w400',
+    1080: 'w400',
+    1200: 'w400',
+    1920: 'w400',
+    2048: 'w500',
+    3840: 'original',
+  }
+
+  return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
 export default function Carousel({ title, movies, upcoming }: CarouselProps) {
@@ -30,15 +46,14 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
         <div className={S.emblaContainer}>
           {movieList.map((movie) => {
             const id = movie.id
-            const src = `https://image.tmdb.org/t/p/original${movie.poster_path}`
             const grade = movie.vote_average
             const title = movie.title
             const date = movie.release_date
 
             return (
-              <div className={S.emblaSlide} key={id}>
+              <Link href={`/filme/${id}`} className={S.emblaSlide} key={id}>
                 <div className={S.imageWrapper}>
-                  <Image className={S.image} loader={() => src} src={src} alt={`Imagem do Filme ${title}`} width={1920} height={1080} />
+                  <Image className={S.image} loader={TMDBPosterLoader} src={movie.poster_path} alt={`Imagem do Filme ${title}`} fill />
                 </div>
                 {!upcoming && (
                   <span className={S.gradeWrapper}>
@@ -48,7 +63,7 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
                 {upcoming && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
                 <span className={S.titleMovie}>{title}</span>
                 <button className={S.seeMore}>Veja detalhes</button>
-              </div>
+              </Link>
             )
           })}
         </div>

@@ -4,10 +4,7 @@ import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from './service
 import S from './styles.module.scss'
 
 export default async function Home() {
-  const bestMovies = await getBestMovies()
-  const nowPlaying = await getNowPlaying()
-  const upcoming = await getUpcoming()
-  const popular = await getPopular()
+  const [bestMovies, nowPlaying, upcoming, popular] = await Promise.all([getBestMovies(), getNowPlaying(), getUpcoming(), getPopular()])
 
   return (
     <main className={S.main}>
