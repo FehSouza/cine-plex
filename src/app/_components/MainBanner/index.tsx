@@ -13,7 +13,7 @@ interface MainBannerProps {
   movies: Movie[]
 }
 
-const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
+export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
   const DICTIONARY_WIDTH = {
     640: 'w500',
     750: 'w500',
@@ -29,9 +29,9 @@ const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
 }
 
 export default function MainBanner({ movies }: MainBannerProps) {
-  const movieList = movies.slice(0, 4)
-  console.log({ movieList })
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const movieList = movies.slice(0, 5)
+
+  const [emblaRef, emblaApi] = useEmblaCarousel()
   const handlePrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
   const handleNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
 

@@ -21,7 +21,9 @@
 
 .image {
   width: 100%;
-  height: auto;
+  height: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%);
 }
 
 .info {
