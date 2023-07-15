@@ -1,9 +1,11 @@
-import { IframeVideo, TMDBBackdropLoader } from '@/app/_components'
+import { TMDBBackdropLoader } from '@/app/_components'
 import { getCreditsMovie, getMovie, getVideo } from '@/app/services'
 import { formatReleaseDate } from '@/utils'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import S from './styles.module.scss'
 
+const IframeVideo = dynamic(() => import('../../_components/IframeVideo').then((mod) => mod.IframeVideo))
 interface MovieProps {
   params: { id: string }
 }
