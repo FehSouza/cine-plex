@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import S from './styles.module.scss'
 
-const IframeVideo = dynamic(() => import('../../_components/IframeVideo').then((mod) => mod.IframeVideo))
+const IframeVideo = dynamic(() => import('../../_components/IframeVideo'))
 interface MovieProps {
   params: { id: string }
 }

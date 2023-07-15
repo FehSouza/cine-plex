@@ -1,5 +1,4 @@
 import { Video } from '@/@types'
-
 interface IframeVideoProps {
   video: Video
 }
@@ -15,6 +14,8 @@ export const IframeVideo = ({ video }: IframeVideoProps) => {
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
-    ></iframe>
+    />
   )
 }
+
+export default IframeVideo
