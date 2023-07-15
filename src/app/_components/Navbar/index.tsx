@@ -11,8 +11,8 @@ export const Navbar = () => {
   return (
     <nav className={S.container}>
       {menu.map((item) => (
-        <Link key={item.id} href={item.link}>
-          <li className={S.item}>{item.name}</li>
+        <Link key={item.id} className={S.item} href={item.link}>
+          {item.name}
         </Link>
       ))}
     </nav>

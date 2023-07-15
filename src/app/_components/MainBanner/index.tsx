@@ -61,11 +61,11 @@ export default function MainBanner({ movies }: MainBannerProps) {
         })}
       </div>
 
-      <button className={[S.emblaArrow, S.emblaPrev].join(' ')} onClick={handlePrev}>
+      <button aria-label="Botão de voltar" className={[S.emblaArrow, S.emblaPrev].join(' ')} onClick={handlePrev}>
         <IoIosArrowBack size={20} />
       </button>
 
-      <button className={[S.emblaArrow, S.emblaNext].join(' ')} onClick={handleNext}>
+      <button aria-label="Botão de avançar" className={[S.emblaArrow, S.emblaNext].join(' ')} onClick={handleNext}>
         <IoIosArrowForward size={20} />
       </button>
     </div>
