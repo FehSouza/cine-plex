@@ -29,7 +29,7 @@ export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
 }
 
 export default function MainBanner({ movies }: MainBannerProps) {
-  const movieList = movies?.slice(0, 5)
+  const movieList = movies.slice(0, 5)
 
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const handlePrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
@@ -38,7 +38,7 @@ export default function MainBanner({ movies }: MainBannerProps) {
   return (
     <div className={S.embla} ref={emblaRef}>
       <div className={S.emblaContainer}>
-        {movieList?.map((movie) => {
+        {movieList.map((movie) => {
           const id = movie.id
           const title = movie.title
           const description = movie.overview

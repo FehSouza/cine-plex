@@ -16,11 +16,11 @@ export default async function Movie({ params }: MovieProps) {
   const title = movie.title
   const releaseYear = formatReleaseDate(movie.release_date)
   const description = movie.overview
-  const actorsInfo = credits?.cast?.slice(0, 3)
-  const actorsNames = actorsInfo?.map((actor) => actor.name)
+  const actorsInfo = credits.cast.slice(0, 3)
+  const actorsNames = actorsInfo.map((actor) => actor.name)
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
-  const videoList = videos?.slice(0, 3)
+  const videoList = videos.slice(0, 3)
 
   return (
     <main className={S.main}>
@@ -50,7 +50,7 @@ export default async function Movie({ params }: MovieProps) {
       <section className={[S.container, S.containerVideos].join(' ')}>
         <h2 className={S.titleContent}>Trailers</h2>
         <div className={S.contentVideos}>
-          {videoList?.map((video) => (
+          {videoList.map((video) => (
             <IframeVideo key={video.key} video={video} />
           ))}
         </div>
