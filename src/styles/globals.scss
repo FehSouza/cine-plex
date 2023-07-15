@@ -10,6 +10,8 @@ body {
   font-weight: 400;
   font-display: swap;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
     font-size: 14px;

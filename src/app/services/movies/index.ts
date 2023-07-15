@@ -1,4 +1,4 @@
-import { Movie, MovieCredits, MovieDetail } from '@/@types'
+import { Movie, MovieCredits, MovieDetail, Videos } from '@/@types'
 
 const options = {
   method: 'GET',
@@ -54,4 +54,11 @@ export async function getCreditsMovie(id: string) {
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=bt-BR`, options)
   const response = (await res.json()) as MovieCredits
   return response
+}
+
+export async function getVideo(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, options)
+  const response = (await res.json()) as Videos
+  const filteredList = response.results.filter((res) => res.site === 'YouTube' && res.official)
+  return filteredList
 }

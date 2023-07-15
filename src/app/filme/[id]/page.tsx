@@ -1,5 +1,5 @@
-import { TMDBBackdropLoader } from '@/app/_components'
-import { getCreditsMovie, getMovie } from '@/app/services'
+import { IframeVideo, TMDBBackdropLoader } from '@/app/_components'
+import { getCreditsMovie, getMovie, getVideo } from '@/app/services'
 import { formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import S from './styles.module.scss'
@@ -10,7 +10,7 @@ interface MovieProps {
 
 export default async function Movie({ params }: MovieProps) {
   const id = params.id
-  const [movie, credits] = await Promise.all([getMovie(id), getCreditsMovie(id)])
+  const [movie, credits, videos] = await Promise.all([getMovie(id), getCreditsMovie(id), getVideo(id)])
 
   const image = movie.backdrop_path
   const title = movie.title
@@ -20,16 +20,16 @@ export default async function Movie({ params }: MovieProps) {
   const actorsNames = actorsInfo.map((actor) => actor.name)
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
+  const videoList = videos.slice(0, 3)
 
   return (
     <main className={S.main}>
-      <div className={S.imageWrapper}>
-        <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill />
+      <section className={S.imageWrapper}>
+        <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill priority />
         <div className={S.info}>
           <div className={S.infoWrapper}>
-            <span className={S.title}>{title}</span>
+            <h1 className={S.title}>{title}</h1>
             <span className={S.releaseYear}>{releaseYear}</span>
-            <span className={S.description}>{description}</span>
             <div className={[S.namesWrapper, S.actors].join(' ')}>
               <span>Estrelando: </span>
               <span className={S.names}>{actorsNames.join(', ')}</span>
@@ -40,8 +40,21 @@ export default async function Movie({ params }: MovieProps) {
             </div>
           </div>
         </div>
-      </div>
-      <div className={S.container}></div>
+      </section>
+
+      <section className={[S.container, S.containerDescription].join(' ')}>
+        <h2 className={S.titleContent}>Descrição</h2>
+        <span className={S.description}>{description}</span>
+      </section>
+
+      <section className={[S.container, S.containerVideos].join(' ')}>
+        <h2 className={S.titleContent}>Trailers</h2>
+        <div className={S.contentVideos}>
+          {videoList.map((video) => (
+            <IframeVideo key={video.key} video={video} />
+          ))}
+        </div>
+      </section>
     </main>
   )
 }
