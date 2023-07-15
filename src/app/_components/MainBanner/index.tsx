@@ -20,7 +20,7 @@ export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
     828: 'w500',
     1080: 'w1280',
     1200: 'w1280',
-    1920: 'original',
+    1920: 'w1280',
     2048: 'original',
     3840: 'original',
   }
