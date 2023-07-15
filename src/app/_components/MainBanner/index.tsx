@@ -46,7 +46,14 @@ export default function MainBanner({ movies }: MainBannerProps) {
 
           return (
             <Link href={`/filme/${id}`} className={S.emblaSlide} key={id}>
-              <Image className={S.image} loader={TMDBBackdropLoader} src={movie.backdrop_path} alt={`Imagem do Filme ${title}`} fill />
+              <Image
+                className={S.image}
+                loader={TMDBBackdropLoader}
+                src={movie.backdrop_path}
+                alt={`Imagem Filme ${title}`}
+                fill
+                priority
+              />
               <div className={S.info}>
                 <div className={S.infoWrapper}>
                   <span className={S.title}>{title}</span>
