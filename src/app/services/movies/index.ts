@@ -18,31 +18,31 @@ export async function getBestMovies() {
   return filteredList
 }
 
-// export async function getNowPlaying() {
-//   const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
-//   const response = (await res.json()) as { results: Movie[] }
-//   const filteredList = response.results.filter((result) => result.poster_path)
-//   return filteredList
-// }
+export async function getNowPlaying() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+  const filteredList = response.results.filter((result) => result.poster_path)
+  return filteredList
+}
 
-// export async function getUpcoming() {
-//   const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
-//   const response = (await res.json()) as { results: Movie[] }
-//   const filteredList = response.results.filter((result) => result.poster_path)
+export async function getUpcoming() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+  const filteredList = response.results.filter((result) => result.poster_path)
 
-//   const sortByReleaseDate = filteredList.sort((a, b) => {
-//     return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
-//   })
+  const sortByReleaseDate = filteredList.sort((a, b) => {
+    return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
+  })
 
-//   return sortByReleaseDate
-// }
+  return sortByReleaseDate
+}
 
-// export async function getPopular() {
-//   const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', options)
-//   const response = (await res.json()) as { results: Movie[] }
-//   const filteredList = response.results.filter((result) => result.poster_path)
-//   return filteredList
-// }
+export async function getPopular() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+  const filteredList = response.results.filter((result) => result.poster_path)
+  return filteredList
+}
 
 export async function getMovie(id: string) {
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
