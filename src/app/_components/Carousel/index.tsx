@@ -32,7 +32,7 @@ const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
 }
 
 export default function Carousel({ title, movies, upcoming }: CarouselProps) {
-  const movieList = movies.slice(0, 12)
+  const movieList = movies?.slice(0, 12)
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align: 'start' })
   const handlePrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
