@@ -69,11 +69,15 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
         </div>
 
         <button aria-label="Botão de voltar" className={[S.emblaArrow, S.emblaPrev].join(' ')} onClick={handlePrev}>
-          <IoIosArrowBack size={18} />
+          <div className={S.emblaArrowInternal}>
+            <IoIosArrowBack size={18} />
+          </div>
         </button>
 
         <button aria-label="Botão de avançar" className={[S.emblaArrow, S.emblaNext].join(' ')} onClick={handleNext}>
-          <IoIosArrowForward size={18} />
+          <div className={S.emblaArrowInternal}>
+            <IoIosArrowForward size={18} />
+          </div>
         </button>
       </div>
     </section>

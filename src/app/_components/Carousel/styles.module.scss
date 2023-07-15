@@ -151,25 +151,20 @@
 }
 
 .emblaArrow {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #cd244a;
+  background-color: transparent;
   position: absolute;
   top: 35%;
-  left: 0px;
-  transition-duration: 350ms;
+  left: -8px;
+  z-index: 2;
 
-  &:hover {
+  &:hover > .emblaArrowInternal {
     background-color: #ac1b3a;
-  }
-
-  & > svg {
-    fill: #ffffff;
-    margin-right: 2px;
   }
 
   @media (max-width: 1024px) {
@@ -185,11 +180,27 @@
   }
 }
 
+.emblaArrowInternal {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #cd244a;
+  transition-duration: 350ms;
+
+  & svg {
+    fill: #ffffff;
+    margin-right: 2px;
+  }
+}
+
 .emblaNext {
   left: unset;
-  right: 0px;
+  right: -8px;
 
-  & > svg {
+  & svg {
     margin-right: 0px;
     margin-left: 2px;
   }

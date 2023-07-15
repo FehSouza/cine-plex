@@ -118,48 +118,54 @@
 }
 
 .emblaArrow {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc((100% - 1200px - 8px) / 2);
+  z-index: 2;
+
+  &:hover > .emblaArrowInternal {
+    background-color: #ac1b3a;
+  }
+
+  @media (max-width: 1242px) {
+    left: 8px;
+  }
+}
+
+.emblaArrowInternal {
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: #cd244a;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: calc((100% - 1200px) / 2);
   transition-duration: 350ms;
 
-  &:hover {
-    background-color: #ac1b3a;
-  }
-
-  & > svg {
+  & svg {
     fill: #ffffff;
     margin-right: 2px;
-  }
-
-  @media (max-width: 1242px) {
-    left: 16px;
-  }
-
-  @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
   }
 }
 
 .emblaNext {
   left: unset;
-  right: calc((100% - 1200px) / 2);
+  right: calc((100% - 1200px - 8px) / 2);
 
-  & > svg {
+  & svg {
     margin-right: 0px;
     margin-left: 2px;
   }
 
   @media (max-width: 1242px) {
-    right: 16px;
+    right: 8px;
   }
 }
