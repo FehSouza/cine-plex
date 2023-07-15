@@ -38,7 +38,7 @@ export default function MainBanner({ movies }: MainBannerProps) {
   return (
     <div className={S.embla} ref={emblaRef}>
       <div className={S.emblaContainer}>
-        {movieList.map((movie) => {
+        {movieList?.map((movie) => {
           const id = movie.id
           const title = movie.title
           const description = movie.overview

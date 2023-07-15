@@ -44,7 +44,7 @@ export default function Carousel({ title, movies, upcoming }: CarouselProps) {
 
       <div className={S.embla} ref={emblaRef}>
         <div className={S.emblaContainer}>
-          {movieList.map((movie) => {
+          {movieList?.map((movie) => {
             const id = movie.id
             const grade = movie.vote_average
             const title = movie.title
