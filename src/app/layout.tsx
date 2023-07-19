@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Header />
         <div className={S.container}>
+          <div className={S.headerContainer}/>
           {children}
           <Footer />
         </div>

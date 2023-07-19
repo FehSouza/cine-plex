@@ -125,3 +125,22 @@ export interface Video {
   published_at: string
   id: string
 }
+
+export interface Certifications {
+  id: number
+  results: Certification[]
+}
+
+export interface Certification {
+  iso_3166_1: string
+  release_dates: CertificationData[]
+}
+
+export interface CertificationData {
+  certification: string
+  descriptors: string[]
+  iso_639_1: string
+  note: string
+  release_date: string
+  type: number
+}

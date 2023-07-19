@@ -31,7 +31,7 @@ const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
   return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
-export default function Carousel({ title, movies, upcoming }: CarouselProps) {
+export function Carousel({ title, movies, upcoming }: CarouselProps) {
   const movieList = movies.slice(0, 12)
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align: 'start' })

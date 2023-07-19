@@ -1,5 +1,4 @@
-import Carousel from './_components/Carousel'
-import MainBanner from './_components/MainBanner'
+import { MainBanner, Carousel } from './_components'
 import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from './services'
 import S from './styles.module.scss'
 

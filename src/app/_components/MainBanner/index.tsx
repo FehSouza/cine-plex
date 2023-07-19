@@ -28,7 +28,7 @@ export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
   return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
-export default function MainBanner({ movies }: MainBannerProps) {
+export function MainBanner({ movies }: MainBannerProps) {
   const movieList = movies.slice(0, 5)
 
   const [emblaRef, emblaApi] = useEmblaCarousel()
