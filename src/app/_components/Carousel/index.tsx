@@ -16,7 +16,7 @@ interface CarouselProps {
   upcoming?: boolean
 }
 
-const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
+export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
   const DICTIONARY_WIDTH = {
     640: 'w200',
     750: 'w200',

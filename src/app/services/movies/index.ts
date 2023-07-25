@@ -63,9 +63,19 @@ export async function getVideo(id: string) {
   return filteredList
 }
 
-export async function getClassification(id: string) {
+export async function getClassifications(id: string) {
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, options)
   const response = (await res.json()) as Certifications
-  const filteredList = response.results.filter((res) => res.iso_3166_1 === 'BR' || res.iso_3166_1 === 'US')
+
+  const filteredList = response.results.reduce((acc, result) => {
+    if (result.iso_3166_1 === 'BR' || result.iso_3166_1 === 'US') {
+      result.release_dates.forEach((release) => {
+        if (release.certification) return (acc = [...acc, { country: result.iso_3166_1, certification: release.certification }])
+      })
+    }
+
+    return acc
+  }, [] as { country: string; certification: string }[])
+
   return filteredList
 }
