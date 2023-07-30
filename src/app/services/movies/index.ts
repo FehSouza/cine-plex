@@ -1,4 +1,5 @@
 import { Certifications, Movie, MovieCredits, MovieDetail, Videos } from '@/@types'
+import { COLOR_DICTIONARY } from '@/dictionary'
 
 const options = {
   method: 'GET',
@@ -70,12 +71,13 @@ export async function getClassifications(id: string) {
   const filteredList = response.results.reduce((acc, result) => {
     if (result.iso_3166_1 === 'BR' || result.iso_3166_1 === 'US') {
       result.release_dates.forEach((release) => {
-        if (release.certification) return (acc = [...acc, { country: result.iso_3166_1, certification: release.certification }])
+        const certification = release.certification
+        if (certification) return (acc = [...acc, { country: result.iso_3166_1, certification, color: COLOR_DICTIONARY[certification] }])
       })
     }
 
     return acc
-  }, [] as { country: string; certification: string }[])
+  }, [] as { country: string; certification: string; color: string }[])
 
   return filteredList
 }

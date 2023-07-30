@@ -55,11 +55,17 @@ export function Carousel({ title, movies, upcoming }: CarouselProps) {
                 <div className={S.imageWrapper}>
                   <Image className={S.image} loader={TMDBPosterLoader} src={movie.poster_path} alt={`Imagem do Filme ${title}`} fill />
                 </div>
+
                 {!upcoming && (
-                  <span className={S.gradeWrapper}>
-                    <BsFillStarFill /> {grade}
-                  </span>
+                  <div className={S.gradeWrapper}>
+                    {!!grade && (
+                      <span className={S.grade}>
+                        <BsFillStarFill /> {grade.toFixed(1)}
+                      </span>
+                    )}
+                  </div>
                 )}
+
                 {upcoming && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
                 <span className={S.titleMovie}>{title}</span>
                 <button className={S.seeMore}>Veja detalhes</button>

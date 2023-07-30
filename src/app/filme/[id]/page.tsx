@@ -1,6 +1,6 @@
 import { TMDBBackdropLoader, TMDBPosterLoader } from '@/app/_components'
 import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/app/services'
-import { formatReleaseDate } from '@/utils'
+import { formatHours, formatReleaseDate } from '@/utils'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { BsFillStarFill } from 'react-icons/bs'
@@ -21,17 +21,17 @@ export default async function Movie({ params }: MovieProps) {
     getVideo(id),
   ])
 
-  console.log(classifications)
-
+  const image = movie.backdrop_path
   const poster = movie.poster_path
-  const title = movie.title
   const grade = movie.vote_average
-  const genres = movie.genres
+  const title = movie.title
+  const duration = movie.runtime
   const classificationBR = classifications.find((c) => c.country === 'BR')
   const classificationUS = classifications.find((c) => c.country === 'US')
-  const duration = movie.runtime
-  const originalTitle = movie.original_title
   const releaseYear = formatReleaseDate(movie.release_date)
+  const genres = movie.genres
+  const tagline = movie.tagline
+  const originalTitle = movie.original_title
   const description = movie.overview
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
@@ -43,7 +43,7 @@ export default async function Movie({ params }: MovieProps) {
     <main className={S.main}>
       <section className={S.imageWrapper}>
         <div className={S.gradient} />
-        <Image className={S.image} loader={TMDBBackdropLoader} src={movie.backdrop_path} alt={`Imagem do Filme ${title}`} fill priority />
+        <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill priority />
       </section>
 
       <section className={[S.container, S.containerAbout].join(' ')}>
@@ -59,12 +59,24 @@ export default async function Movie({ params }: MovieProps) {
           <h1 className={S.title}>{title}</h1>
 
           <div className={S.infos}>
-            {!!duration && <span className={[S.content, S.contentDuration].join(' ')}>{`${duration} min`}</span>}
-            {!!classificationBR && <span className={S.content}>{`${classificationBR?.certification}`}</span>}
-            {!classificationBR && !!classificationUS && <span className={S.content}>{`${classificationUS?.certification}`}</span>}
+            {!!duration && <span className={[S.content, S.contentDuration].join(' ')}>{formatHours(duration)}</span>}
+
+            {!!classificationBR && (
+              <span
+                className={S.contentCert}
+                style={{ backgroundColor: classificationBR.color }}
+              >{`${classificationBR.certification}`}</span>
+            )}
+
+            {!classificationBR && !!classificationUS && (
+              <span
+                className={S.contentCert}
+                style={{ backgroundColor: classificationUS.color }}
+              >{`${classificationUS.certification}`}</span>
+            )}
           </div>
 
-          <h3 className={S.subTitle2}>Lançamento</h3>
+          <span className={S.subTitle2}>Lançamento</span>
           <span className={S.content}>{releaseYear}</span>
 
           <div className={S.listGenres}>
@@ -76,24 +88,26 @@ export default async function Movie({ params }: MovieProps) {
       </section>
 
       <section className={[S.container, S.containerDescription].join(' ')}>
-        <h3 className={[S.subTitle2, S.originalTitle].join(' ')}>Nome Original</h3>
+        {!!tagline && <span className={[S.content, S.contentTagline].join(' ')}>{tagline}</span>}
+
+        <span className={[S.subTitle2, S.originalTitle].join(' ')}>Nome Original</span>
         <span className={S.content}>{originalTitle}</span>
 
         {!!description && (
           <>
-            <h3 className={S.subTitle2}>Sinopse</h3>
+            <span className={S.subTitle2}>Sinopse</span>
             <span className={S.content}>{description}</span>
           </>
         )}
 
-        <h3 className={S.subTitle2}>Direção</h3>
+        <span className={S.subTitle2}>Direção</span>
         <span className={S.content}>{directorName}</span>
 
-        <h3 className={S.subTitle2}>Estrelando</h3>
+        <span className={S.subTitle2}>Estrelando</span>
         <span className={S.content}>{actorsNames.join(', ')}</span>
       </section>
 
-      <hr className={S.division} />
+      {!!videoList.length && <hr className={S.division} />}
 
       {!!videoList.length && (
         <section className={[S.container, S.containerVideos].join(' ')}>

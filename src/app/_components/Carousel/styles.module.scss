@@ -75,16 +75,23 @@
 
 .gradeWrapper {
   margin-top: 16px;
+  width: 100%;
+  height: 19px;
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    height: 17px;
+  }
+}
+
+.grade {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 
   & > svg {
     fill: #f4b41e;
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 12px;
   }
 }
 
