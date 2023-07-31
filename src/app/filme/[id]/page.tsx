@@ -114,7 +114,7 @@ export default async function Movie({ params }: MovieProps) {
           <h2 className={S.subTitle}>Trailers</h2>
           <div className={S.contentVideos}>
             {videoList.map((video) => (
-              <IframeVideo key={video.key} video={video} />
+              <IframeVideo key={video.key} video={video} title={title} />
             ))}
           </div>
         </section>
