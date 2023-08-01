@@ -1,12 +1,10 @@
-import { TMDBBackdropLoader, TMDBPosterLoader } from '@/app/_components'
+import { TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
 import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/app/services'
 import { formatHours, formatReleaseDate } from '@/utils'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { BsFillStarFill } from 'react-icons/bs'
 import S from './styles.module.scss'
 
-const IframeVideo = dynamic(() => import('../../_components/IframeVideo'))
 interface MovieProps {
   params: { id: string }
 }
@@ -114,7 +112,7 @@ export default async function Movie({ params }: MovieProps) {
           <h2 className={S.subTitle}>Trailers</h2>
           <div className={S.contentVideos}>
             {videoList.map((video) => (
-              <IframeVideo key={video.key} video={video} title={title} />
+              <VideoIframe key={video.key} video={video} title={title} />
             ))}
           </div>
         </section>
