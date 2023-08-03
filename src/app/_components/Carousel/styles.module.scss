@@ -120,6 +120,7 @@
 
   @media (max-width: 768px) {
     margin: 12px 0;
+    margin-bottom: 0;
   }
 }
 
@@ -131,17 +132,14 @@
   border-radius: 8px;
   color: #ffffff;
   transition-duration: 350ms;
-
-  @media (min-width: 1025px) {
-    opacity: 0;
-  }
-
-  @media (max-width: 768px) {
-    height: 30px;
-  }
+  opacity: 0;
 
   &:hover {
     background-color: #ac1b3a;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }
 
