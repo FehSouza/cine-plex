@@ -245,3 +245,64 @@
     gap: 12px;
   }
 }
+
+.castWrapper {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  gap: 14px;
+  padding: 16px 4px;
+
+  @media (max-width: 768px) {
+    padding: 12px 4px;
+    padding-bottom: 8px;
+  }
+}
+
+.actorWrapper {
+  width: 134px;
+  min-width: 134px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #b9bbbd1a;
+  box-shadow: 3px 3px 8px 2px #b9bbbd1a;
+  transition-duration: 350ms;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.025);
+  }
+}
+
+.actorImageWrapper {
+  max-height: 176px;
+  overflow: hidden;
+}
+
+.actorImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+}
+
+.actorName {
+  padding: 10px;
+  padding-bottom: 0;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+    padding-bottom: 0;
+  }
+}
+
+.actorCharacter {
+  padding: 10px;
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
+}

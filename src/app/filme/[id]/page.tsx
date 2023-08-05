@@ -33,8 +33,8 @@ export default async function Movie({ params }: MovieProps) {
   const description = movie.overview
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
-  const actorsInfo = credits.cast.slice(0, 3)
-  const actorsNames = actorsInfo.map((actor) => actor.name)
+  const castList = credits.cast.slice(0, 8)
+  const actorsNames = castList.slice(0, 3).map((actor) => actor.name)
   const videoList = videos.slice(0, 2)
 
   return (
@@ -117,6 +117,31 @@ export default async function Movie({ params }: MovieProps) {
           </div>
         </section>
       )}
+
+      <hr className={S.division} />
+
+      <section className={[S.container, S.containerCast].join(' ')}>
+        <h2 className={S.subTitle}>Elenco principal</h2>
+
+        <div className={S.castWrapper}>
+          {castList.map((actor) => {
+            const id = actor.id
+            const image = `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+            const name = actor.name
+            const character = actor.character
+
+            return (
+              <div className={S.actorWrapper} key={id}>
+                <div className={S.actorImageWrapper}>
+                  <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />
+                </div>
+                <span className={S.actorName}>{name}</span>
+                <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
+              </div>
+            )
+          })}
+        </div>
+      </section>
     </main>
   )
 }

@@ -97,6 +97,12 @@ a {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
+
+  @media (max-width: 768px) {
+    width: 0;
+    height: 0;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -105,7 +111,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 0px;
+  border-radius: 4px;
   background-color: #081e30;
   border: none;
 }

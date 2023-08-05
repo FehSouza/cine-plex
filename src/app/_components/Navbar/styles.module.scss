@@ -26,6 +26,12 @@
     color: #cd244a;
   }
 
+  @media (min-width: 769px) {
+    &.home {
+      display: none;
+    }
+  }
+
   @media (max-width: 1024px) {
     font-size: 18px;
   }
