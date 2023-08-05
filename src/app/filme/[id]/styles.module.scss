@@ -53,6 +53,7 @@
   gap: 32px;
   margin-top: 300px;
   padding: 0 16px;
+  position: relative;
 
   @media (max-width: 1024px) {
     margin-top: 250px;
@@ -304,5 +305,19 @@
 
   @media (max-width: 768px) {
     padding: 8px;
+  }
+}
+
+.castLink {
+  width: max-content;
+  margin-top: 16px;
+  transition-duration: 350ms;
+
+  &:hover {
+    color: #b9bbbd;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
   }
 }

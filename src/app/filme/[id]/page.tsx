@@ -2,6 +2,7 @@ import { TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_compon
 import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/app/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 import { BsFillStarFill } from 'react-icons/bs'
 import S from './styles.module.scss'
 
@@ -45,7 +46,15 @@ export default async function Movie({ params }: MovieProps) {
       </section>
 
       <section className={[S.container, S.containerAbout].join(' ')}>
-        <Image className={S.imagePoster} loader={TMDBPosterLoader} src={poster} alt={`Poster do Filme ${title}`} fill priority />
+        <Image
+          className={S.imagePoster}
+          loader={TMDBPosterLoader}
+          src={poster}
+          alt={`Poster do Filme ${title}`}
+          sizes="(min-width: 769px) w400, (max-width: 768px) w200"
+          fill
+          priority
+        />
 
         <div className={S.contentAbout}>
           {!!grade && (
@@ -123,7 +132,7 @@ export default async function Movie({ params }: MovieProps) {
       <section className={[S.container, S.containerCast].join(' ')}>
         <h2 className={S.subTitle}>Elenco principal</h2>
 
-        <div className={S.castWrapper}>
+        <ul className={S.castWrapper}>
           {castList.map((actor) => {
             const id = actor.id
             const image = `https://image.tmdb.org/t/p/w200${actor.profile_path}`
@@ -131,16 +140,20 @@ export default async function Movie({ params }: MovieProps) {
             const character = actor.character
 
             return (
-              <div className={S.actorWrapper} key={id}>
+              <li className={S.actorWrapper} key={id}>
                 <div className={S.actorImageWrapper}>
                   <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />
                 </div>
                 <span className={S.actorName}>{name}</span>
                 <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
-              </div>
+              </li>
             )
           })}
-        </div>
+        </ul>
+
+        <Link className={S.castLink} href={`/filme/${id}/elenco`}>
+          Veja a lista completa do elenco e da equipe técnica
+        </Link>
       </section>
     </main>
   )

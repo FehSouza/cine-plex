@@ -1,0 +1,94 @@
+@keyframes go-back {
+  0% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #010b13;
+}
+
+.container {
+  width: 100%;
+  max-width: 1232px;
+  margin: 60px auto 0;
+  padding: 0 16px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+    padding-bottom: 32px;
+  }
+}
+
+.containerInfoBar {
+  margin-top: 16px;
+  padding-bottom: 0;
+  flex-direction: row;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    padding-bottom: 0;
+  }
+}
+
+.infoBarImage {
+  position: unset !important;
+  max-width: 96px !important;
+  height: auto !important;
+  aspect-ratio: 2/3;
+  border-radius: 4px;
+}
+
+.infoBarWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 16px;
+}
+
+.infoBarTitle {
+  font-size: 28px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.infoBarBack {
+  margin-top: 8px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition-duration: 350ms;
+
+  svg {
+    transition-duration: 350ms;
+    margin-top: 2px;
+  }
+
+  &:hover {
+    color: #b9bbbd;
+
+    svg {
+      fill: #b9bbbd;
+      animation: go-back 1000ms;
+    }
+  }
+}
