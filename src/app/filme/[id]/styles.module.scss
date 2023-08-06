@@ -251,12 +251,12 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   display: flex;
-  gap: 14px;
-  padding: 16px 4px;
+  gap: 15px;
+  padding: 16px 2px;
 
   @media (max-width: 768px) {
-    padding: 12px 4px;
-    padding-bottom: 8px;
+    padding: 12px 2px;
+    padding-bottom: 4px;
   }
 }
 
@@ -268,7 +268,6 @@
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid #b9bbbd1a;
-  box-shadow: 3px 3px 8px 2px #b9bbbd1a;
   transition-duration: 350ms;
 
   &:hover {
@@ -310,14 +309,10 @@
 
 .castLink {
   width: max-content;
-  margin-top: 16px;
+  margin-top: 12px;
   transition-duration: 350ms;
 
   &:hover {
     color: #b9bbbd;
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 12px;
   }
 }
