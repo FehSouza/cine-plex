@@ -35,7 +35,7 @@
   padding-bottom: 0;
   flex-direction: row;
   position: relative;
-  
+
   @media (max-width: 768px) {
     margin-top: 12px;
     padding-bottom: 0;
@@ -90,5 +90,67 @@
       fill: #b9bbbd;
       animation: go-back 1000ms;
     }
+  }
+}
+
+.containerLists {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.listContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.listName {
+  font-size: 20px;
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.listQuant {
+  font-size: 18px;
+  margin-left: 10px;
+  color: #b9bbbd;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.listWrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+  }
+}
+
+.division {
+  height: 1px;
+  width: 100%;
+  max-width: 1232px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background-color: #b9bbbd40;
+  border: none;
+  margin: 0 auto;
+
+  @media (min-width: 769px) {
+    display: none;
   }
 }

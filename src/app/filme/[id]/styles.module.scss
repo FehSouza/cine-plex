@@ -117,6 +117,10 @@
 .subTitle {
   font-size: 20px;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 }
 
 .subTitle2 {
@@ -263,8 +267,6 @@
 .actorWrapper {
   width: 134px;
   min-width: 134px;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid #b9bbbd1a;
@@ -276,15 +278,28 @@
   }
 }
 
+.actorLink {
+  display: flex;
+  flex-direction: column;
+}
+
 .actorImageWrapper {
+  height: 176px;
   max-height: 176px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actorImage {
   width: 100%;
   height: auto;
   aspect-ratio: 2/3;
+}
+
+.imagePerson {
+  color: #b9bbbd1a;
 }
 
 .actorName {

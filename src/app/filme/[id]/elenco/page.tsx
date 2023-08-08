@@ -1,4 +1,6 @@
+import { Cast, Crew } from '@/@types'
 import { TMDBPosterLoader } from '@/app/_components'
+import TeamCard from '@/app/_components/TeamCard'
 import { getCreditsMovie, getMovie } from '@/app/services'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,21 +18,17 @@ export default async function Elenco({ params }: ElencoProps) {
 
   const poster = movie.poster_path
   const title = movie.title
-
   const setCast = new Set()
   const setCrew = new Set()
 
-  const castList = credits.cast.filter((cast) => {
-    const duplicatedCast = setCast.has(cast.id)
-    setCast.add(cast.id)
-    return !duplicatedCast
-  })
+  const removeDuplicates = ({ item, set }: { item: Cast | Crew; set: Set<unknown> }) => {
+    const duplicated = set.has(item.id)
+    set.add(item.id)
+    return !duplicated
+  }
 
-  const crewList = credits.crew.filter((crew) => {
-    const duplicatedCrew = setCrew.has(crew.id)
-    setCrew.add(crew.id)
-    return !duplicatedCrew
-  })
+  const castList = credits.cast.filter((cast) => removeDuplicates({ item: cast, set: setCast }))
+  const crewList = credits.crew.filter((crew) => removeDuplicates({ item: crew, set: setCrew }))
 
   return (
     <main className={S.main}>
@@ -53,27 +51,43 @@ export default async function Elenco({ params }: ElencoProps) {
         </div>
       </section>
 
-      {/* <section className={[S.container, S.containerLists].join(' ')}>
-        <div>
-          <h2>Elenco</h2>
+      <section className={[S.container, S.containerLists].join(' ')}>
+        <div className={S.listContent}>
+          <h2 className={S.listName}>
+            Elenco <span className={S.listQuant}>{`(${castList.length})`}</span>
+          </h2>
 
-          <div>
-            {castList.map((actor) => {
-              return <div key={`actor-${actor.id}`}>{actor.id}</div>
+          <div className={S.listWrapper}>
+            {castList.map((item) => {
+              const id = item.id
+              const image = item.profile_path
+              const name = item.name
+              const subName = item.character
+
+              return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} />
             })}
           </div>
         </div>
 
-        <div>
-          <h2>Equipe Técnica</h2>
+        <hr className={S.division} />
 
-          <div>
-            {crewList.map((person) => {
-              return <div key={`person-${person.id}`}>{person.id}</div>
+        <div className={S.listContent}>
+          <h2 className={S.listName}>
+            Equipe Técnica <span className={S.listQuant}>{`(${crewList.length})`}</span>
+          </h2>
+
+          <ul className={S.listWrapper}>
+            {crewList.map((item) => {
+              const id = item.id
+              const image = item.profile_path
+              const name = item.name
+              const subName = item.job
+
+              return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} />
             })}
-          </div>
+          </ul>
         </div>
-      </section> */}
+      </section>
     </main>
   )
 }

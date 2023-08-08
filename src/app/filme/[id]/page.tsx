@@ -3,7 +3,7 @@ import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/app/s
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BsFillStarFill } from 'react-icons/bs'
+import { BsFillStarFill, BsPerson } from 'react-icons/bs'
 import S from './styles.module.scss'
 
 interface MovieProps {
@@ -135,17 +135,21 @@ export default async function Movie({ params }: MovieProps) {
         <ul className={S.castWrapper}>
           {castList.map((actor) => {
             const id = actor.id
-            const image = `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+            const idImage = actor.profile_path
+            const image = `https://image.tmdb.org/t/p/w200${idImage}`
             const name = actor.name
             const character = actor.character
 
             return (
               <li className={S.actorWrapper} key={id}>
-                <div className={S.actorImageWrapper}>
-                  <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />
-                </div>
-                <span className={S.actorName}>{name}</span>
-                <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
+                <a className={S.actorLink} href="" aria-label={`Link para a página de detalhes de ${name}`}>
+                  <div className={S.actorImageWrapper}>
+                    {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
+                    {!idImage && <BsPerson size={32} className={S.imagePerson} />}
+                  </div>
+                  <span className={S.actorName}>{name}</span>
+                  <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
+                </a>
               </li>
             )
           })}
