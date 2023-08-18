@@ -1,5 +1,5 @@
 import { TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
-import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/app/services'
+import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'

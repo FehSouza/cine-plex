@@ -1,8 +1,8 @@
 'use client'
 
 import { Video } from '@/@types'
-import { dispatchInfosVideo } from '@/app/states/infosVideo'
-import { dispatchOpenVideoModal } from '@/app/states/openVideoModal'
+import { dispatchInfosVideo } from '@/states/infosVideo'
+import { dispatchOpenVideoModal } from '@/states/openVideoModal'
 import { BsPlayCircleFill } from 'react-icons/bs'
 import S from './styles.module.scss'
 interface IframeVideoProps {

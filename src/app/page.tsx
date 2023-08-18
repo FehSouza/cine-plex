@@ -1,5 +1,5 @@
-import { MainBanner, Carousel } from './_components'
-import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from './services'
+import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from '@/services'
+import { Carousel, MainBanner } from './_components'
 import S from './styles.module.scss'
 
 export default async function Home() {

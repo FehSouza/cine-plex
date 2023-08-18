@@ -1,7 +1,7 @@
 'use client'
 
-import { useInfosVideo } from '@/app/states/infosVideo'
-import { dispatchOpenVideoModal, useOpenVideoModal } from '@/app/states/openVideoModal'
+import { useInfosVideo } from '@/states/infosVideo'
+import { dispatchOpenVideoModal, useOpenVideoModal } from '@/states/openVideoModal'
 import { RiCloseCircleFill } from 'react-icons/ri'
 import S from './styles.module.scss'
 
