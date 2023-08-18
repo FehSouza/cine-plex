@@ -16,3 +16,17 @@ export const COLOR_DICTIONARY = {
   'NC-17': '#000000',
   NR: '#000000',
 } as colorDictionaryProps
+
+export const DICTIONARY_CREW_DEPARTMENT = {
+  Art: 'Arte',
+  Camera: 'Câmera',
+  'Costume & Make-Up': 'Figurino e maquiagem',
+  Crew: 'Equipe técnica',
+  Directing: 'Diretor(a)',
+  Editing: 'Edição',
+  Lighting: 'Iluminação',
+  Production: 'Produção',
+  Sound: 'Sonoplastia',
+  'Visual Effects': 'Efeitos Visuais',
+  Writing: 'Roteirização',
+}

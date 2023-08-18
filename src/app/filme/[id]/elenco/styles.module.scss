@@ -109,6 +109,16 @@
   flex-direction: column;
 }
 
+.listDepart {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+  }
+}
+
 .listName {
   font-size: 20px;
   font-weight: 700;
@@ -118,6 +128,10 @@
   }
 }
 
+.departName {
+  font-weight: 700;
+}
+
 .listQuant {
   font-size: 18px;
   margin-left: 10px;
@@ -125,6 +139,16 @@
 
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+}
+
+.listDepartQuant {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #b9bbbd;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
   }
 }
 

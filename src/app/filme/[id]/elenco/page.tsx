@@ -2,6 +2,7 @@ import { Cast, Crew } from '@/@types'
 import { TMDBPosterLoader } from '@/app/_components'
 import TeamCard from '@/app/_components/TeamCard'
 import { getCreditsMovie, getMovie } from '@/app/services'
+import { DICTIONARY_CREW_DEPARTMENT } from '@/dictionary'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
@@ -29,6 +30,24 @@ export default async function Elenco({ params }: ElencoProps) {
 
   const castList = credits.cast.filter((cast) => removeDuplicates({ item: cast, set: setCast }))
   const crewList = credits.crew.filter((crew) => removeDuplicates({ item: crew, set: setCrew }))
+
+  const crewListSorted = crewList.sort(function (a, b) {
+    if (a.job < b.job) return -1
+    if (a.job > b.job) return 1
+    return 0
+  })
+
+  let departments = [] as string[]
+
+  crewListSorted.forEach((item) => {
+    const depart = item.department
+    if (!departments.includes(depart)) departments.push(depart)
+  })
+
+  const crewListFormatted = departments.sort().map((depart) => {
+    const filter = crewListSorted.filter((item) => item.department === depart)
+    return [depart, filter]
+  })
 
   return (
     <main className={S.main}>
@@ -76,16 +95,30 @@ export default async function Elenco({ params }: ElencoProps) {
             Equipe Técnica <span className={S.listQuant}>{`(${crewList.length})`}</span>
           </h2>
 
-          <ul className={S.listWrapper}>
-            {crewList.map((item) => {
-              const id = item.id
-              const image = item.profile_path
-              const name = item.name
-              const subName = item.job
+          {crewListFormatted.map((depart) => {
+            const name = depart[0] as keyof typeof DICTIONARY_CREW_DEPARTMENT
+            const list = depart[1] as Crew[]
 
-              return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} />
-            })}
-          </ul>
+            return (
+              <div key={`department-${name}`} className={S.listDepart}>
+                <h3 className={S.departName}>
+                  {DICTIONARY_CREW_DEPARTMENT[name] ? DICTIONARY_CREW_DEPARTMENT[name] : name}
+                  <span className={S.listDepartQuant}>{`(${list.length})`}</span>
+                </h3>
+
+                <ul className={S.listWrapper}>
+                  {list.map((item) => {
+                    const id = item.id
+                    const image = item.profile_path
+                    const name = item.name
+                    const subName = item.job
+
+                    return <TeamCard key={`crew-${id}`} id={id} image={image} name={name} subName={subName} />
+                  })}
+                </ul>
+              </div>
+            )
+          })}
         </div>
       </section>
     </main>
