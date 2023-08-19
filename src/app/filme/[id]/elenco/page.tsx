@@ -76,7 +76,7 @@ export default async function Elenco({ params }: ElencoProps) {
             Elenco <span className={S.listQuant}>{`(${castList.length})`}</span>
           </h2>
 
-          <div className={S.listWrapper}>
+          <ul className={S.listWrapper}>
             {castList.map((item) => {
               const id = item.id
               const image = item.profile_path
@@ -85,7 +85,7 @@ export default async function Elenco({ params }: ElencoProps) {
 
               return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} />
             })}
-          </div>
+          </ul>
         </div>
 
         <hr className={S.division} />
