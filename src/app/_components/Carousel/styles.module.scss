@@ -63,14 +63,17 @@
   overflow: hidden;
   display: flex;
   width: 100%;
-  aspect-ratio: 10/15;
+  aspect-ratio: 2/3;
   position: relative;
 }
 
 .image {
   width: 100%;
-  height: auto;
+  height: auto !important;
   transition-duration: 350ms;
+  position: unset !important;
+  margin: auto;
+  border-radius: 12px;
 }
 
 .gradeWrapper {
