@@ -38,7 +38,7 @@ export function MainBanner({ movies }: MainBannerProps) {
   return (
     <div className={S.embla} ref={emblaRef}>
       <div className={S.emblaContainer}>
-        {movieList.map((movie) => {
+        {movieList.map((movie, index) => {
           const id = movie.id
           const title = movie.title
           const description = movie.overview
@@ -46,7 +46,14 @@ export function MainBanner({ movies }: MainBannerProps) {
 
           return (
             <Link href={`/filme/${id}`} className={S.emblaSlide} key={id}>
-              <Image className={S.image} loader={TMDBBackdropLoader} src={movie.backdrop_path} alt={`Imagem do Filme ${title}`} fill />
+              <Image
+                className={S.image}
+                loader={TMDBBackdropLoader}
+                src={movie.backdrop_path}
+                alt={`Imagem do Filme ${title}`}
+                fill
+                priority={index === 0 ? true : false}
+              />
               <div className={S.info}>
                 <div className={S.infoWrapper}>
                   <span className={S.title}>{title}</span>
