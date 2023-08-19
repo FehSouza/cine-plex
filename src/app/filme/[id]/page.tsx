@@ -142,7 +142,7 @@ export default async function Movie({ params }: MovieProps) {
 
             return (
               <li className={S.actorWrapper} key={id}>
-                <a className={S.actorLink} href="" aria-label={`Link para a página de detalhes de ${name}`}>
+                <a className={S.actorLink} href="">
                   <div className={S.actorImageWrapper}>
                     {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
                     {!idImage && <BsPerson size={32} className={S.imagePerson} />}
