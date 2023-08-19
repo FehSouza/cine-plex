@@ -15,6 +15,7 @@
 
 .ImageWrapper {
   width: 78px;
+  min-width: 78px;
   height: 78px;
   overflow: hidden;
   border-radius: 4px;
@@ -26,6 +27,7 @@
 
   @media (max-width: 768px) {
     width: 66px;
+    min-width: 66px;
     height: 66px;
   }
 }
@@ -39,7 +41,7 @@
 }
 
 .imagePerson {
-  color: #b9bbbd1a;
+  color: #b9bbbd40;
   transition-duration: 350ms;
 }
 

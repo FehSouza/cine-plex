@@ -11,6 +11,11 @@ interface TeamListProps {
 }
 
 export default function TeamCard({ id, image, name, subName }: TeamListProps) {
+  const subNameFormatted = subName
+    .replace('(voice)', '(voz)')
+    .replace('(uncredited)', '(sem créditos)')
+    .replace('(archive footage)', '(imagens de arquivo)')
+
   return (
     <li className={S.cardWrapper} key={`cast-${id}`}>
       <a className={S.cardLink} href="" aria-label={`Link para a página de detalhes de ${name}`}>
@@ -21,7 +26,7 @@ export default function TeamCard({ id, image, name, subName }: TeamListProps) {
 
         <div className={S.infosWrapper}>
           <span className={S.name}>{name}</span>
-          <span className={S.subName}>{subName}</span>
+          <span className={S.subName}>{subNameFormatted}</span>
         </div>
       </a>
     </li>
