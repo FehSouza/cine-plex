@@ -18,7 +18,7 @@ export default function TeamCard({ id, image, name, subName }: TeamListProps) {
 
   return (
     <li className={S.cardWrapper} key={`cast-${id}`}>
-      <a className={S.cardLink} href="" aria-label={`${name}`}>
+      <a className={S.cardLink} href="">
         <div className={S.ImageWrapper}>
           {image && <Image className={S.image} loader={TMDBPosterLoader} src={image} alt={`Imagem de ${name}`} fill sizes="200w" />}
           {!image && <BsPerson size={32} className={S.imagePerson} />}

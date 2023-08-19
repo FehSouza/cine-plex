@@ -9,7 +9,7 @@ interface LogoProps {
 
 export const Logo = ({ hasText }: LogoProps) => {
   return (
-    <Link className={S.logo} href="/" aria-label="Cine Plex">
+    <Link className={S.logo} href="/">
       <Image className={S.image} src={LogoImg} alt="Logo Cine Plex" priority={true} />
       {hasText && 'Cine Plex'}
     </Link>
