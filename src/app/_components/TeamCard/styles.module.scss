@@ -1,9 +1,16 @@
 .cardWrapper {
   display: flex;
+  border-radius: 4px;
+  border: 1px solid #b9bbbd40;
+
+  @media (max-width: 480px) {
+    border: none;
+  }
 }
 
 .cardLink {
   display: flex;
+  width: 100%;
 
   &:hover {
     .image,
@@ -14,21 +21,29 @@
 }
 
 .ImageWrapper {
-  width: 78px;
-  min-width: 78px;
-  height: 78px;
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
   overflow: hidden;
-  border-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #b9bbbd40;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: 768px) and (min-width: 481px) {
+    width: 88px;
+    min-width: 88px;
+    height: 88px;
+  }
+
+  @media (max-width: 480px) {
     width: 66px;
     min-width: 66px;
     height: 66px;
+    border: 1px solid #b9bbbd40;
+    border-radius: 4px;
   }
 }
 
@@ -48,12 +63,21 @@
 .infosWrapper {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  padding: 8px 16px;
   justify-content: center;
 
   @media (max-width: 768px) {
-    margin-left: 12px;
+    padding: 6px 12px;
   }
+}
+
+.name,
+.subName {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .name {

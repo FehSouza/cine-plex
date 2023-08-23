@@ -12,6 +12,7 @@
   flex-direction: column;
   flex: 1;
   background-color: #010b13;
+  padding-bottom: 40px;
 }
 
 .container {
@@ -61,7 +62,7 @@
   font-size: 28px;
   font-weight: 700;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 769px) {
     font-size: 22px;
   }
 
@@ -93,14 +94,72 @@
   }
 }
 
-.containerLists {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+.containerListNames {
+  margin-top: 36px;
+  padding: 16px;
+  flex-direction: row;
+  gap: 64px;
+  position: sticky;
+  top: 94px;
+  background-color: #010b13;
+  box-shadow: 0px 0px 12px 0px #010b13;
+  z-index: 2;
 
   @media (max-width: 768px) {
+    margin-top: 16px;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.listNameTab {
+  width: fit-content;
+  padding: 8px 0;
+  transition-duration: 350ms;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+
+  &:hover,
+  &:hover span {
+    color: #cd244a;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.listQuant {
+  font-size: 18px;
+  color: #b9bbbd;
+  margin-left: 10px;
+  transition-duration: 350ms;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  @media (max-width: 480px) {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
+.containerLists {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
   }
 }
 
@@ -109,36 +168,23 @@
   flex-direction: column;
 }
 
-.listDepart {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    margin-top: 24px;
-  }
-}
-
 .listName {
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 16px;
 
   @media (max-width: 768px) {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 12px;
   }
 }
 
 .departName {
   font-weight: 700;
-}
-
-.listQuant {
-  font-size: 18px;
-  margin-left: 10px;
-  color: #b9bbbd;
+  margin-bottom: 16px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    margin-bottom: 12px;
   }
 }
 
@@ -149,18 +195,42 @@
 
   @media (max-width: 768px) {
     font-size: 12px;
+    margin-left: 8px;
+  }
+}
+
+.listDepart {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
   }
 }
 
 .listWrapper {
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   position: relative;
-  gap: 12px;
+  gap: 16px;
 
-  @media (max-width: 768px) {
-    margin-top: 12px;
+  @media (max-width: 1024px) and (min-width: 769px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) and (min-width: 481px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
   }
 }
 
@@ -173,8 +243,4 @@
   background-color: #b9bbbd40;
   border: none;
   margin: 0 auto;
-
-  @media (min-width: 769px) {
-    display: none;
-  }
 }

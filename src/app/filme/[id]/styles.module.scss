@@ -3,6 +3,7 @@
   flex-direction: column;
   flex: 1;
   background-color: #010b13;
+  padding-bottom: 40px;
 }
 
 .imageWrapper {
@@ -55,7 +56,7 @@
   padding: 0 16px;
   position: relative;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 769px) {
     margin-top: 250px;
   }
 
@@ -106,7 +107,7 @@
   font-size: 28px;
   font-weight: 700;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1024px) and (min-width: 769px) {
     font-size: 22px;
   }
 

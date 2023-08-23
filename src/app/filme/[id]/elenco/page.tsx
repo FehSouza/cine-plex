@@ -70,11 +70,23 @@ export default async function Elenco({ params }: ElencoProps) {
         </div>
       </section>
 
+      <section className={[S.container, S.containerListNames].join(' ')}>
+        <button className={S.listNameTab}>
+          Elenco <span className={S.listQuant}>{`(${castList.length})`}</span>
+        </button>
+
+        <button className={S.listNameTab}>
+          Equipe Técnica <span className={S.listQuant}>{`(${crewList.length})`}</span>
+        </button>
+
+        <button className={S.listNameTab}>
+          Todos <span className={S.listQuant}>{`(${castList.length + crewList.length})`}</span>
+        </button>
+      </section>
+
       <section className={[S.container, S.containerLists].join(' ')}>
         <div className={S.listContent}>
-          <h2 className={S.listName}>
-            Elenco <span className={S.listQuant}>{`(${castList.length})`}</span>
-          </h2>
+          <h2 className={S.listName}>Elenco</h2>
 
           <ul className={S.listWrapper}>
             {castList.map((item) => {
@@ -91,9 +103,7 @@ export default async function Elenco({ params }: ElencoProps) {
         <hr className={S.division} />
 
         <div className={S.listContent}>
-          <h2 className={S.listName}>
-            Equipe Técnica <span className={S.listQuant}>{`(${crewList.length})`}</span>
-          </h2>
+          <h2 className={S.listName}>Equipe Técnica</h2>
 
           {crewListFormatted.map((depart) => {
             const name = depart[0] as keyof typeof DICTIONARY_CREW_DEPARTMENT
