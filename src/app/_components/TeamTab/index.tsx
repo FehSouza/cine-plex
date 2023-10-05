@@ -11,7 +11,8 @@ interface TeamTabProps {
 }
 
 export const TeamTab = ({ credits }: TeamTabProps) => {
-  const [tabActive, setTabActive] = useState('cast')
+  const search = window.location.search
+  const [tabActive, setTabActive] = useState(search ? search.replace('?q=', '') : 'cast')
 
   const setCast = new Set()
   const setCrew = new Set()
@@ -46,6 +47,11 @@ export const TeamTab = ({ credits }: TeamTabProps) => {
   const handleSelectTab = (tabName: string) => {
     setTabActive(tabName)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    const currentURL = new URL(window.location.href)
+    currentURL.searchParams.set('q', tabName)
+
+    history.pushState(null, '', tabName === 'cast' ? currentURL.pathname : currentURL.href)
   }
 
   return (
