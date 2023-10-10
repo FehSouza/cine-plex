@@ -1,19 +1,20 @@
-import { TMDBPosterLoader, TeamTab } from '@/app/_components'
-import { getCreditsMovie, getMovie } from '@/services'
+import { TMDBPosterLoader } from '@/app/_components'
+import TeamTabs from '@/app/_components/TeamTabs'
+import { getMovie } from '@/services'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import S from './styles.module.scss'
 
-interface ElencoProps {
+interface RootLayoutProps {
+  children: React.ReactNode
   params: { id: string }
 }
 
-export default async function Elenco({ params }: ElencoProps) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
   const id = params.id
 
-  const [movie, credits] = await Promise.all([getMovie(id), getCreditsMovie(id)])
-
+  const [movie] = await Promise.all([getMovie(id)])
   const poster = movie.poster_path
   const title = movie.title
 
@@ -38,7 +39,9 @@ export default async function Elenco({ params }: ElencoProps) {
         </div>
       </section>
 
-      <TeamTab credits={credits} />
+      <TeamTabs id={id} />
+
+      {children}
     </main>
   )
 }

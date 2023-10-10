@@ -1,0 +1,51 @@
+.listDepart {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
+}
+
+.departName {
+  font-weight: 700;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 12px;
+  }
+}
+
+.listDepartQuant {
+  font-size: 14px;
+  margin-left: 8px;
+  color: #b9bbbd;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.listWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

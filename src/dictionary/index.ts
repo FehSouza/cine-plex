@@ -30,3 +30,9 @@ export const DICTIONARY_CREW_DEPARTMENT = {
   'Visual Effects': 'Efeitos Visuais',
   Writing: 'Roteirização',
 }
+
+export const DICTIONARY_TEAM = {
+  elenco: 'cast',
+  'equipe-tecnica': 'crew',
+  'elenco-e-equipe-tecnica': 'all',
+}

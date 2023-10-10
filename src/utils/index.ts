@@ -1,3 +1,5 @@
+export * from './formatCastList'
+export * from './formatCrewList'
 export * from './formatDate'
 export * from './formatHours'
 export * from './formatReleaseDate'

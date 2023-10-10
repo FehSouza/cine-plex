@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  max-width: 1232px;
+  margin: 16px auto 0;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.listName {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+}
+
+.division {
+  height: 1px;
+  width: 100%;
+  max-width: 1232px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background-color: #b9bbbd40;
+  border: none;
+  margin: 40px auto;
+}
