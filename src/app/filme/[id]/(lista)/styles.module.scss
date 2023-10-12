@@ -8,6 +8,7 @@
 }
 
 .main {
+  margin-top: 96px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -108,7 +109,7 @@
 
   &:hover,
   &:hover span {
-    color: #669AFF;
+    color: #669aff;
   }
 
   @media (max-width: 768px) {
