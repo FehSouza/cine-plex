@@ -1,5 +1,5 @@
 import { TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
-import { getClassifications, getCreditsMovie, getMovie, getVideo } from '@/services'
+import { getClassifications, getCreditsMovie, getMovie, getVideo, getWatch } from '@/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,11 +13,12 @@ interface MovieProps {
 export default async function Movie({ params }: MovieProps) {
   const id = params.id
 
-  const [movie, classifications, credits, videos] = await Promise.all([
+  const [movie, classifications, credits, videos, watch] = await Promise.all([
     getMovie(id),
     getClassifications(id),
     getCreditsMovie(id),
     getVideo(id),
+    getWatch(id),
   ])
 
   const image = movie.backdrop_path
@@ -37,6 +38,11 @@ export default async function Movie({ params }: MovieProps) {
   const castList = credits.cast.slice(0, 8)
   const actorsNames = castList.slice(0, 3).map((actor) => actor.name)
   const videoList = videos.slice(0, 2)
+
+  const availableToStream = watch?.flatrate
+  const availableToRent = watch?.rent
+  const availableToBuy = watch?.buy
+  const watchProvider = availableToStream ?? availableToRent ?? availableToBuy
 
   return (
     <main className={S.main}>
@@ -91,6 +97,24 @@ export default async function Movie({ params }: MovieProps) {
               <p key={genre.id}>{genre.name}</p>
             ))}
           </div>
+
+          {watchProvider && (
+            <Link className={S.watchWrapper} href={`/filme/${id}/watch`}>
+              <div className={S.watchWrapperInt}>
+                <div className={S.watchImageWrapper}>
+                  <Image
+                    className={S.watchImage}
+                    src={`https://www.themoviedb.org/t/p/original${watchProvider[0].logo_path}`}
+                    alt={`Logo da ${watchProvider[0].provider_name}`}
+                    width={40}
+                    height={40}
+                    priority
+                  />
+                </div>
+                <span className={S.watchText}>{availableToStream ? 'Assista agora!' : 'Disponível para alugar ou comprar!'}</span>
+              </div>
+            </Link>
+          )}
         </div>
       </section>
 

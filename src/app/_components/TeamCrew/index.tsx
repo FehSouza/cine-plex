@@ -1,13 +1,13 @@
 import { Crew } from '@/@types'
 import { DICTIONARY_CREW_DEPARTMENT } from '@/dictionary'
-import TeamCard from '../TeamCard'
+import { TeamCard } from '../TeamCard'
 import S from './styles.module.scss'
 
 interface TeamCrewProps {
   list: (string | Crew[])[][]
 }
 
-export default function TeamCrew({ list }: TeamCrewProps) {
+export const TeamCrew = ({ list }: TeamCrewProps) => {
   return (
     <>
       {list.map((item) => {

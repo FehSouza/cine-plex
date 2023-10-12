@@ -1,4 +1,4 @@
-import { Certifications, Movie, MovieCredits, MovieDetail, Videos } from '@/@types'
+import { Certifications, Movie, MovieCredits, MovieDetail, Videos, Watch } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
 
 const options = {
@@ -79,5 +79,13 @@ export async function getClassifications(id: string) {
     return acc
   }, [] as { country: string; certification: string; color: string }[])
 
+  return filteredList
+}
+
+export async function getWatch(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options)
+  const response = (await res.json()) as Watch
+
+  const filteredList = response?.results?.BR
   return filteredList
 }

@@ -1,4 +1,4 @@
-import TeamCast from '@/app/_components/TeamCast'
+import { TeamCast } from '@/app/_components'
 import { getCreditsMovie } from '@/services'
 import { castList } from '@/utils'
 import S from './styles.module.scss'

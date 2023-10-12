@@ -144,3 +144,22 @@ export interface CertificationData {
   release_date: string
   type: number
 }
+
+export interface Watch {
+  id: number
+  results: Record<string, WatchResults>
+}
+
+export interface WatchResults {
+  link: string
+  rent?: WatchData[]
+  flatrate?: WatchData[]
+  buy?: WatchData[]
+}
+
+export interface WatchData {
+  logo_path: string
+  provider_id: number
+  provider_name: string
+  display_priority: number
+}

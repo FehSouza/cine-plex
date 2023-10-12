@@ -1,4 +1,4 @@
-import TeamCrew from '@/app/_components/TeamCrew'
+import { TeamCrew } from '@/app/_components'
 import { getCreditsMovie } from '@/services'
 import { crewList } from '@/utils'
 import S from './styles.module.scss'

@@ -1,5 +1,4 @@
-import { TMDBPosterLoader } from '@/app/_components'
-import TeamTabs from '@/app/_components/TeamTabs'
+import { TMDBPosterLoader, TeamTabs } from '@/app/_components'
 import { getMovie } from '@/services'
 import Image from 'next/image'
 import Link from 'next/link'

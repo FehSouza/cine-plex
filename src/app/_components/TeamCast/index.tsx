@@ -1,12 +1,12 @@
 import { Cast } from '@/@types'
-import TeamCard from '../TeamCard'
+import { TeamCard } from '../TeamCard'
 import S from './styles.module.scss'
 
 interface TeamCastProps {
   list: Cast[]
 }
 
-export default function TeamCast({ list }: TeamCastProps) {
+export const TeamCast = ({ list }: TeamCastProps) => {
   return (
     <ul className={S.listWrapper}>
       {list.map((item) => {

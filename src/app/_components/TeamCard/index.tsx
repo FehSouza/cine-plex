@@ -10,7 +10,7 @@ interface TeamListProps {
   subName: string
 }
 
-export default function TeamCard({ id, image, name, subName }: TeamListProps) {
+export const TeamCard = ({ id, image, name, subName }: TeamListProps) => {
   const subNameFormatted = subName
     .replace('(voice)', '(voz)')
     .replace('(uncredited)', '(sem créditos)')
