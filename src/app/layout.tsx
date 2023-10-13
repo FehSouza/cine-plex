@@ -2,7 +2,6 @@ import { Roboto } from 'next/font/google'
 import '../styles/globals.scss'
 import { Footer, Header } from './_components'
 import S from './styles.module.scss'
-import { VideoModal } from './_components/VideoModal'
 
 const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
@@ -20,7 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className={S.headerContainer} />
           {children}
           <Footer />
-          <VideoModal />
         </div>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import { ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
+import { ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/app/_components'
 import { getClassifications, getCreditsMovie, getMovie, getVideo, getWatch } from '@/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
@@ -142,7 +142,7 @@ export default async function Movie({ params }: MovieProps) {
           <h2 className={S.subTitle}>Trailers</h2>
           <div className={S.contentVideos}>
             {videoList.map((video) => (
-              <VideoIframe key={video.key} video={video} title={title} />
+              <VideoLazyLoad key={video.key} videoKey={video.key} alt={title} />
             ))}
           </div>
         </section>
