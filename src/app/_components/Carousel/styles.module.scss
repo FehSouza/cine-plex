@@ -26,6 +26,14 @@
   }
 }
 
+.titleMoviePage {
+  font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
 .embla {
   margin-top: 40px;
   overflow: hidden;
@@ -33,6 +41,14 @@
 
   @media (max-width: 768px) {
     margin-top: 32px;
+  }
+}
+
+.emblaMoviePage {
+  margin-top: 24px;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
   }
 }
 
@@ -130,7 +146,7 @@
 .seeMore {
   margin-top: auto;
   height: 32px;
-  background-color: #669AFF;
+  background-color: #669aff;
   padding: 0 16px;
   border-radius: 8px;
   color: #ffffff;
@@ -138,7 +154,7 @@
   opacity: 0;
 
   &:hover {
-    background-color: #4283FF;
+    background-color: #4283ff;
   }
 
   @media (max-width: 768px) {
@@ -172,7 +188,7 @@
   z-index: 2;
 
   &:hover > .emblaArrowInternal {
-    background-color: #4283FF;
+    background-color: #4283ff;
   }
 
   @media (max-width: 1024px) {
@@ -195,7 +211,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #669AFF;
+  background-color: #669aff;
   transition-duration: 350ms;
 
   & svg {

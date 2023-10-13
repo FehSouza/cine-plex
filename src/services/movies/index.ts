@@ -85,7 +85,13 @@ export async function getClassifications(id: string) {
 export async function getWatch(id: string) {
   const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options)
   const response = (await res.json()) as Watch
-
   const filteredList = response?.results?.BR
+  return filteredList
+}
+
+export async function getRecommendations(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=pt-BR&page=1`, options)
+  const response = (await res.json()) as { results: Movie[] }
+  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }

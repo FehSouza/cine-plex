@@ -14,6 +14,7 @@ interface CarouselProps {
   title: string
   movies: Movie[]
   upcoming?: boolean
+  moviePage?: boolean
 }
 
 export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
@@ -31,7 +32,7 @@ export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
   return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
-export function Carousel({ title, movies, upcoming }: CarouselProps) {
+export function Carousel({ title, movies, upcoming, moviePage }: CarouselProps) {
   const movieList = movies.slice(0, 12)
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align: 'start' })
@@ -40,9 +41,9 @@ export function Carousel({ title, movies, upcoming }: CarouselProps) {
 
   return (
     <section className={S.carousel}>
-      <h2 className={S.title}>{title}</h2>
+      <h2 className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>{title}</h2>
 
-      <div className={S.embla} ref={emblaRef}>
+      <div className={[S.embla, moviePage ? S.emblaMoviePage : ''].join(' ')} ref={emblaRef}>
         <div className={S.emblaContainer}>
           {movieList.map((movie) => {
             const id = movie.id

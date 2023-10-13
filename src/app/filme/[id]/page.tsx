@@ -1,5 +1,5 @@
-import { ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/app/_components'
-import { getClassifications, getCreditsMovie, getMovie, getVideo, getWatch } from '@/services'
+import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/app/_components'
+import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,12 +13,13 @@ interface MovieProps {
 export default async function Movie({ params }: MovieProps) {
   const id = params.id
 
-  const [movie, classifications, credits, videos, watch] = await Promise.all([
+  const [movie, classifications, credits, videos, watch, recommendations] = await Promise.all([
     getMovie(id),
     getClassifications(id),
     getCreditsMovie(id),
     getVideo(id),
     getWatch(id),
+    getRecommendations(id),
   ])
 
   const image = movie.backdrop_path
@@ -136,7 +137,6 @@ export default async function Movie({ params }: MovieProps) {
       </section>
 
       {!!videoList.length && <hr className={S.division} />}
-
       {!!videoList.length && (
         <section className={S.container}>
           <h2 className={S.subTitle}>Trailers</h2>
@@ -149,7 +149,6 @@ export default async function Movie({ params }: MovieProps) {
       )}
 
       {watchProvider && <hr className={S.division} />}
-
       {watchProvider && (
         <section className={S.container}>
           <h2 className={S.subTitle}>{`Onde assistir ${title}`}</h2>
@@ -160,7 +159,6 @@ export default async function Movie({ params }: MovieProps) {
       )}
 
       <hr className={S.division} />
-
       <section className={S.container}>
         <h2 className={S.subTitle}>Elenco principal</h2>
 
@@ -191,6 +189,9 @@ export default async function Movie({ params }: MovieProps) {
           Veja a lista completa do elenco e da equipe técnica
         </Link>
       </section>
+
+      {!!recommendations.length && <hr className={S.division} />}
+      {!!recommendations.length && <Carousel title="Nossas Recomendações" movies={recommendations} moviePage />}
     </main>
   )
 }

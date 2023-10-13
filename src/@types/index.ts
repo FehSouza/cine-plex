@@ -13,6 +13,7 @@ export interface Movie {
   video: boolean
   vote_average: number
   vote_count: number
+  media_type?: string
 }
 
 export interface MovieDetail {

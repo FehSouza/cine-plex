@@ -4,7 +4,6 @@
   flex-direction: column;
   flex: 1;
   background-color: #010b13;
-  padding-bottom: 40px;
 }
 
 .imageWrapper {
@@ -279,6 +278,11 @@
   display: flex;
   gap: 15px;
   padding: 16px 2px;
+  padding-bottom: 8px;
+
+  @media (max-width: 1228px) {
+    padding-bottom: 16px;
+  }
 
   @media (max-width: 768px) {
     padding: 12px 2px;
@@ -346,8 +350,11 @@
 
 .castLink {
   width: max-content;
-  margin-top: 12px;
   transition-duration: 350ms;
+
+  @media (max-width: 1228px) {
+    margin-top: 12px;
+  }
 
   &:hover {
     color: #b9bbbd;
