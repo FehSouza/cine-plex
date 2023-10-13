@@ -1,4 +1,4 @@
-import { TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
+import { ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoIframe } from '@/app/_components'
 import { getClassifications, getCreditsMovie, getMovie, getVideo, getWatch } from '@/services'
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
@@ -99,26 +99,23 @@ export default async function Movie({ params }: MovieProps) {
           </div>
 
           {watchProvider && (
-            <Link className={S.watchWrapper} href={`/filme/${id}/watch`}>
-              <div className={S.watchWrapperInt}>
-                <div className={S.watchImageWrapper}>
-                  <Image
-                    className={S.watchImage}
-                    src={`https://www.themoviedb.org/t/p/original${watchProvider[0].logo_path}`}
-                    alt={`Logo da ${watchProvider[0].provider_name}`}
-                    width={40}
-                    height={40}
-                    priority
-                  />
-                </div>
-                <span className={S.watchText}>{availableToStream ? 'Assista agora!' : 'Disponível para alugar ou comprar!'}</span>
-              </div>
-            </Link>
+            <div className={S.watchWrapper}>
+              <Image
+                className={S.watchImage}
+                src={`https://www.themoviedb.org/t/p/original${watchProvider[0].logo_path}`}
+                alt={`Assista ${title} na ${watchProvider[0].provider_name}`}
+                title={`Assista na ${watchProvider[0].provider_name}`}
+                width={48}
+                height={48}
+                priority
+              />
+              <span>{availableToStream ? 'Assista agora!' : 'Disponível para alugar ou comprar!'}</span>
+            </div>
           )}
         </div>
       </section>
 
-      <section className={[S.container, S.containerDescription].join(' ')}>
+      <section className={S.container}>
         {!!tagline && <span className={[S.content, S.contentTagline].join(' ')}>{tagline}</span>}
 
         <span className={[S.subTitle2, S.originalTitle].join(' ')}>Nome Original</span>
@@ -141,7 +138,7 @@ export default async function Movie({ params }: MovieProps) {
       {!!videoList.length && <hr className={S.division} />}
 
       {!!videoList.length && (
-        <section className={[S.container, S.containerVideos].join(' ')}>
+        <section className={S.container}>
           <h2 className={S.subTitle}>Trailers</h2>
           <div className={S.contentVideos}>
             {videoList.map((video) => (
@@ -151,9 +148,20 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
+      {watchProvider && <hr className={S.division} />}
+
+      {watchProvider && (
+        <section className={S.container}>
+          <h2 className={S.subTitle}>{`Onde assistir ${title}`}</h2>
+          {availableToStream && <ProvidersToWatch id={id} providers={availableToStream} titleMovie={title} title="Stream" />}
+          {availableToRent && <ProvidersToWatch id={id} providers={availableToRent} titleMovie={title} title="Alugar" />}
+          {availableToBuy && <ProvidersToWatch id={id} providers={availableToBuy} titleMovie={title} title="Comprar" />}
+        </section>
+      )}
+
       <hr className={S.division} />
 
-      <section className={[S.container, S.containerCast].join(' ')}>
+      <section className={S.container}>
         <h2 className={S.subTitle}>Elenco principal</h2>
 
         <ul className={S.castWrapper}>
