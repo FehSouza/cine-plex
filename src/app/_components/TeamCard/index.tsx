@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { BsPerson } from 'react-icons/bs'
 import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
@@ -18,7 +19,7 @@ export const TeamCard = ({ id, image, name, subName }: TeamListProps) => {
 
   return (
     <li className={S.cardWrapper} key={`cast-${id}`}>
-      <a className={S.cardLink} href="">
+      <Link className={S.cardLink} href={`/pessoa/${id}`}>
         <div className={S.ImageWrapper}>
           {image && <Image className={S.image} loader={TMDBPosterLoader} src={image} alt={`Imagem de ${name}`} fill sizes="200w" />}
           {!image && <BsPerson size={32} className={S.imagePerson} />}
@@ -28,7 +29,7 @@ export const TeamCard = ({ id, image, name, subName }: TeamListProps) => {
           <span className={S.name}>{name}</span>
           <span className={S.subName}>{subNameFormatted}</span>
         </div>
-      </a>
+      </Link>
     </li>
   )
 }

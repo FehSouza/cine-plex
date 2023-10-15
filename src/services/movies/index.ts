@@ -1,4 +1,4 @@
-import { Certifications, Movie, MovieCredits, MovieDetail, Videos, Watch } from '@/@types'
+import { Certifications, Movie, MovieCredits, MovieDetail, Person, PersonCredits, SocialMedia, Videos, Watch } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
 
 const options = {
@@ -94,4 +94,29 @@ export async function getRecommendations(id: string) {
   const response = (await res.json()) as { results: Movie[] }
   const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
+}
+
+export async function getPerson(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/person/${id}?language=pt-BR`, options)
+  const response = (await res.json()) as Person
+  return response
+}
+
+export async function getSocialMedia(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, options)
+  const response = (await res.json()) as SocialMedia
+
+  const listSocialMedia = {
+    facebook: response.facebook_id,
+    instagram: response.instagram_id,
+    twitter: response.twitter_id,
+  }
+
+  return Object.entries(listSocialMedia).filter((item) => item[1])
+}
+
+export async function getPersonCredits(id: string) {
+  const res = await fetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=pt-BR`, options)
+  const response = (await res.json()) as PersonCredits
+  return response
 }

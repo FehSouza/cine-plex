@@ -1,0 +1,188 @@
+.main {
+  width: 100%;
+  max-width: 1232px;
+  margin: 112px auto 0;
+  padding: 0 16px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    margin-top: 108px;
+    padding-bottom: 32px;
+    flex-direction: column;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerLeft {
+  width: 22%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+.image {
+  border-radius: 12px;
+  width: 100%;
+  max-width: 264px;
+  height: auto;
+  aspect-ratio: 2/3;
+
+  @media (max-width: 768px) {
+    max-width: 176px;
+    margin: 0 auto;
+  }
+}
+
+.socialMedia {
+  margin-top: 19px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  @media (max-width: 768px) {
+    margin-top: 3px;
+  }
+}
+
+.socialMediaItem {
+  width: 48px;
+  height: 48px;
+  position: relative;
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    svg {
+      color: #b9bbbd;
+    }
+
+    span {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+}
+
+.socialMediaItem svg {
+  transition-duration: 350ms;
+}
+
+.socialMediaTooltip {
+  width: max-content;
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #669aff;
+  font-size: 14px;
+  font-weight: 500;
+  transition-duration: 350ms;
+  opacity: 0;
+  z-index: -1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #669aff;
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.personalInfo {
+  margin-top: 19px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.subTitle {
+  font-size: 20px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+.personalInfoWrapper {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
+  }
+}
+
+.subTitle2 {
+  font-weight: 700;
+}
+
+.text {
+  margin-top: 4px;
+}
+
+.containerRight {
+  width: 78%;
+  padding-left: 32px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.titleDesktop {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.titleMobile {
+  display: none;
+
+  @media (max-width: 768px) {
+    margin-top: 16px;
+    display: flex;
+  }
+}

@@ -18,6 +18,7 @@ export const COLOR_DICTIONARY = {
 } as colorDictionaryProps
 
 export const DICTIONARY_CREW_DEPARTMENT = {
+  Acting: 'Atuação',
   Art: 'Arte',
   Camera: 'Câmera',
   'Costume & Make-Up': 'Figurino e maquiagem',
@@ -35,4 +36,9 @@ export const DICTIONARY_TEAM = {
   elenco: 'cast',
   'equipe-tecnica': 'crew',
   'elenco-e-equipe-tecnica': 'all',
+}
+
+export const DICTIONARY_GENDER = {
+  1: 'Feminino',
+  2: 'Masculino',
 }

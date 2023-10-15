@@ -172,14 +172,14 @@ export default async function Movie({ params }: MovieProps) {
 
             return (
               <li className={S.actorWrapper} key={id}>
-                <a className={S.actorLink} href="">
+                <Link className={S.actorLink} href={`/pessoa/${id}`}>
                   <div className={S.actorImageWrapper}>
                     {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
                     {!idImage && <BsPerson size={32} className={S.imagePerson} />}
                   </div>
                   <span className={S.actorName}>{name}</span>
                   <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
-                </a>
+                </Link>
               </li>
             )
           })}

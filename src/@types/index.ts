@@ -164,3 +164,92 @@ export interface WatchData {
   provider_name: string
   display_priority: number
 }
+
+export interface Person {
+  adult: boolean
+  also_known_as: string[]
+  biography: string
+  birthday: string
+  deathday: any
+  gender: number
+  homepage: any
+  id: number
+  imdb_id: string
+  known_for_department: string
+  name: string
+  place_of_birth: string
+  popularity: number
+  profile_path: string
+}
+
+export interface SocialMedia {
+  id: number
+  freebase_mid: string
+  freebase_id: string
+  imdb_id: string
+  tvrage_id: number
+  wikidata_id: string
+  facebook_id: string
+  instagram_id: string
+  tiktok_id: string
+  twitter_id: string
+  youtube_id: string
+}
+
+export interface PersonCredits {
+  cast: PersonCast[]
+  crew: PersonCrew[]
+  id: number
+}
+
+export interface PersonCast {
+  adult: boolean
+  backdrop_path?: string
+  genre_ids: number[]
+  id: number
+  original_language: string
+  original_title?: string
+  overview: string
+  popularity: number
+  poster_path?: string
+  release_date?: string
+  title?: string
+  video?: boolean
+  vote_average: number
+  vote_count: number
+  character: string
+  credit_id: string
+  order?: number
+  media_type: string
+  origin_country?: string[]
+  original_name?: string
+  first_air_date?: string
+  name?: string
+  episode_count?: number
+}
+
+export interface PersonCrew {
+  adult: boolean
+  backdrop_path?: string
+  genre_ids: number[]
+  id: number
+  original_language: string
+  original_title?: string
+  overview: string
+  popularity: number
+  poster_path?: string
+  release_date?: string
+  title?: string
+  video?: boolean
+  vote_average: number
+  vote_count: number
+  credit_id: string
+  department: string
+  job: string
+  media_type: string
+  origin_country?: string[]
+  original_name?: string
+  first_air_date?: string
+  name?: string
+  episode_count?: number
+}
