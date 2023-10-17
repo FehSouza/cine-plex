@@ -57,7 +57,7 @@
 
 .creditItem {
   display: flex;
-  padding: 12px;
+  padding: 4px 12px;
   border-bottom: 1px solid #b9bbbd40;
 
   @media (max-width: 768px) {
@@ -66,22 +66,28 @@
 }
 
 .year {
+  margin-top: 8px;
   min-width: 60px;
   font-size: 14px;
 }
 
 .moviesWrapper {
   margin-left: 24px;
-  gap: 12px;
+  gap: 8px;
 
   @media (max-width: 768px) {
     margin-left: 20px;
-    gap: 10px;
   }
 }
 
-.movieLink:hover .movieName {
-  color: #669aff;
+.movieLink {
+  width: fit-content;
+  min-height: 48px;
+  justify-content: center;
+
+  &:hover .movieName {
+    color: #669aff;
+  }
 }
 
 .movieName {
