@@ -3,7 +3,7 @@ import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getV
 import { formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BsFillStarFill, BsPerson } from 'react-icons/bs'
+import { BsFillStarFill, BsImage, BsPerson } from 'react-icons/bs'
 import S from './styles.module.scss'
 
 interface MovieProps {
@@ -45,23 +45,33 @@ export default async function Movie({ params }: MovieProps) {
   const availableToBuy = watch?.buy
   const watchProvider = availableToStream ?? availableToRent ?? availableToBuy
 
+  console.log(genres)
   return (
     <main className={S.main}>
       <section className={S.imageWrapper}>
         <div className={S.gradient} />
-        <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill priority />
+        {image && <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill priority />}
+        {!image && <div className={S.withoutImage} />}
       </section>
 
       <section className={[S.container, S.containerAbout].join(' ')}>
-        <Image
-          className={S.imagePoster}
-          loader={TMDBPosterLoader}
-          src={poster}
-          alt={`Poster do Filme ${title}`}
-          sizes="(min-width: 769px) w400, (max-width: 768px) w200"
-          fill
-          priority
-        />
+        {poster && (
+          <Image
+            className={S.imagePoster}
+            loader={TMDBPosterLoader}
+            src={poster}
+            alt={`Poster do Filme ${title}`}
+            sizes="(min-width: 769px) w400, (max-width: 768px) w200"
+            fill
+            priority
+          />
+        )}
+
+        {!poster && (
+          <div className={[S.imagePoster, S.withoutImagePoster].join(' ')}>
+            <BsImage size={80} />
+          </div>
+        )}
 
         <div className={S.contentAbout}>
           {!!grade && (
@@ -90,8 +100,12 @@ export default async function Movie({ params }: MovieProps) {
             )}
           </div>
 
-          <span className={S.subTitle2}>Lançamento</span>
-          <span className={S.content}>{releaseYear}</span>
+          {!!releaseYear && (
+            <>
+              <span className={S.subTitle2}>Lançamento</span>
+              <span className={S.content}>{releaseYear}</span>
+            </>
+          )}
 
           <div className={S.listGenres}>
             {genres.map((genre) => (
@@ -129,8 +143,12 @@ export default async function Movie({ params }: MovieProps) {
           </>
         )}
 
-        <span className={S.subTitle2}>Direção</span>
-        <span className={S.content}>{directorName}</span>
+        {!!directorName && (
+          <>
+            <span className={S.subTitle2}>Direção</span>
+            <span className={S.content}>{directorName}</span>
+          </>
+        )}
 
         <span className={S.subTitle2}>Estrelando</span>
         <span className={S.content}>{actorsNames.join(', ')}</span>
@@ -178,7 +196,7 @@ export default async function Movie({ params }: MovieProps) {
                     {!idImage && <BsPerson size={32} className={S.imagePerson} />}
                   </div>
                   <span className={S.actorName}>{name}</span>
-                  <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>
+                  {character && <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>}
                 </Link>
               </li>
             )

@@ -102,7 +102,7 @@ export async function getPerson(id: string) {
   return response
 }
 
-export async function getSocialMedia(id: string) {
+export async function getSocialMedia(id: number) {
   const res = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, options)
   const response = (await res.json()) as SocialMedia
 
@@ -118,5 +118,7 @@ export async function getSocialMedia(id: string) {
 export async function getPersonCredits(id: string) {
   const res = await fetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=pt-BR`, options)
   const response = (await res.json()) as PersonCredits
-  return response
+  const filteredListCast = response.cast.filter((cast) => cast.media_type !== 'tv')
+  const filteredListCrew = response.crew.filter((crew) => crew.media_type !== 'tv')
+  return { id: response.id, cast: filteredListCast, crew: filteredListCrew }
 }

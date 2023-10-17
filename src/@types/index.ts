@@ -226,6 +226,8 @@ export interface PersonCast {
   first_air_date?: string
   name?: string
   episode_count?: number
+  job?: string
+  department?: string
 }
 
 export interface PersonCrew {
@@ -252,4 +254,5 @@ export interface PersonCrew {
   first_air_date?: string
   name?: string
   episode_count?: number
+  character?: string
 }

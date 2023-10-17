@@ -4,6 +4,8 @@ interface getAgeProps {
 }
 
 export const getAge = ({ birthday, deathday }: getAgeProps) => {
+  if (!birthday) return '-'
+
   const birthDate = new Date(birthday)
   const today = deathday ? new Date(deathday) : new Date()
 

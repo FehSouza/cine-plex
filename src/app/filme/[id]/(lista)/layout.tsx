@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import S from './styles.module.scss'
+import { BsImage } from 'react-icons/bs'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -20,15 +21,23 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <main className={S.main}>
       <section className={S.container}>
-        <Image
-          className={S.infoBarImage}
-          loader={TMDBPosterLoader}
-          src={poster}
-          alt={`Poster do Filme ${title}`}
-          sizes="200w"
-          fill
-          priority
-        />
+        {poster && (
+          <Image
+            className={S.infoBarImage}
+            loader={TMDBPosterLoader}
+            src={poster}
+            alt={`Poster do Filme ${title}`}
+            sizes="200w"
+            fill
+            priority
+          />
+        )}
+
+        {!poster && (
+          <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
+            <BsImage size={32} />
+          </div>
+        )}
 
         <div className={S.infoBarWrapper}>
           <h1 className={S.infoBarTitle}>{title}</h1>

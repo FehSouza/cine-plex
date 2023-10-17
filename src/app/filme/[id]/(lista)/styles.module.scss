@@ -43,6 +43,18 @@
   border-radius: 4px;
 }
 
+.withoutImagePoster {
+  width: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b9bbbd40;
+
+  svg {
+    color: #b9bbbd40;
+  }
+}
+
 .infoBarWrapper {
   display: flex;
   flex-direction: column;

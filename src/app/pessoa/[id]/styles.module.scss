@@ -16,150 +16,19 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-}
-
-.containerLeft {
-  width: 22%;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    align-items: center;
-  }
-}
-
-.image {
-  border-radius: 12px;
-  width: 100%;
-  max-width: 264px;
-  height: auto;
-  aspect-ratio: 2/3;
-
-  @media (max-width: 768px) {
-    max-width: 176px;
-    margin: 0 auto;
-  }
-}
-
-.socialMedia {
-  margin-top: 19px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-
-  @media (max-width: 768px) {
-    margin-top: 3px;
-  }
-}
-
-.socialMediaItem {
-  width: 48px;
-  height: 48px;
-  position: relative;
-
-  a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &:hover {
-    svg {
-      color: #b9bbbd;
-    }
-
-    span {
-      opacity: 1;
-      z-index: 1;
-    }
-  }
-}
-
-.socialMediaItem svg {
-  transition-duration: 350ms;
-}
-
-.socialMediaTooltip {
-  width: max-content;
-  position: absolute;
-  top: -24px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 4px 8px;
-  border-radius: 4px;
-  background-color: #669aff;
-  font-size: 14px;
-  font-weight: 500;
-  transition-duration: 350ms;
-  opacity: 0;
-  z-index: -1;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-
-  &::after {
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 6px solid #669aff;
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-.personalInfo {
-  margin-top: 19px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.subTitle {
-  font-size: 20px;
-  font-weight: 700;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
-}
-
-.personalInfoWrapper {
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    margin-top: 16px;
-  }
-}
-
-.subTitle2 {
-  font-weight: 700;
-}
-
-.text {
-  margin-top: 4px;
-}
-
-.containerRight {
   width: 78%;
-  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 48px;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
     width: 100%;
+    padding-left: 0;
   }
 }
 
-.title {
+.titleDesktop {
   font-size: 28px;
   font-weight: 700;
 
@@ -168,21 +37,122 @@
   }
 
   @media (max-width: 768px) {
-    font-size: 20px;
-  }
-}
-
-.titleDesktop {
-  @media (max-width: 768px) {
     display: none;
   }
 }
 
-.titleMobile {
-  display: none;
+.content {
+  margin-top: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+.text {
+  margin-top: 4px;
+}
+
+.bestMovies {
+  padding: 4px 2px;
+  margin-top: 8px;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+
+  @media (max-width: 1231px) {
+    padding-bottom: 8px;
+  }
 
   @media (max-width: 768px) {
-    margin-top: 16px;
-    display: flex;
+    padding-bottom: 4px;
   }
+}
+
+.movie {
+  width: 134px;
+  min-width: 134px;
+  transition-duration: 350ms;
+
+  a {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.025);
+  }
+}
+
+.movieImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.movieTitle {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.credits {
+  display: flex;
+  flex-direction: column;
+}
+
+.creditsList {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column-reverse;
+  border: 1px solid #b9bbbd40;
+  border-bottom: none;
+}
+
+.creditItem {
+  border-bottom: 1px solid #b9bbbd40;
+  padding: 16px;
+  display: flex;
+}
+
+.year {
+  width: 64px;
+  font-size: 14px;
+}
+
+.moviesWrapper {
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.movieLink {
+  display: flex;
+  flex-direction: column;
+}
+
+.movieName {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.movieText {
+  font-size: 14px;
+  color: #b9bbbd;
 }
