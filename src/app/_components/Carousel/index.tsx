@@ -1,13 +1,11 @@
 'use client'
 
 import { Movie } from '@/@types'
-import { formatDate } from '@/utils'
 import useEmblaCarousel from 'embla-carousel-react'
-import Image, { ImageLoader } from 'next/image'
-import Link from 'next/link'
+import { ImageLoader } from 'next/image'
 import { useCallback } from 'react'
-import { BsFillStarFill } from 'react-icons/bs'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { MovieCard } from '../MovieCard'
 import S from './styles.module.scss'
 
 interface CarouselProps {
@@ -50,31 +48,12 @@ export function Carousel({ title, movies, upcoming, moviePage }: CarouselProps) 
         <div className={S.emblaContainer}>
           {movieList.map((movie) => {
             const id = movie.id
-            const grade = movie.vote_average
-            const title = movie.title
             const date = movie.release_date
+            const grade = movie.vote_average
+            const poster = movie.poster_path
+            const title = movie.title
 
-            return (
-              <Link href={`/filme/${id}`} className={S.emblaSlide} key={id}>
-                <div className={S.imageWrapper}>
-                  <Image className={S.image} loader={TMDBPosterLoader} src={movie.poster_path} alt={`Imagem do Filme ${title}`} fill />
-                </div>
-
-                {!upcoming && (
-                  <div className={S.gradeWrapper}>
-                    {!!grade && (
-                      <span className={S.grade}>
-                        <BsFillStarFill /> {grade.toFixed(1)}
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                {upcoming && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
-                <span className={S.titleMovie}>{title}</span>
-                <button className={S.seeMore}>Veja detalhes</button>
-              </Link>
-            )
+            return <MovieCard key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} />
           })}
         </div>
 

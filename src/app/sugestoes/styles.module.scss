@@ -1,8 +1,13 @@
 .main {
   margin-top: 96px;
+  padding-bottom: 40px;
   flex: 1;
   background-color: #010b13;
   display: flex;
+
+  @media (max-width: 768px) {
+    padding-bottom: 32px;
+  }
 }
 
 .container {
@@ -14,4 +19,54 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  margin-top: 16px;
+  font-size: 28px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    font-size: 18px;
+  }
+}
+
+.gallery {
+  margin-top: 48px;
+  display: flex;
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+    flex-direction: column;
+  }
+}
+
+.filtersContainer {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.moviesContainer {
+  width: 78%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 48px;
+  box-sizing: border-box;
+  row-gap: 24px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 0;
+    row-gap: 32px;
+  }
 }

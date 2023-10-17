@@ -26,6 +26,12 @@ export async function getNowPlaying() {
   return filteredList
 }
 
+export async function getFullNowPlaying() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+  return response.results
+}
+
 export async function getUpcoming() {
   const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
   const response = (await res.json()) as { results: Movie[] }
@@ -38,11 +44,28 @@ export async function getUpcoming() {
   return sortByReleaseDate
 }
 
+export async function getFullUpcoming() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+
+  const sortByReleaseDate = response?.results?.sort((a, b) => {
+    return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
+  })
+
+  return sortByReleaseDate
+}
+
 export async function getPopular() {
   const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', options)
   const response = (await res.json()) as { results: Movie[] }
   const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
+}
+
+export async function getFullPopular() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', options)
+  const response = (await res.json()) as { results: Movie[] }
+  return response.results
 }
 
 export async function getMovie(id: string) {
