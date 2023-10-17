@@ -109,10 +109,12 @@
   right: 0;
 
   @media (max-width: 768px) {
-    margin-left: auto;
-    position: unset;
-    margin-bottom: 16px;
     gap: 20px;
+  }
+
+  @media (max-width: 580px) {
+    position: unset;
+    margin-bottom: 12px;
   }
 
   @media (max-width: 380px) {
@@ -159,6 +161,12 @@
   }
 }
 
+.clearButton {
+  @media (max-width: 580px) {
+    order: 1;
+  }
+}
+
 .filterArrow {
   transition-duration: 350ms;
 }
@@ -178,6 +186,11 @@
   border: 1px solid #b9bbbd40;
   cursor: pointer;
   transition-duration: 350ms;
+
+  @media (max-width: 580px) {
+    right: unset;
+    left: 0;
+  }
 }
 
 .filterItem {

@@ -38,7 +38,7 @@ export const CreditsList = ({ listCredits, id, gender }: CreditsListProps) => {
     <div className={S.content}>
       <div className={S.filterContainer}>
         {filters.length > 1 && (
-          <button className={S.filterTitle} onClick={() => handleFilter('all')}>
+          <button className={[S.filterTitle, S.clearButton].join(' ')} onClick={() => handleFilter('all')}>
             {filters.length === 2 ? 'Limpar seleção' : 'Limpar seleções'}
           </button>
         )}
