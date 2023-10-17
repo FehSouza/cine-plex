@@ -77,12 +77,12 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
 
         <div className={S.personalInfoWrapper}>
           <h3 className={S.subTitle}>{`${gender === 1 ? 'Creditada' : 'Creditado'} em`}</h3>
-          <span className={S.text}>{quantCredits}</span>
+          <span className={S.text}>{quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`}</span>
         </div>
 
         <div className={S.personalInfoWrapper}>
           <h3 className={S.subTitle}>Gênero</h3>
-          <span className={S.text}>{DICTIONARY_GENDER[gender]}</span>
+          <span className={S.text}>{DICTIONARY_GENDER[gender] ? DICTIONARY_GENDER[gender] : `-`}</span>
         </div>
 
         <div className={S.personalInfoWrapper}>

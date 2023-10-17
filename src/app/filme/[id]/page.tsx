@@ -45,7 +45,6 @@ export default async function Movie({ params }: MovieProps) {
   const availableToBuy = watch?.buy
   const watchProvider = availableToStream ?? availableToRent ?? availableToBuy
 
-  console.log(genres)
   return (
     <main className={S.main}>
       <section className={S.imageWrapper}>
@@ -186,7 +185,14 @@ export default async function Movie({ params }: MovieProps) {
             const idImage = actor.profile_path
             const image = `https://image.tmdb.org/t/p/w200${idImage}`
             const name = actor.name
+            const gender = actor.gender
             const character = actor.character
+            const characterFormatted = character
+              .replace('(voice)', '(voz)')
+              .replace('(uncredited)', '(sem créditos)')
+              .replace('(archive footage)', '(imagens de arquivo)')
+              .replace('(archival footage)', '(imagens de arquivo)')
+              .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
 
             return (
               <li className={S.actorWrapper} key={id}>
@@ -196,7 +202,7 @@ export default async function Movie({ params }: MovieProps) {
                     {!idImage && <BsPerson size={32} className={S.imagePerson} />}
                   </div>
                   <span className={S.actorName}>{name}</span>
-                  {character && <span className={S.actorCharacter}>{character.replace('(voice)', '(voz)')}</span>}
+                  {character && <span className={S.actorCharacter}>{characterFormatted}</span>}
                 </Link>
               </li>
             )

@@ -9,13 +9,16 @@ interface TeamListProps {
   image: string | undefined
   name: string
   subName: string
+  gender: number
 }
 
-export const TeamCard = ({ id, image, name, subName }: TeamListProps) => {
+export const TeamCard = ({ id, image, name, subName, gender }: TeamListProps) => {
   const subNameFormatted = subName
     .replace('(voice)', '(voz)')
     .replace('(uncredited)', '(sem créditos)')
     .replace('(archive footage)', '(imagens de arquivo)')
+    .replace('(archival footage)', '(imagens de arquivo)')
+    .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
 
   return (
     <li className={S.cardWrapper} key={`cast-${id}`}>

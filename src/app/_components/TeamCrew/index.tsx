@@ -24,8 +24,9 @@ export const TeamCrew = ({ list }: TeamCrewProps) => {
                 const image = item.profile_path
                 const name = item.name
                 const subName = item.job
+                const gender = item.gender
 
-                return <TeamCard key={`crew-${id}`} id={id} image={image} name={name} subName={subName} />
+                return <TeamCard key={`crew-${id}`} id={id} image={image} name={name} subName={subName} gender={gender} />
               })}
             </ul>
           </div>

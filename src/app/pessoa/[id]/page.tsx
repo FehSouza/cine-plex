@@ -1,6 +1,5 @@
-import { PersonCast, PersonCrew } from '@/@types'
-import { Biography } from '@/app/_components'
-import { DICTIONARY_CREW_DEPARTMENT, DICTIONARY_GENDER } from '@/dictionary'
+import { Biography, CreditsList } from '@/app/_components'
+import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits } from '@/services'
 import { getListCredits, removeDuplicates } from '@/utils'
 import Image from 'next/image'
@@ -23,9 +22,10 @@ export default async function Person({ params }: PersonProps) {
   const setCredits = new Set()
   const listCredits = [...credits.cast, ...credits.crew]
   const creditsFormatted = listCredits.filter((credit) => removeDuplicates({ item: credit, set: setCredits }))
+
   const listCreditsOrdered = getListCredits(listCredits)
 
-  const bestMovies = creditsFormatted
+  const bestMovies = [...creditsFormatted]
     .sort(function (a, b) {
       if (a.vote_count > b.vote_count) return -1
       if (a.vote_count < b.vote_count) return 1
@@ -68,47 +68,7 @@ export default async function Person({ params }: PersonProps) {
           </ul>
         </div>
 
-        <div className={S.content}>
-          {listCreditsOrdered.map((list) => {
-            const listName = String(list[0]) as keyof typeof DICTIONARY_CREW_DEPARTMENT
-            const listYears = Object.entries(list[1])
-
-            return (
-              <div key={`${id}-${listName}`} className={S.credits}>
-                <h2 className={S.title}>{DICTIONARY_CREW_DEPARTMENT[listName]}</h2>
-
-                <ul className={S.creditsList}>
-                  {listYears.map((item) => {
-                    const year = item[0]
-                    const infos = item[1] as { year: number; date: string; info: PersonCast | PersonCrew }[]
-
-                    return (
-                      <li className={S.creditItem} key={`${id}-${listName}-${year}`}>
-                        <span className={S.year}>{year}</span>
-
-                        <div className={S.moviesWrapper}>
-                          {infos.map((movie) => {
-                            const idMovie = movie.info.id
-                            const name = movie.info.title ?? movie.info.name
-                            const subName = movie.info.character ?? movie.info.job
-                            const subNameText = subName ? `como ${subName}` : ``
-
-                            return (
-                              <Link className={S.movieLink} href={`/filme/${idMovie}`} key={`${id}-${listName}-${year}-${idMovie}`}>
-                                <span className={S.movieName}>{name}</span>
-                                <span className={S.movieText}>{subNameText}</span>
-                              </Link>
-                            )
-                          })}
-                        </div>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          })}
-        </div>
+        <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />
       </section>
     </main>
   )

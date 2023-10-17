@@ -46,6 +46,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
 }
 
 .title {
@@ -108,51 +112,4 @@
   margin-top: 8px;
   font-size: 14px;
   text-align: center;
-}
-
-.credits {
-  display: flex;
-  flex-direction: column;
-}
-
-.creditsList {
-  margin-top: 16px;
-  margin-bottom: 32px;
-  display: flex;
-  flex-direction: column-reverse;
-  border: 1px solid #b9bbbd40;
-  border-bottom: none;
-}
-
-.creditItem {
-  border-bottom: 1px solid #b9bbbd40;
-  padding: 16px;
-  display: flex;
-}
-
-.year {
-  width: 64px;
-  font-size: 14px;
-}
-
-.moviesWrapper {
-  margin-left: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.movieLink {
-  display: flex;
-  flex-direction: column;
-}
-
-.movieName {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.movieText {
-  font-size: 14px;
-  color: #b9bbbd;
 }

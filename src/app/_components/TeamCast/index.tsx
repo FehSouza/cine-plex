@@ -14,8 +14,9 @@ export const TeamCast = ({ list }: TeamCastProps) => {
         const image = item.profile_path
         const name = item.name
         const subName = item.character
+        const gender = item.gender
 
-        return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} />
+        return <TeamCard key={`cast-${id}`} id={id} image={image} name={name} subName={subName} gender={gender} />
       })}
     </ul>
   )
