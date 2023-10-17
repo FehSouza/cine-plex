@@ -108,6 +108,21 @@
   border-radius: 8px;
 }
 
+.withoutImagePoster {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #b9bbbd40;
+
+  svg {
+    color: #b9bbbd40;
+  }
+}
+
 .movieTitle {
   margin-top: 8px;
   font-size: 14px;

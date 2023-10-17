@@ -4,6 +4,7 @@ import { getPerson, getPersonCredits } from '@/services'
 import { getListCredits, removeDuplicates } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BsImage } from 'react-icons/bs'
 import S from './styles.module.scss'
 
 interface PersonProps {
@@ -49,22 +50,34 @@ export default async function Person({ params }: PersonProps) {
           <h2 className={S.title}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h2>
 
           <ul className={S.bestMovies}>
-            {bestMovies.map((movie) => (
-              <li className={S.movie} key={`${id}-${movie.id}`}>
-                <Link href={`/filme/${movie.id}`}>
-                  <Image
-                    className={S.movieImage}
-                    src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                    alt={`Imagem do Filme ${movie.title ?? movie.name}`}
-                    width={134}
-                    height={201}
-                    priority
-                  />
+            {bestMovies.map((movie) => {
+              const poster = movie.poster_path
 
-                  <span className={S.movieTitle}>{movie.title ?? movie.name}</span>
-                </Link>
-              </li>
-            ))}
+              return (
+                <li className={S.movie} key={`${id}-${movie.id}`}>
+                  <Link href={`/filme/${movie.id}`}>
+                    {poster && (
+                      <Image
+                        className={S.movieImage}
+                        src={`https://image.tmdb.org/t/p/w200${poster}`}
+                        alt={`Imagem do Filme ${movie.title ?? movie.name}`}
+                        width={134}
+                        height={201}
+                        priority
+                      />
+                    )}
+
+                    {!poster && (
+                      <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
+                        <BsImage size={32} />
+                      </div>
+                    )}
+
+                    <span className={S.movieTitle}>{movie.title ?? movie.name}</span>
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
 
