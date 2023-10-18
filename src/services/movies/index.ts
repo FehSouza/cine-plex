@@ -1,5 +1,9 @@
-import { Certifications, Movie, MovieCredits, MovieDetail, Person, PersonCredits, SocialMedia, Videos, Watch } from '@/@types'
+import { Certifications, FullMovie, Movie, MovieCredits, MovieDetail, Person, PersonCredits, SocialMedia, Videos, Watch } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
+
+interface getFullMoviesProps {
+  page: string
+}
 
 const options = {
   method: 'GET',
@@ -26,10 +30,10 @@ export async function getNowPlaying() {
   return filteredList
 }
 
-export async function getFullNowPlaying() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
-  const response = (await res.json()) as { results: Movie[] }
-  return response.results
+export async function getFullNowPlaying({ page }: getFullMoviesProps) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${page}&region=BR`, options)
+  const response = (await res.json()) as FullMovie
+  return response
 }
 
 export async function getUpcoming() {
@@ -44,15 +48,15 @@ export async function getUpcoming() {
   return sortByReleaseDate
 }
 
-export async function getFullUpcoming() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1&region=BR', options)
-  const response = (await res.json()) as { results: Movie[] }
+export async function getFullUpcoming({ page }: getFullMoviesProps) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=${page}&region=BR`, options)
+  const response = (await res.json()) as FullMovie
 
-  const sortByReleaseDate = response?.results?.sort((a, b) => {
+  response?.results?.sort((a, b) => {
     return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
   })
 
-  return sortByReleaseDate
+  return response
 }
 
 export async function getPopular() {
@@ -62,10 +66,10 @@ export async function getPopular() {
   return filteredList
 }
 
-export async function getFullPopular() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', options)
-  const response = (await res.json()) as { results: Movie[] }
-  return response.results
+export async function getFullPopular({ page }: getFullMoviesProps) {
+  const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${page}&region=BR`, options)
+  const response = (await res.json()) as FullMovie
+  return response
 }
 
 export async function getMovie(id: string) {
