@@ -40,6 +40,6 @@ yarn dev
 
 &nbsp;
 
-## Link Vercel:
+## Link Vercel
 
 https://cine-plex.vercel.app/
