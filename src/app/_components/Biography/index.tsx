@@ -23,6 +23,7 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
   const gender = person.gender as keyof typeof DICTIONARY_GENDER
   const knownFor = person.known_for_department as keyof typeof DICTIONARY_CREW_DEPARTMENT
   const alsoKnown = person.also_known_as
+  const quantCreditsText = quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`
 
   const [socialMedia] = await Promise.all([getSocialMedia(id)])
 
@@ -77,7 +78,7 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
 
         <div className={S.personalInfoWrapper}>
           <h3 className={S.subTitle}>{`${gender === 1 ? 'Creditada' : 'Creditado'} em`}</h3>
-          <span className={S.text}>{quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`}</span>
+          <span className={S.text}>{quantCredits === 0 ? '-' : quantCreditsText}</span>
         </div>
 
         <div className={S.personalInfoWrapper}>

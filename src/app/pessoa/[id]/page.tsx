@@ -46,42 +46,53 @@ export default async function Person({ params }: PersonProps) {
           <span className={S.text}>{biography ? biography : `Não possuímos uma biografia para ${name}`}</span>
         </div>
 
-        <div className={S.content}>
-          <h2 className={S.title}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h2>
+        {!!bestMovies.length && (
+          <div className={S.content}>
+            <h2 className={S.title}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h2>
 
-          <ul className={S.bestMovies}>
-            {bestMovies.map((movie) => {
-              const poster = movie.poster_path
+            <ul className={S.bestMovies}>
+              {bestMovies.map((movie) => {
+                const poster = movie.poster_path
 
-              return (
-                <li className={S.movie} key={`${id}-${movie.id}`}>
-                  <Link href={`/filme/${movie.id}`}>
-                    {poster && (
-                      <Image
-                        className={S.movieImage}
-                        src={`https://image.tmdb.org/t/p/w200${poster}`}
-                        alt={`Imagem do Filme ${movie.title ?? movie.name}`}
-                        width={134}
-                        height={201}
-                        priority
-                      />
-                    )}
+                return (
+                  <li className={S.movie} key={`${id}-${movie.id}`}>
+                    <Link href={`/filme/${movie.id}`}>
+                      {poster && (
+                        <Image
+                          className={S.movieImage}
+                          src={`https://image.tmdb.org/t/p/w200${poster}`}
+                          alt={`Imagem do Filme ${movie.title ?? movie.name}`}
+                          width={134}
+                          height={201}
+                          priority
+                        />
+                      )}
 
-                    {!poster && (
-                      <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
-                        <BsImage size={32} />
-                      </div>
-                    )}
+                      {!poster && (
+                        <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
+                          <BsImage size={32} />
+                        </div>
+                      )}
 
-                    <span className={S.movieTitle}>{movie.title ?? movie.name}</span>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+                      <span className={S.movieTitle}>{movie.title ?? movie.name}</span>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
 
-        <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />
+        {!!listCreditsOrdered.length && <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />}
+
+        {!listCreditsOrdered.length && (
+          <div className={S.content}>
+            <span className={S.warning}>
+              Infelizmente, estamos passando por uma instabilidade em nosso banco de dados de filmes associados.
+            </span>
+            <span className={S.warning}>Volte novamente mais tarde.</span>
+          </div>
+        )}
       </section>
     </main>
   )
