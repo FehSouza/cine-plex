@@ -117,12 +117,9 @@ export async function getSocialMedia(id: number) {
 
 export async function getPersonCredits(id: string) {
   try {
-    const res = await fetch(`https://api.themoviedb.org/3/person/${Number(id)}/combined_credits?language=pt-BR`, options)
+    const res = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, options)
     const response = (await res.json()) as PersonCredits
-    const filteredListCast = response.cast.filter((cast) => cast.media_type !== 'tv')
-    const filteredListCrew = response.crew.filter((crew) => crew.media_type !== 'tv')
-
-    return { id: response.id, cast: filteredListCast, crew: filteredListCrew }
+    return response
   } catch (error) {
     console.log('function getPersonCredits with Error: ', error)
     return { id: id, cast: [], crew: [] }
