@@ -24,7 +24,7 @@ Desenvolvido usando: HTML5, SASS, React, re-state, Typescript, Embla Carousel, N
 
 &nbsp;
 
-## Instalando dependências
+## Instalando as dependências
 
 Front-end:
 
@@ -32,7 +32,7 @@ yarn install
 
 &nbsp;
 
-## Executando aplicação
+## Executando a aplicação
 
 Para rodar o Front-end:
 
@@ -40,6 +40,6 @@ yarn dev
 
 &nbsp;
 
-## Link Vercel:
+## Link Vercel
 
 https://cine-plex.vercel.app/
