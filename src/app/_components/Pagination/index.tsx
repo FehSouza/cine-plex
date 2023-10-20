@@ -40,7 +40,7 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   const newPage = (page: number) => {
     document.querySelector('#content')?.scrollTo({ top: -1, behavior: 'smooth' })
     setPage(page)
-    setTimeout(() => router.push(`?page=${page}`), 300)
+    setTimeout(() => router.push(`?page=${page}`), 200)
   }
 
   const handleSelectPage = (page: number) => {
