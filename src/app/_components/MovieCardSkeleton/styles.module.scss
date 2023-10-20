@@ -1,0 +1,104 @@
+@keyframes shimmer {
+  from {
+    background-position: -100px 0;
+  }
+  to {
+    background-position: 100px 0;
+  }
+}
+
+.container {
+  min-width: 0;
+  flex: 0 0 20%;
+  padding: 0 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 1024px) {
+    flex: 0 0 25%;
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 33.33%;
+  }
+
+  @media (max-width: 580px) {
+    flex: 0 0 50%;
+  }
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border-radius: 12px;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #818283 4%, #676768 25%, #818283 36%);
+}
+
+.grade {
+  margin-top: 16px;
+  width: 100%;
+  height: 19px;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #818283 4%, #676768 25%, #818283 36%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    margin-top: 8px;
+    height: 17px;
+  }
+}
+
+.upcoming {
+  margin-top: 16px;
+  width: 100%;
+  height: 32px;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #818283 4%, #676768 25%, #818283 36%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    height: 30px;
+  }
+}
+
+.title {
+  margin: 16px 0;
+  height: 38px;
+  width: 100%;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #818283 4%, #676768 25%, #818283 36%);
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    margin: 8px 0;
+    margin-bottom: 0;
+    height: 34px;
+  }
+}
+
+.seeMore {
+  margin-top: auto;
+  width: 128px;
+  height: 32px;
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, #818283 4%, #676768 25%, #818283 36%);
+  border-radius: 8px;
+  transition-duration: 350ms;
+  opacity: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.container:hover {
+  cursor: pointer;
+
+  .seeMore {
+    opacity: 1;
+  }
+}

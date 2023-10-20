@@ -12,11 +12,12 @@ interface MovieCardProps {
   poster: string
   title: string
   upcoming?: boolean
+  department?: boolean
 }
 
-export const MovieCard = ({ id, date, grade, poster, title, upcoming }: MovieCardProps) => {
+export const MovieCard = ({ id, date, grade, poster, title, upcoming, department }: MovieCardProps) => {
   return (
-    <Link href={`/filme/${id}`} className={S.container}>
+    <Link href={`/filme/${id}`} className={[S.container, department ? S.department : ''].join(' ')}>
       <div className={S.imageWrapper}>
         {poster && <Image className={S.image} loader={TMDBPosterLoader} src={poster} alt={`Poster do Filme ${title}`} fill />}
 

@@ -1,5 +1,6 @@
 import { FullMovie } from '@/@types'
 import { MovieCard } from '../MovieCard'
+import { MovieCardSkeleton } from '../MovieCardSkeleton'
 import { Pagination } from '../Pagination'
 import S from './styles.module.scss'
 
@@ -18,21 +19,24 @@ export const Department = ({ title, movies, upcoming }: DepartmentProps) => {
       <h1 className={S.title}>{title}</h1>
 
       <div className={S.gallery}>
-        <aside className={S.filtersContainer}></aside>
+        {/* <aside className={S.filtersContainer}></aside> */}
 
-        <section className={S.moviesContainer}>
-          {results.map((movie) => {
-            const id = movie.id
-            const date = movie.release_date
-            const grade = movie.vote_average
-            const poster = movie.poster_path
-            const title = movie.title
+        <section className={[S.moviesContainer, !results.length ? S.skeleton : ''].join(' ')}>
+          {!!results.length &&
+            results.map((movie) => {
+              const id = movie.id
+              const date = movie.release_date
+              const grade = movie.vote_average
+              const poster = movie.poster_path
+              const title = movie.title
 
-            return <MovieCard key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} />
-          })}
+              return <MovieCard key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} department />
+            })}
 
-          <Pagination totalPages={totalPages} />
+          {!results.length && <MovieCardSkeleton upcoming={upcoming} />}
         </section>
+
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   )
