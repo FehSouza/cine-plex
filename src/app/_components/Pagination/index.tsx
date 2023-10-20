@@ -13,10 +13,11 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const pageInitial = Number(searchParams.get('page'))
-  const [currentPage, setPage] = useState(pageInitial ?? 1)
+  const searchPage = Number(searchParams.get('page'))
+  const pageInitial = searchPage ? searchPage : 1
+  const [currentPage, setPage] = useState(pageInitial)
 
-  const limitPages = 50
+  const limitPages = 500
   const realTotalPage = totalPages <= limitPages ? totalPages : limitPages
   const pagesList = new Array(realTotalPage >= 5 ? 5 : realTotalPage).fill(null).map((_, i) => i + 1)
 

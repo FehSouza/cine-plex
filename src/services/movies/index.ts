@@ -31,7 +31,8 @@ export async function getNowPlaying() {
 }
 
 export async function getFullNowPlaying({ page }: getFullMoviesProps) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${page}&region=BR`, options)
+  const pageFormatted = Number(page) > 500 ? 500 : page
+  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}&region=BR`, options)
   const response = (await res.json()) as FullMovie
   return response
 }
@@ -49,7 +50,8 @@ export async function getUpcoming() {
 }
 
 export async function getFullUpcoming({ page }: getFullMoviesProps) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=${page}&region=BR`, options)
+  const pageFormatted = Number(page) > 500 ? 500 : page
+  const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=${pageFormatted}&region=BR`, options)
   const response = (await res.json()) as FullMovie
 
   response?.results?.sort((a, b) => {
@@ -67,7 +69,8 @@ export async function getPopular() {
 }
 
 export async function getFullPopular({ page }: getFullMoviesProps) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${page}&region=BR`, options)
+  const pageFormatted = Number(page) > 500 ? 500 : page
+  const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${pageFormatted}&region=BR`, options)
   const response = (await res.json()) as FullMovie
   return response
 }
