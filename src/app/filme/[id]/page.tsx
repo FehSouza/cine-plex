@@ -149,8 +149,12 @@ export default async function Movie({ params }: MovieProps) {
           </>
         )}
 
-        <span className={S.subTitle2}>Estrelando</span>
-        <span className={S.content}>{actorsNames.join(', ')}</span>
+        {!!actorsNames.length && (
+          <>
+            <span className={S.subTitle2}>Estrelando</span>
+            <span className={S.content}>{actorsNames.join(', ')}</span>
+          </>
+        )}
       </section>
 
       {!!videoList.length && <hr className={S.division} />}
@@ -165,8 +169,8 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
-      {watchProvider && <hr className={S.division} />}
-      {watchProvider && (
+      {!!watchProvider && <hr className={S.division} />}
+      {!!watchProvider && (
         <section className={S.container}>
           <h2 className={S.subTitle}>{`Onde assistir ${title}`}</h2>
           {availableToStream && <ProvidersToWatch id={id} providers={availableToStream} titleMovie={title} title="Stream" />}
@@ -175,44 +179,46 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
-      <hr className={S.division} />
-      <section className={S.container}>
-        <h2 className={S.subTitle}>Elenco principal</h2>
+      {!!actorsNames.length && <hr className={S.division} />}
+      {!!actorsNames.length && (
+        <section className={S.container}>
+          <h2 className={S.subTitle}>Elenco principal</h2>
 
-        <ul className={S.castWrapper}>
-          {castList.map((actor) => {
-            const id = actor.id
-            const idImage = actor.profile_path
-            const image = `https://image.tmdb.org/t/p/w200${idImage}`
-            const name = actor.name
-            const gender = actor.gender
-            const character = actor.character
-            const characterFormatted = character
-              .replace('(voice)', '(voz)')
-              .replace('(uncredited)', '(sem créditos)')
-              .replace('(archive footage)', '(imagens de arquivo)')
-              .replace('(archival footage)', '(imagens de arquivo)')
-              .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
+          <ul className={S.castWrapper}>
+            {castList.map((actor) => {
+              const id = actor.id
+              const idImage = actor.profile_path
+              const image = `https://image.tmdb.org/t/p/w200${idImage}`
+              const name = actor.name
+              const gender = actor.gender
+              const character = actor.character
+              const characterFormatted = character
+                .replace('(voice)', '(voz)')
+                .replace('(uncredited)', '(sem créditos)')
+                .replace('(archive footage)', '(imagens de arquivo)')
+                .replace('(archival footage)', '(imagens de arquivo)')
+                .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
 
-            return (
-              <li className={S.actorWrapper} key={id}>
-                <Link className={S.actorLink} href={`/pessoa/${id}`}>
-                  <div className={S.actorImageWrapper}>
-                    {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
-                    {!idImage && <BsPerson size={32} className={S.imagePerson} />}
-                  </div>
-                  <span className={S.actorName}>{name}</span>
-                  {character && <span className={S.actorCharacter}>{characterFormatted}</span>}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+              return (
+                <li className={S.actorWrapper} key={id}>
+                  <Link className={S.actorLink} href={`/pessoa/${id}`}>
+                    <div className={S.actorImageWrapper}>
+                      {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
+                      {!idImage && <BsPerson size={32} className={S.imagePerson} />}
+                    </div>
+                    <span className={S.actorName}>{name}</span>
+                    {character && <span className={S.actorCharacter}>{characterFormatted}</span>}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
 
-        <Link className={S.castLink} href={`/filme/${id}/elenco`}>
-          Veja a lista completa do elenco e da equipe técnica
-        </Link>
-      </section>
+          <Link className={S.castLink} href={`/filme/${id}/elenco`}>
+            Veja a lista completa do elenco e da equipe técnica
+          </Link>
+        </section>
+      )}
 
       {!!recommendations.length && <hr className={S.division} />}
       {!!recommendations.length && <Carousel title="Nossas Recomendações" movies={recommendations} moviePage />}
