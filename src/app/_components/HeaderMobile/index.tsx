@@ -35,15 +35,19 @@ export const HeaderMobile = () => {
             <RiCloseCircleFill size={32} />
           </button>
 
-          <div className={[S.menuContainer, exitAnimation ? S.exitMenu : S.openMenu].join(' ')} onAnimationEnd={handleAnimateEnd}>
-            <Logo hasText={true} />
+          <div
+            className={[S.menuContainer, exitAnimation ? S.exitMenu : S.openMenu].join(' ')}
+            onClick={(e) => e.stopPropagation()}
+            onAnimationEnd={handleAnimateEnd}
+          >
+            <Logo hasText={true} closeMenuMobile={handleCloseMenu} />
 
-            <Link className={S.account} href="/conta" aria-label="Navegue para a sua conta">
+            <Link className={S.account} href="/conta" onClick={handleCloseMenu} aria-label="Navegue para a sua conta">
               <BsPerson className={S.accountImage} />
               {'Minha conta'}
             </Link>
 
-            <Navbar />
+            <Navbar closeMenuMobile={handleCloseMenu} />
 
             <div className={S.contact}>
               <span className={S.contactTitle}>Contatos:</span>
