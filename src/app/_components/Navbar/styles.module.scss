@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  align-items: center;
   gap: 64px;
 
   @media (max-width: 1024px) and (min-width: 769px) {
@@ -17,13 +18,16 @@
 }
 
 .item {
+  height: 48px;
+  display: flex;
+  align-items: center;
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
   transition-duration: 350ms;
 
   &:hover {
-    color: #669AFF;
+    color: #669aff;
   }
 
   @media (min-width: 769px) {
@@ -38,5 +42,21 @@
 
   @media (max-width: 768px) {
     font-size: 16px;
+  }
+}
+
+.searchButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    transition-duration: 350ms;
+  }
+
+  &:hover svg {
+    color: #669aff;
   }
 }

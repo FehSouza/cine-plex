@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BsSearch } from 'react-icons/bs'
 import S from './styles.module.scss'
 
 const menu = [
@@ -16,6 +17,10 @@ export const Navbar = () => {
           {item.name}
         </Link>
       ))}
+
+      <button className={S.searchButton}>
+        <BsSearch size={20} />
+      </button>
     </nav>
   )
 }
