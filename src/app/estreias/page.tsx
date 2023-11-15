@@ -2,17 +2,8 @@ import { getFullUpcoming } from '@/services'
 import { Department } from '../_components'
 import S from './styles.module.scss'
 
-interface PremieresProps {
-  params: {}
-  searchParams: {
-    page: string
-  }
-}
-
-export default async function Premieres(props: PremieresProps) {
-  const page = props.searchParams.page
-
-  const [upcoming] = await Promise.all([getFullUpcoming({ page: page ?? '1' })])
+export default async function Premieres() {
+  const [upcoming] = await Promise.all([getFullUpcoming()])
 
   return (
     <main className={S.main}>

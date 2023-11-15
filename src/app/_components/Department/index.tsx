@@ -36,7 +36,7 @@ export const Department = ({ title, movies, upcoming }: DepartmentProps) => {
           {!results.length && <MovieCardSkeleton upcoming={upcoming} />}
         </section>
 
-        <Pagination totalPages={totalPages} />
+        {!upcoming && <Pagination totalPages={totalPages} />}
       </div>
     </div>
   )

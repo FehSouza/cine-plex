@@ -57,9 +57,8 @@ export async function getUpcoming() {
   return sortByReleaseDate
 }
 
-export async function getFullUpcoming({ page }: getFullMoviesProps) {
-  const pageFormatted = Number(page) > 500 ? 500 : page
-  const res = await fetch(`https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR`, options)
+export async function getFullUpcoming() {
+  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', options)
   const response = (await res.json()) as FullMovie
 
   response?.results?.sort((a, b) => {
