@@ -24,17 +24,25 @@ export async function getBestMovies() {
 }
 
 export async function getNowPlaying() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1&region=BR', options)
+  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1', options)
   const response = (await res.json()) as { results: Movie[] }
   const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
-  return filteredList
+  const sortByReleaseDate = filteredList.sort((a, b) => {
+    return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
+  })
+
+  return sortByReleaseDate
 }
 
 export async function getFullNowPlaying({ page }: getFullMoviesProps) {
   const pageFormatted = Number(page) > 500 ? 500 : page
-  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}&region=BR`, options)
+  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}`, options)
   const response = (await res.json()) as FullMovie
-  return response
+  const sortByReleaseDate = response.results.sort((a, b) => {
+    return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
+  })
+
+  return { ...response, results: sortByReleaseDate }
 }
 
 export async function getUpcoming() {
