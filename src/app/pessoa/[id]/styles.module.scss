@@ -100,12 +100,22 @@
   }
 }
 
+.movieImageWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  aspect-ratio: 2/3;
+  position: relative;
+}
+
 .movieImage {
   width: 100%;
-  height: auto;
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  border-radius: 8px;
+  height: auto !important;
+  transition-duration: 350ms;
+  position: unset !important;
+  margin: auto;
+  border-radius: 12px;
 }
 
 .withoutImagePoster {

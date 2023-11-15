@@ -57,22 +57,24 @@ export default async function Person({ params }: PersonProps) {
                 return (
                   <li className={S.movie} key={`${id}-${movie.id}`}>
                     <Link href={`/filme/${movie.id}`}>
-                      {poster && (
-                        <Image
-                          className={S.movieImage}
-                          src={`https://image.tmdb.org/t/p/w200${poster}`}
-                          alt={`Imagem do Filme ${movie.title ?? movie.name}`}
-                          width={134}
-                          height={201}
-                          priority
-                        />
-                      )}
+                      <div className={S.movieImageWrapper}>
+                        {poster && (
+                          <Image
+                            className={S.movieImage}
+                            src={`https://image.tmdb.org/t/p/w200${poster}`}
+                            alt={`Imagem do Filme ${movie.title ?? movie.name}`}
+                            width={134}
+                            height={201}
+                            priority
+                          />
+                        )}
 
-                      {!poster && (
-                        <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
-                          <BsImage size={32} />
-                        </div>
-                      )}
+                        {!poster && (
+                          <div className={[S.infoBarImage, S.withoutImagePoster].join(' ')}>
+                            <BsImage size={32} />
+                          </div>
+                        )}
+                      </div>
 
                       <span className={S.movieTitle}>{movie.title ?? movie.name}</span>
                     </Link>
