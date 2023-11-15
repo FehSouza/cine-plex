@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import S from './styles.module.scss'
 
+interface NavbarProps {
+  closeMenuMobile?: () => void
+}
+
 const menu = [
   { id: 'home', name: 'Home', link: '/' },
   { id: 'depart-1', name: 'Em Cartaz', link: '/cartaz' },
@@ -8,11 +12,11 @@ const menu = [
   { id: 'depart-3', name: 'Nossas Sugestões', link: '/sugestoes' },
 ]
 
-export const Navbar = () => {
+export const Navbar = ({ closeMenuMobile }: NavbarProps) => {
   return (
     <nav className={S.container}>
       {menu.map((item) => (
-        <Link key={item.id} className={[S.item, S[item.id]].join(' ')} href={item.link}>
+        <Link key={item.id} className={[S.item, S[item.id]].join(' ')} href={item.link} onClick={closeMenuMobile}>
           {item.name}
         </Link>
       ))}
