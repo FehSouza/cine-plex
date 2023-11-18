@@ -1,3 +1,4 @@
+import { handleOpenSearch } from '@/states/openSearch'
 import Link from 'next/link'
 import { BsSearch } from 'react-icons/bs'
 import S from './styles.module.scss'
@@ -22,7 +23,7 @@ export const Navbar = ({ closeMenuMobile }: NavbarProps) => {
         </Link>
       ))}
 
-      <button className={S.searchButton}>
+      <button className={S.searchButton} aria-label="button-search" onClick={handleOpenSearch}>
         <BsSearch size={20} />
       </button>
     </nav>

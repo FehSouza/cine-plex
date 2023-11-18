@@ -1,16 +1,19 @@
 'use client'
 
+import { handleOpenSearch, useOpenSearch } from '@/states/openSearch'
 import Link from 'next/link'
 import { useState } from 'react'
-import { BsPerson } from 'react-icons/bs'
+import { BsPerson, BsSearch } from 'react-icons/bs'
 import { RiCloseCircleFill, RiMenuLine } from 'react-icons/ri'
 import { Logo } from '../Logo'
 import { Navbar } from '../Navbar'
+import { NavbarSearch } from '../NavbarSearch'
 import S from './styles.module.scss'
 
 export const HeaderMobile = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const [exitAnimation, setExitAnimation] = useState(false)
+  const [openSearch] = useOpenSearch()
 
   const handleOpenMenu = () => setOpenMenu(true)
   const handleCloseMenu = () => setExitAnimation(true)
@@ -29,10 +32,24 @@ export const HeaderMobile = () => {
 
       <Logo hasText={true} />
 
+      <button
+        className={[S.searchButton, openMenu ? S.opacity25 : '', openSearch ? S.opacity0 : ''].join(' ')}
+        aria-label="button-search"
+        onClick={handleOpenSearch}
+      >
+        <BsSearch size={20} />
+      </button>
+
+      {openSearch && (
+        <div className={S.navbarSearchContainer}>
+          <NavbarSearch />
+        </div>
+      )}
+
       {openMenu && (
         <div className={S.menu} onClick={handleCloseMenu}>
           <button className={[S.menuClose, exitAnimation ? S.exitButton : S.openButton].join(' ')} aria-label="Botão fechar do menu mobile">
-            <RiCloseCircleFill size={32} />
+            <RiCloseCircleFill size={36} />
           </button>
 
           <div
