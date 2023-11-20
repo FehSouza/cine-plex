@@ -5,6 +5,11 @@ interface getFullMoviesProps {
   page: string
 }
 
+interface getSearchProps {
+  query: string
+  page: string
+}
+
 const options = {
   method: 'GET',
   headers: {
@@ -161,4 +166,14 @@ export async function getPersonCredits(id: string) {
     console.log('function getPersonCredits with Error: ', error)
     return { id: id, cast: [], crew: [] }
   }
+}
+
+export async function getSearch({ query, page }: getSearchProps) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=pt-BR&page=${page}&region=BR`,
+    options
+  )
+  const response = (await res.json()) as FullMovie
+
+  return response
 }

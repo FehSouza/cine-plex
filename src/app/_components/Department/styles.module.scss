@@ -36,22 +36,10 @@
   }
 }
 
-// .filtersContainer {
-//   width: 22%;
-//   display: flex;
-//   flex-direction: column;
-
-//   @media (max-width: 768px) {
-//     width: 100%;
-//   }
-// }
-
 .moviesContainer {
-  // width: 78%;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  // padding-left: 48px;
   box-sizing: border-box;
   row-gap: 24px;
 
@@ -65,4 +53,43 @@
     flex-wrap: nowrap;
     overflow: hidden;
   }
+}
+
+.notFoundContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.warning {
+  margin-top: 48px;
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+  }
+}
+
+.listTips {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+
+.tip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #669aff;
 }

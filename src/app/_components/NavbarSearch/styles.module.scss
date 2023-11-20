@@ -3,6 +3,7 @@
   display: flex;
   border-radius: 8px;
   border: 1px solid #669aff;
+  position: relative;
 
   @media (max-width: 1024px) {
     width: 502px;
@@ -10,6 +11,18 @@
 
   @media (max-width: 768px) {
     width: 100%;
+  }
+
+  svg {
+    color: #669aff;
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+
+    @media (max-width: 768px) {
+      right: 11px;
+    }
   }
 }
 
@@ -34,10 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  svg {
-    color: #669aff;
-  }
+  z-index: 1;
 
   @media (max-width: 768px) {
     width: 42px;

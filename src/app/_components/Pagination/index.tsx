@@ -13,6 +13,7 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
+  const searchQuery = searchParams.get('q')
   const searchPage = Number(searchParams.get('page'))
   const pageInitial = searchPage ? searchPage : 1
   const [currentPage, setPage] = useState(pageInitial)
@@ -23,12 +24,12 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
 
   useEffect(() => {
     if (pageInitial > realTotalPage) {
-      router.push(`?page=${realTotalPage}`)
+      router.push(searchQuery ? `search?q=${searchQuery}&page=${realTotalPage}` : `?page=${realTotalPage}`)
       setPage(realTotalPage)
     }
 
-    if (!pageInitial) setPage(1)
-  }, [pageInitial, realTotalPage, router])
+    if (!searchPage) setPage(1)
+  }, [pageInitial, realTotalPage, router, searchPage, searchQuery])
 
   const pagination = pagesList.map((page) => {
     if (currentPage > limitPages) return page
@@ -40,7 +41,7 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
   const newPage = (page: number) => {
     document.querySelector('#content')?.scrollTo({ top: -1, behavior: 'smooth' })
     setPage(page)
-    setTimeout(() => router.push(`?page=${page}`), 200)
+    setTimeout(() => router.push(searchQuery ? `search?q=${searchQuery}&page=${page}` : `?page=${page}`), 200)
   }
 
   const handleSelectPage = (page: number) => {
