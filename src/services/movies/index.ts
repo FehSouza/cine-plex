@@ -11,6 +11,7 @@ const options = {
     accept: 'application/json',
     Authorization: `Bearer ${process.env.API_TOKEN}`,
   },
+  next: { revalidate: 3600 },
 }
 
 export async function getBestMovies() {
