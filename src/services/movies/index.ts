@@ -37,19 +37,19 @@ const optionsOneDay = {
 }
 
 export async function getBestMovies() {
-  const res = await fetch(
+  const response = await fetch(
     'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=pt-BR&page=1&region=BR&sort_by=popularity.desc&vote_average.gte=8.5',
     optionsOneDay
   )
-  const response = (await res.json()) as { results: Movie[] }
-  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
+  const result = (await response.json()) as { results: Movie[] }
+  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
 export async function getNowPlaying() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1', optionsOneHour)
-  const response = (await res.json()) as { results: Movie[] }
-  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
+  const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1', optionsOneHour)
+  const result = (await response.json()) as { results: Movie[] }
+  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
   const sortByReleaseDate = filteredList.sort((a, b) => {
     return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
   })
@@ -59,19 +59,19 @@ export async function getNowPlaying() {
 
 export async function getFullNowPlaying({ page }: getFullMoviesProps) {
   const pageFormatted = Number(page) > 500 ? 500 : page
-  const res = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}`, optionsOneHour)
-  const response = (await res.json()) as FullMovie
-  const sortByReleaseDate = response.results.sort((a, b) => {
+  const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}`, optionsOneHour)
+  const result = (await response.json()) as FullMovie
+  const sortByReleaseDate = result.results.sort((a, b) => {
     return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
   })
 
-  return { ...response, results: sortByReleaseDate }
+  return { ...result, results: sortByReleaseDate }
 }
 
 export async function getUpcoming() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
-  const response = (await res.json()) as { results: Movie[] }
-  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
+  const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
+  const result = (await response.json()) as { results: Movie[] }
+  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
 
   const sortByReleaseDate = filteredList?.sort((a, b) => {
     return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
@@ -81,54 +81,61 @@ export async function getUpcoming() {
 }
 
 export async function getFullUpcoming() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
-  const response = (await res.json()) as FullMovie
+  const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
+  const result = (await response.json()) as FullMovie
 
-  response?.results?.sort((a, b) => {
+  result?.results?.sort((a, b) => {
     return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
   })
 
-  return response
+  return result
 }
 
 export async function getPopular() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', optionsOneHour)
-  const response = (await res.json()) as { results: Movie[] }
-  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
+  const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', optionsOneHour)
+  const result = (await response.json()) as { results: Movie[] }
+  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
 export async function getFullPopular({ page }: getFullMoviesProps) {
   const pageFormatted = Number(page) > 500 ? 500 : page
-  const res = await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${pageFormatted}&region=BR`, optionsOneHour)
-  const response = (await res.json()) as FullMovie
-  return response
+  const response = await fetch(`https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${pageFormatted}&region=BR`, optionsOneHour)
+  const result = (await response.json()) as FullMovie
+  return result
 }
 
 export async function getMovie(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
-  const response = (await res.json()) as MovieDetail
-  return response
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
+  const result = (await response.json()) as MovieDetail
+  return result
 }
 
 export async function getCreditsMovie(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=bt-BR`, options)
-  const response = (await res.json()) as MovieCredits
-  return response
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=bt-BR`, options)
+  const result = (await response.json()) as MovieCredits
+  return result
 }
 
 export async function getVideo(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, options)
-  const response = (await res.json()) as Videos
-  const filteredList = response.results.filter((res) => res.site === 'YouTube' && res.official)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, options)
+  let { results } = (await response.json()) as Videos
+
+  if (!results.length) {
+    const responseEn = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+    const { results: resultsEn } = (await responseEn.json()) as Videos
+    results = resultsEn
+  }
+
+  const filteredList = results.filter((res) => res.site === 'YouTube')
   return filteredList
 }
 
 export async function getClassifications(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, options)
-  const response = (await res.json()) as Certifications
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, options)
+  const result = (await response.json()) as Certifications
 
-  const filteredList = response.results.reduce((acc, result) => {
+  const filteredList = result.results.reduce((acc, result) => {
     if (result.iso_3166_1 === 'BR' || result.iso_3166_1 === 'US') {
       result.release_dates.forEach((release) => {
         const certification = release.certification
@@ -143,33 +150,33 @@ export async function getClassifications(id: string) {
 }
 
 export async function getWatch(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options)
-  const response = (await res.json()) as Watch
-  const filteredList = response?.results?.BR
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options)
+  const result = (await response.json()) as Watch
+  const filteredList = result?.results?.BR
   return filteredList
 }
 
 export async function getRecommendations(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=pt-BR&page=1`, optionsOneDay)
-  const response = (await res.json()) as { results: Movie[] }
-  const filteredList = response.results.filter((result) => result.backdrop_path && result.poster_path)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=pt-BR&page=1`, optionsOneDay)
+  const result = (await response.json()) as { results: Movie[] }
+  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
 export async function getPerson(id: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/person/${id}?language=pt-BR`, options)
-  const response = (await res.json()) as Person
-  return response
+  const response = await fetch(`https://api.themoviedb.org/3/person/${id}?language=pt-BR`, options)
+  const result = (await response.json()) as Person
+  return result
 }
 
 export async function getSocialMedia(id: number) {
-  const res = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, options)
-  const response = (await res.json()) as SocialMedia
+  const response = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, options)
+  const result = (await response.json()) as SocialMedia
 
   const listSocialMedia = {
-    facebook: response.facebook_id,
-    instagram: response.instagram_id,
-    twitter: response.twitter_id,
+    facebook: result.facebook_id,
+    instagram: result.instagram_id,
+    twitter: result.twitter_id,
   }
 
   return Object.entries(listSocialMedia).filter((item) => item[1])
@@ -177,9 +184,9 @@ export async function getSocialMedia(id: number) {
 
 export async function getPersonCredits(id: string) {
   try {
-    const res = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, options)
-    const response = (await res.json()) as PersonCredits
-    return response
+    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, options)
+    const result = (await response.json()) as PersonCredits
+    return result
   } catch (error) {
     console.log('function getPersonCredits with Error: ', error)
     return { id: id, cast: [], crew: [] }
@@ -187,11 +194,11 @@ export async function getPersonCredits(id: string) {
 }
 
 export async function getSearch({ query, page }: getSearchProps) {
-  const res = await fetch(
+  const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=pt-BR&page=${page}&region=BR`,
     options
   )
-  const response = (await res.json()) as FullMovie
+  const result = (await response.json()) as FullMovie
 
-  return response
+  return result
 }
