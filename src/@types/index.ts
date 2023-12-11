@@ -9,6 +9,13 @@ export interface FullMovie {
   total_results: number
 }
 
+export interface FullPerson {
+  page: number
+  results: Person[]
+  total_pages: number
+  total_results: number
+}
+
 export interface Movie {
   adult: boolean
   backdrop_path: string

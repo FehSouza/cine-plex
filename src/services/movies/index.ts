@@ -202,3 +202,13 @@ export async function getSearch({ query, page }: getSearchProps) {
 
   return result
 }
+
+export async function getSearchPerson({ query, page }: getSearchProps) {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&language=pt-BR&page=${page}`,
+    options
+  )
+  const result = (await response.json()) as Person
+
+  return result
+}

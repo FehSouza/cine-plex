@@ -1,27 +1,34 @@
 'use client'
 
+import { FullMovie, FullPerson } from '@/@types'
 import { dispatchOpenSearch } from '@/states/openSearch'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import S from './styles.module.scss'
-import { FullMovie } from '@/@types'
 
 export const NavbarSearch = () => {
   const router = useRouter()
-  const searchInputRef = useRef(null)
-  const searchButtonRef = useRef(null)
-  const searchResults = useRef(null)
-  let timerDebounce = useRef<NodeJS.Timeout | undefined>(undefined)
-  const [query, setQuery] = useState('')
-  const [suggestions, setSuggestions] = useState<FullMovie>()
 
-  console.log({ suggestions })
+  const inputRef = useRef(null)
+  const buttonRef = useRef(null)
+  const resultsRef = useRef(null)
+  const resultsTitleRef1 = useRef(null)
+  const resultsTitleRef2 = useRef(null)
+  let timerDebounce = useRef<NodeJS.Timeout | undefined>(undefined)
+
+  const [query, setQuery] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [movieSuggestions, setMovieSuggestions] = useState<FullMovie>()
+  const [personSuggestions, setPersonSuggestions] = useState<FullPerson>()
 
   const handleCloseSearch = useCallback((e: MouseEvent) => {
-    if (e.target === searchInputRef.current) return
-    if (e.target === searchButtonRef.current) return
-    if (e.target === searchResults.current) return
+    if (e.target === inputRef.current) return
+    if (e.target === buttonRef.current) return
+    if (e.target === resultsRef.current) return
+    if (e.target === resultsTitleRef1.current) return
+    if (e.target === resultsTitleRef2.current) return
     dispatchOpenSearch(false)
   }, [])
 
@@ -33,14 +40,16 @@ export const NavbarSearch = () => {
 
   const handleSearchSuggestions = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
+    setLoading(true)
     setQuery(value)
-
     clearTimeout(timerDebounce.current)
 
     timerDebounce.current = setTimeout(async () => {
       const response = await fetch(`/api/search?q=${value}`)
       const result = await response.json()
-      setSuggestions(result)
+      setLoading(false)
+      setMovieSuggestions(result.movies)
+      setPersonSuggestions(result.people)
     }, 500)
   }
 
@@ -54,7 +63,7 @@ export const NavbarSearch = () => {
       <nav className={S.navContent}>
         <input
           className={S.searchInput}
-          ref={searchInputRef}
+          ref={inputRef}
           placeholder="O que você está buscando?"
           autoFocus
           value={query}
@@ -62,23 +71,66 @@ export const NavbarSearch = () => {
           onKeyUp={(e) => e.key === 'Enter' && handleSearch()}
         />
 
-        <button className={S.searchButton} ref={searchButtonRef} aria-label="button-search" onClick={handleSearch}></button>
+        <button className={S.searchButton} ref={buttonRef} aria-label="button-search" onClick={handleSearch}></button>
 
         <BsSearch size={20} />
       </nav>
 
-      {!!suggestions?.results.length && (
-        <div className={S.resultsContent}>
-          <span className={S.subTitle}>Filmes sugeridos</span>
+      {query && (
+        <div className={S.resultsContent} ref={resultsRef}>
+          <span className={S.subTitle} ref={resultsTitleRef1}>
+            Filmes sugeridos
+          </span>
 
           <ul className={S.list}>
-            {suggestions.results.slice(0, 7).map((suggestion) => {
+            {!movieSuggestions?.results.length && loading && (
+              <li className={S.item}>
+                <AiOutlineLoading3Quarters size={20} />
+              </li>
+            )}
+
+            {!movieSuggestions?.results.length && !loading && (
+              <li className={S.item}>
+                <span>Sem sugestões de filmes para o termo digitado</span>
+              </li>
+            )}
+
+            {movieSuggestions?.results.slice(0, 5).map((suggestion) => {
               const id = suggestion.id
               const name = suggestion.title
 
               return (
                 <li className={S.item} key={id}>
                   <a href={`/filme/${id}`}>{name}</a>
+                </li>
+              )
+            })}
+          </ul>
+
+          <span className={S.subTitle} ref={resultsTitleRef2}>
+            Pessoas sugeridas
+          </span>
+
+          <ul className={S.list}>
+            {!personSuggestions?.results.length && loading && (
+              <li className={S.item}>
+                <AiOutlineLoading3Quarters size={20} />
+              </li>
+            )}
+
+            {!personSuggestions?.results.length && !loading && (
+              <li className={S.item}>
+                <span>Sem sugestões de pessoas para o termo digitado</span>
+              </li>
+            )}
+
+            {personSuggestions?.results.slice(0, 5).map((suggestion) => {
+              const id = suggestion.id
+              const name = suggestion.name
+
+              return (
+                <li className={S.item} key={id}>
+                  <a href={`/pessoa/${id}`}>{name}</a>
                 </li>
               )
             })}
