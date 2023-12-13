@@ -8,7 +8,11 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
 import S from './styles.module.scss'
 
-export const NavbarSearch = () => {
+interface NavbarSearchProps {
+  isMobile?: boolean
+}
+
+export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
   const router = useRouter()
 
   const inputRef = useRef(null)
@@ -95,7 +99,7 @@ export const NavbarSearch = () => {
               </li>
             )}
 
-            {movieSuggestions?.results.slice(0, 5).map((suggestion) => {
+            {movieSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
               const id = suggestion.id
               const name = suggestion.title
 
@@ -124,7 +128,7 @@ export const NavbarSearch = () => {
               </li>
             )}
 
-            {personSuggestions?.results.slice(0, 5).map((suggestion) => {
+            {personSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
               const id = suggestion.id
               const name = suggestion.name
 

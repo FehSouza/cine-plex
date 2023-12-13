@@ -108,7 +108,7 @@
   margin-top: 6px;
 
   @media (max-width: 768px) {
-    margin-top: 5px;
+    margin-top: 4px;
   }
 }
 
@@ -135,8 +135,10 @@
     }
   }
 
-  a:hover {
-    color: #669aff;
+  @media (min-width: 769px) {
+    a:hover {
+      color: #669aff;
+    }
   }
 
   svg {

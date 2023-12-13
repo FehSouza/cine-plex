@@ -42,7 +42,7 @@ export const HeaderMobile = () => {
 
       {openSearch && (
         <div className={S.navbarSearchContainer}>
-          <NavbarSearch />
+          <NavbarSearch isMobile={true} />
         </div>
       )}
 
