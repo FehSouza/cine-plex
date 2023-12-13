@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" id="content" suppressHydrationWarning>
       <head>
-        <meta key="viewport-default" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta key="viewport-default" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </head>
       <body className={inter.className}>
         <Header />
