@@ -2,10 +2,12 @@
 
 import { FullMovie, FullPerson } from '@/@types'
 import { dispatchOpenSearch } from '@/states/openSearch'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-import { BsSearch } from 'react-icons/bs'
+import { BsImage, BsPerson, BsSearch } from 'react-icons/bs'
+import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface NavbarSearchProps {
@@ -82,63 +84,90 @@ export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
 
       {query && (
         <div className={S.resultsContent} ref={resultsRef}>
-          <span className={S.subTitle} ref={resultsTitleRef1}>
-            Filmes sugeridos
-          </span>
+          <div className={S.resultsWrapper}>
+            <span className={S.subTitle} ref={resultsTitleRef1}>
+              Filmes sugeridos
+            </span>
 
-          <ul className={S.list}>
-            {!movieSuggestions?.results.length && loading && (
-              <li className={S.item}>
-                <AiOutlineLoading3Quarters size={20} />
-              </li>
-            )}
-
-            {!movieSuggestions?.results.length && !loading && (
-              <li className={S.item}>
-                <span>Sem sugestões de filmes para o termo digitado</span>
-              </li>
-            )}
-
-            {movieSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
-              const id = suggestion.id
-              const name = suggestion.title
-
-              return (
-                <li className={S.item} key={id}>
-                  <a href={`/filme/${id}`}>{name}</a>
+            <ul className={S.list}>
+              {!movieSuggestions?.results.length && loading && (
+                <li className={S.item}>
+                  <AiOutlineLoading3Quarters size={20} />
                 </li>
-              )
-            })}
-          </ul>
+              )}
 
-          <span className={S.subTitle} ref={resultsTitleRef2}>
-            Pessoas sugeridas
-          </span>
-
-          <ul className={S.list}>
-            {!personSuggestions?.results.length && loading && (
-              <li className={S.item}>
-                <AiOutlineLoading3Quarters size={20} />
-              </li>
-            )}
-
-            {!personSuggestions?.results.length && !loading && (
-              <li className={S.item}>
-                <span>Sem sugestões de pessoas para o termo digitado</span>
-              </li>
-            )}
-
-            {personSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
-              const id = suggestion.id
-              const name = suggestion.name
-
-              return (
-                <li className={S.item} key={id}>
-                  <a href={`/pessoa/${id}`}>{name}</a>
+              {!movieSuggestions?.results.length && !loading && (
+                <li className={S.item}>
+                  <span>Sem sugestões de filmes para o termo digitado</span>
                 </li>
-              )
-            })}
-          </ul>
+              )}
+
+              {movieSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
+                const id = suggestion.id
+                const name = suggestion.title
+                const image = suggestion.poster_path
+
+                return (
+                  <li className={S.item} key={id}>
+                    <a className={S.link} href={`/filme/${id}`}>
+                      <div className={S.ImageWrapper}>
+                        {image && (
+                          <Image
+                            className={S.image}
+                            loader={TMDBPosterLoader}
+                            src={image}
+                            alt={`Poster do Filme ${name}`}
+                            fill
+                            sizes="200w"
+                          />
+                        )}
+                        {!image && <BsImage className={S.imagePerson} />}
+                      </div>
+                      {name}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+
+            <span className={[S.subTitle, S.subTitleBottom].join(' ')} ref={resultsTitleRef2}>
+              Pessoas sugeridas
+            </span>
+
+            <ul className={S.list}>
+              {!personSuggestions?.results.length && loading && (
+                <li className={S.item}>
+                  <AiOutlineLoading3Quarters size={20} />
+                </li>
+              )}
+
+              {!personSuggestions?.results.length && !loading && (
+                <li className={S.item}>
+                  <span>Sem sugestões de pessoas para o termo digitado</span>
+                </li>
+              )}
+
+              {personSuggestions?.results.slice(0, isMobile ? 4 : 5).map((suggestion) => {
+                const id = suggestion.id
+                const name = suggestion.name
+                const image = suggestion.profile_path
+
+                return (
+                  <li className={S.item} key={id}>
+                    <a className={S.link} href={`/pessoa/${id}`}>
+                      <div className={S.ImageWrapper}>
+                        {image && (
+                          <Image className={S.image} loader={TMDBPosterLoader} src={image} alt={`Imagem de ${name}`} fill sizes="200w" />
+                        )}
+                        {!image && <BsPerson size={20} className={S.imagePerson} />}
+                      </div>
+                      {name}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
       )}
     </div>
