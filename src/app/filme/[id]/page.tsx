@@ -36,8 +36,9 @@ export default async function Movie({ params }: MovieProps) {
   const description = movie.overview
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
+  const directorId = directorInfo?.id
   const castList = credits.cast.slice(0, 8)
-  const actorsNames = castList.slice(0, 3).map((actor) => actor.name)
+  const actorsNames = castList.slice(0, 3).map((actor) => ({ name: actor.name, id: actor.id }))
   const videoList = videos.slice(0, 2)
 
   const availableToStream = watch?.flatrate
@@ -145,14 +146,29 @@ export default async function Movie({ params }: MovieProps) {
         {!!directorName && (
           <>
             <span className={S.subTitle2}>Direção</span>
-            <span className={S.content}>{directorName}</span>
+            <Link href={`/pessoa/${directorId}`} className={[S.content, S.contentLink].join(' ')}>
+              {directorName}
+            </Link>
           </>
         )}
 
         {!!actorsNames.length && (
           <>
             <span className={S.subTitle2}>Estrelando</span>
-            <span className={S.content}>{actorsNames.join(', ')}</span>
+            <div className={S.actorsList}>
+              {actorsNames.map((actor, i) => {
+                const quant = actorsNames.length
+                return (
+                  <>
+                    <Link key={actor.id} href={`/pessoa/${actor.id}`} className={S.contentLink}>
+                      {actor.name}
+                    </Link>
+
+                    {((quant >= 2 && i === 0) || (quant === 3 && i === 1)) && <span className={S.comma}>,</span>}
+                  </>
+                )
+              })}
+            </div>
           </>
         )}
       </section>
@@ -179,8 +195,8 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
-      {!!actorsNames.length && <hr className={S.division} />}
-      {!!actorsNames.length && (
+      {!!castList.length && <hr className={S.division} />}
+      {!!castList.length && (
         <section className={S.container}>
           <h2 className={S.subTitle}>Elenco principal</h2>
 
