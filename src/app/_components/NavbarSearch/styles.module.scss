@@ -75,7 +75,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 0 16px;
   box-sizing: border-box;
   background-color: #010b13;
   border: 1px solid #669aff;
@@ -85,17 +85,19 @@
   top: 58px;
 
   @media (max-width: 768px) {
-    padding: 12px;
+    padding: 0 12px;
     top: 52px;
   }
 }
 
 .resultsWrapper {
   max-height: calc(100vh - 196px);
+  padding: 16px 0;
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    max-height: calc(100vh - 338px);
+    max-height: calc(50vh - 160px);
+    padding: 12px 0;
   }
 }
 
@@ -160,6 +162,8 @@
   transition-duration: 350ms;
 
   @media (min-width: 769px) {
+    padding-right: 16px;
+
     &:hover {
       color: #669aff;
 
@@ -172,6 +176,7 @@
 }
 
 .ImageWrapper {
+  min-width: 28px;
   width: 28px;
   height: 42px;
   overflow: hidden;
