@@ -96,7 +96,7 @@
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    max-height: 224px;
+    max-height: 220px;
     padding: 12px 0;
   }
 }
@@ -134,14 +134,14 @@
   justify-content: center;
 
   @media (max-width: 768px) {
-    min-height: 49px;
+    min-height: 47px;
   }
 
   &:last-child {
     min-height: 48px;
 
     @media (max-width: 768px) {
-      min-height: 45px;
+      min-height: 44px;
     }
 
     a {
@@ -165,11 +165,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 4px 0;
+  padding: 3px 0;
   color: #ffffff;
   transition-duration: 350ms;
 
   @media (min-width: 769px) {
+    padding: 4px 0;
     padding-right: 16px;
 
     &:hover {
