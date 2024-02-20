@@ -42,15 +42,15 @@ export async function getBestMovies() {
     optionsOneDay
   )
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
+  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
 export async function getNowPlaying() {
   const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1', optionsOneHour)
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
-  const sortByReleaseDate = filteredList.sort((a, b) => {
+  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
+  const sortByReleaseDate = filteredList?.sort((a, b) => {
     return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
   })
 
@@ -61,7 +61,7 @@ export async function getFullNowPlaying({ page }: getFullMoviesProps) {
   const pageFormatted = Number(page) > 500 ? 500 : page
   const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=${pageFormatted}`, optionsOneHour)
   const result = (await response.json()) as FullMovie
-  const sortByReleaseDate = result.results.sort((a, b) => {
+  const sortByReleaseDate = result?.results?.sort((a, b) => {
     return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
   })
 
@@ -71,7 +71,7 @@ export async function getFullNowPlaying({ page }: getFullMoviesProps) {
 export async function getUpcoming() {
   const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
+  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
 
   const sortByReleaseDate = filteredList?.sort((a, b) => {
     return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
@@ -94,7 +94,7 @@ export async function getFullUpcoming() {
 export async function getPopular() {
   const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1&region=BR', optionsOneHour)
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
+  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
@@ -127,7 +127,7 @@ export async function getVideo(id: string) {
     results = resultsEn
   }
 
-  const filteredList = results.filter((res) => res.site === 'YouTube')
+  const filteredList = results?.filter((res) => res.site === 'YouTube')
   return filteredList
 }
 
@@ -159,7 +159,7 @@ export async function getWatch(id: string) {
 export async function getRecommendations(id: string) {
   const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?language=pt-BR&page=1`, optionsOneDay)
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results.filter((result) => result.backdrop_path && result.poster_path)
+  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
   return filteredList
 }
 
