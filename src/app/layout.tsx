@@ -3,7 +3,7 @@ import '../styles/globals.scss'
 import { Footer, Header } from './_components'
 import S from './styles.module.scss'
 
-const inter = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
 export const metadata = {
   title: 'Cine Plex',
@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" id="content" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <Header />
         <div className={S.container}>
           <div className={S.headerContainer} />

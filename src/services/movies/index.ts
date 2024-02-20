@@ -10,14 +10,6 @@ interface getSearchProps {
   page: string
 }
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${process.env.API_TOKEN}`,
-  },
-}
-
 const optionsOneHour = {
   method: 'GET',
   headers: {
@@ -106,23 +98,23 @@ export async function getFullPopular({ page }: getFullMoviesProps) {
 }
 
 export async function getMovie(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=pt-BR`, optionsOneDay)
   const result = (await response.json()) as MovieDetail
   return result
 }
 
 export async function getCreditsMovie(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=bt-BR`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=bt-BR`, optionsOneDay)
   const result = (await response.json()) as MovieCredits
   return result
 }
 
 export async function getVideo(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`, optionsOneDay)
   let { results } = (await response.json()) as Videos
 
   if (!results.length) {
-    const responseEn = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+    const responseEn = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, optionsOneDay)
     const { results: resultsEn } = (await responseEn.json()) as Videos
     results = resultsEn
   }
@@ -132,7 +124,7 @@ export async function getVideo(id: string) {
 }
 
 export async function getClassifications(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates`, optionsOneDay)
   const result = (await response.json()) as Certifications
 
   const filteredList = result.results.reduce((acc, result) => {
@@ -150,7 +142,7 @@ export async function getClassifications(id: string) {
 }
 
 export async function getWatch(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, optionsOneDay)
   const result = (await response.json()) as Watch
   const filteredList = result?.results?.BR
   return filteredList
@@ -164,13 +156,13 @@ export async function getRecommendations(id: string) {
 }
 
 export async function getPerson(id: string) {
-  const response = await fetch(`https://api.themoviedb.org/3/person/${id}?language=pt-BR`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/person/${id}?language=pt-BR`, optionsOneDay)
   const result = (await response.json()) as Person
   return result
 }
 
 export async function getSocialMedia(id: number) {
-  const response = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, options)
+  const response = await fetch(`https://api.themoviedb.org/3/person/${id}/external_ids`, optionsOneDay)
   const result = (await response.json()) as SocialMedia
 
   const listSocialMedia = {
@@ -184,7 +176,7 @@ export async function getSocialMedia(id: number) {
 
 export async function getPersonCredits(id: string) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, options)
+    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, optionsOneDay)
     const result = (await response.json()) as PersonCredits
     return result
   } catch (error) {
@@ -196,7 +188,7 @@ export async function getPersonCredits(id: string) {
 export async function getSearch({ query, page }: getSearchProps) {
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=pt-BR&page=${page}&region=BR`,
-    options
+    optionsOneDay
   )
   const result = (await response.json()) as FullMovie
 
@@ -206,7 +198,7 @@ export async function getSearch({ query, page }: getSearchProps) {
 export async function getSearchPerson({ query, page }: getSearchProps) {
   const response = await fetch(
     `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&language=pt-BR&page=${page}`,
-    options
+    optionsOneDay
   )
   const result = (await response.json()) as Person
 
