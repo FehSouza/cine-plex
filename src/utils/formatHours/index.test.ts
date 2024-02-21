@@ -2,6 +2,12 @@ import { describe, expect, it } from 'vitest'
 import { formatHours } from '.'
 
 describe('formatHours', () => {
+  it.todo('receber o dado como string vazia')
+  it.todo('receber o dado como 0')
+  it.todo('receber o dado como uma string de 0')
+  it.todo('receber o dado como um número negativo')
+  it.todo('receber o dado como uma string de número negativo')
+
   it('deve formatar a hora', () => {
     const SUT1 = formatHours(120)
     const expected1 = '2h 00min'
