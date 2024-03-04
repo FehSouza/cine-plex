@@ -30,6 +30,7 @@ export default async function Movie({ params }: MovieProps) {
   const classificationBR = classifications.find((c) => c.country === 'BR')
   const classificationUS = classifications.find((c) => c.country === 'US')
   const releaseYear = formatReleaseDate(movie.release_date)
+
   const genres = movie.genres
   const tagline = movie.tagline
   const originalTitle = movie.original_title

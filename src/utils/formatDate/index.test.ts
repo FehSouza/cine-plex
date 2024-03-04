@@ -26,24 +26,38 @@ describe('formatDate', () => {
     expect(SUT4).toBe(expected4)
   })
 
-  test('deve dar erro ao passar a data como undefined ou null', () => {
+  test('deve retornar undefined ao passar a data como undefined ou null', () => {
     //@ts-expect-error
-    expect(() => formatDate(undefined)).toThrow('formatData: formato inesperado')
+    const SUT1 = formatDate(undefined)
+    const expected1 = undefined
+    expect(SUT1).toBe(expected1)
+
     //@ts-expect-error
-    expect(() => formatDate(null)).toThrow('formatData: formato inesperado')
+    const SUT2 = formatDate(null)
+    const expected2 = undefined
+    expect(SUT2).toBe(expected2)
   })
 
-  it('deve dar erro ao passar a data como um número', () => {
+  it('deve retornar undefined ao passar a data como um número', () => {
     //@ts-expect-error
-    expect(() => formatDate(2)).toThrow('formatData: formato inesperado')
+    const SUT = formatDate(2)
+    const expected = undefined
+    expect(SUT).toBe(expected)
   })
 
-  it('deve dar erro ao passar a data com formato errado ou inesperado', () => {
-    expect(() => formatDate('2')).toThrow('formatData: formato inesperado')
+  it('deve retornar undefined ao passar a data com formato errado ou inesperado', () => {
+    const SUT = formatDate('2')
+    const expected = undefined
+    expect(SUT).toBe(expected)
   })
 
-  it('deve dar error ao passar o ano com formato curto (dois dígitos)', () => {
-    expect(() => formatDate('24-02-13')).toThrow('formatData: formato inesperado')
-    expect(() => formatDate('13/02/24')).toThrow('formatData: formato inesperado')
+  it('deve retornar undefined ao passar o ano com formato curto (dois dígitos)', () => {
+    const SUT1 = formatDate('24-02-13')
+    const expected1 = undefined
+    expect(SUT1).toBe(expected1)
+
+    const SUT2 = formatDate('13/02/24')
+    const expected2 = undefined
+    expect(SUT2).toBe(expected2)
   })
 })

@@ -2,12 +2,6 @@ import { describe, expect, it } from 'vitest'
 import { formatHours } from '.'
 
 describe('formatHours', () => {
-  it.todo('receber o dado como string vazia')
-  it.todo('receber o dado como 0')
-  it.todo('receber o dado como uma string de 0')
-  it.todo('receber o dado como um número negativo')
-  it.todo('receber o dado como uma string de número negativo')
-
   it('deve formatar a hora', () => {
     const SUT1 = formatHours(120)
     const expected1 = '2h 00min'
@@ -24,9 +18,13 @@ describe('formatHours', () => {
     const SUT4 = formatHours(0.5)
     const expected4 = '01min'
     expect(SUT4).toBe(expected4)
+
+    const SUT5 = formatHours(0)
+    const expected5 = '00min'
+    expect(SUT5).toBe(expected5)
   })
 
-  it('deve formatar a hora ao passar o dado como uma string válida', () => {
+  it('deve formatar ao passar a hora como uma string válida', () => {
     // @ts-expect-error
     const SUT1 = formatHours('120')
     const expected1 = '2h 00min'
@@ -46,19 +44,57 @@ describe('formatHours', () => {
     const SUT4 = formatHours('20')
     const expected4 = '20min'
     expect(SUT4).toBe(expected4)
+
+    // @ts-expect-error
+    const SUT5 = formatHours('0.5')
+    const expected5 = '01min'
+    expect(SUT5).toBe(expected5)
+
+    // @ts-expect-error
+    const SUT6 = formatHours('0')
+    const expected6 = '00min'
+    expect(SUT6).toBe(expected6)
   })
 
-  it('deve dar erro ao passar a hora como undefined ou null', () => {
+  it('deve retornar undefined ao passar a hora como undefined ou null', () => {
     //@ts-expect-error
-    expect(() => formatHours(undefined)).toThrow('formatHours: a duração não pode ser undefined')
+    const SUT1 = formatHours(undefined)
+    const expected1 = undefined
+    expect(SUT1).toBe(expected1)
+
     //@ts-expect-error
-    expect(() => formatHours(null)).toThrow('formatHours: a duração não pode ser null')
+    const SUT2 = formatHours(null)
+    const expected2 = undefined
+    expect(SUT2).toBe(expected2)
   })
 
-  it('deve dar erro ao passar o dado como uma string inválida', () => {
-    // @ts-expect-error
-    expect(() => formatHours('a')).toThrow('formatHours: a duração deve ser um número')
-    // @ts-expect-error
-    expect(() => formatHours('2h 00min')).toThrow('formatHours: a duração deve ser um número')
+  it('deve retornar undefined ao passar a hora como uma string vazia', () => {
+    //@ts-expect-error
+    const SUT = formatHours('')
+    const expected = undefined
+    expect(SUT).toBe(expected)
+  })
+
+  it('deve retornar undefined ao passar a hora como uma string inválida', () => {
+    //@ts-expect-error
+    const SUT1 = formatHours('a')
+    const expected1 = undefined
+    expect(SUT1).toBe(expected1)
+
+    //@ts-expect-error
+    const SUT2 = formatHours('2h 00min')
+    const expected2 = undefined
+    expect(SUT2).toBe(expected2)
+  })
+
+  it('deve retornar undefined ao passar a hora como um número negativo', () => {
+    const SUT1 = formatHours(-120)
+    const expected1 = undefined
+    expect(SUT1).toBe(expected1)
+
+    //@ts-expect-error
+    const SUT2 = formatHours('-120')
+    const expected2 = undefined
+    expect(SUT2).toBe(expected2)
   })
 })

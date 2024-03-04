@@ -38,7 +38,7 @@ export const MovieCard = ({ id, date, grade, poster, title, upcoming, department
         </div>
       )}
 
-      {upcoming && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
+      {upcoming && date && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
       <span className={S.titleMovie}>{title}</span>
       <button className={S.seeMore}>Veja detalhes</button>
     </Link>
