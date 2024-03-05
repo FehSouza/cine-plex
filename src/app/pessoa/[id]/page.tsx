@@ -1,7 +1,7 @@
 import { Biography, CreditsList } from '@/app/_components'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits } from '@/services'
-import { getListCredits, removeDuplicates } from '@/utils'
+import { getListCredits, removeDuplicatesById } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsImage } from 'react-icons/bs'
@@ -20,14 +20,13 @@ export default async function Person({ params }: PersonProps) {
   const biography = person.biography
   const gender = person.gender as keyof typeof DICTIONARY_GENDER
 
-  const setCredits = new Set()
   const listCredits = [...credits.cast, ...credits.crew]
-  const creditsFormatted = listCredits.filter((credit) => removeDuplicates({ item: credit, set: setCredits }))
+  const creditsFormatted = removeDuplicatesById(listCredits)
 
   const listCreditsOrdered = getListCredits(listCredits)
 
-  const bestMovies = [...creditsFormatted]
-    .sort(function (a, b) {
+  const bestMovies = creditsFormatted
+    ?.sort(function (a, b) {
       if (a.vote_count > b.vote_count) return -1
       if (a.vote_count < b.vote_count) return 1
       return 0
@@ -36,7 +35,7 @@ export default async function Person({ params }: PersonProps) {
 
   return (
     <main className={S.main}>
-      <Biography person={person} quantCredits={creditsFormatted.length} />
+      <Biography person={person} quantCredits={creditsFormatted ? creditsFormatted.length : 0} />
 
       <section className={S.container}>
         <h1 className={S.titleDesktop}>{name}</h1>
@@ -46,7 +45,7 @@ export default async function Person({ params }: PersonProps) {
           <span className={S.text}>{biography ? biography : `Não possuímos uma biografia para ${name}`}</span>
         </div>
 
-        {!!bestMovies.length && (
+        {!!bestMovies?.length && (
           <div className={S.content}>
             <h2 className={S.title}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h2>
 

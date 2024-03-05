@@ -16,8 +16,8 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
   const id = person.id
   const name = person.name
   const image = person.profile_path ? `https://image.tmdb.org/t/p/w300${person.profile_path}` : null
-  const birthday = person.birthday
-  const deathday = person.deathday
+  const birthday = !/\d{4}-\d{1,2}-\d{1,2}/.test(person.birthday) ? '' : person.birthday
+  const deathday = !/\d{4}-\d{1,2}-\d{1,2}/.test(person.deathday) ? '' : person.deathday
   const age = getAge({ birthday, deathday })
   const birthplace = person.place_of_birth
   const gender = person.gender as keyof typeof DICTIONARY_GENDER
@@ -91,7 +91,7 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
           <span className={S.text}>{birthday ? `${formatDate(birthday)} ${!deathday ? `(${age} anos)` : ''}` : '-'}</span>
         </div>
 
-        {deathday && (
+        {deathday && birthday && (
           <div className={S.personalInfoWrapper}>
             <h3 className={S.subTitle}>Falecimento</h3>
             <span className={S.text}>{`${formatDate(deathday)} (${age} anos)`}</span>

@@ -1,7 +1,9 @@
-import { listProps, removeDuplicates } from '../formatCastList'
+import { listProps } from '../formatCastList'
+import { removeDuplicatesById } from '../removeDuplicatesById'
 
-export const crewList = ({ credits, set }: listProps) => {
-  const crewList = credits.crew.filter((crew) => removeDuplicates({ item: crew, set }))
+export const crewList = ({ credits }: listProps) => {
+  const crewList = removeDuplicatesById(credits.crew)
+  if (!crewList) return
 
   const crewListSorted = crewList.sort(function (a, b) {
     if (a.job < b.job) return -1
