@@ -11,8 +11,7 @@ export default async function Equipe({ params }: EquipeProps) {
   const id = params.id
 
   const [credits] = await Promise.all([getCreditsMovie(id)])
-  const setCrew = new Set()
-  const list = crewList({ credits, set: setCrew })
+  const list = crewList({ credits })
 
   return (
     <section className={S.container}>
