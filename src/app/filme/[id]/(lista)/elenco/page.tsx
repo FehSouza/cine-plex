@@ -11,8 +11,7 @@ export default async function Elenco({ params }: ElencoProps) {
   const id = params.id
 
   const [credits] = await Promise.all([getCreditsMovie(id)])
-  const setCast = new Set()
-  const list = castList({ credits, set: setCast })
+  const list = castList({ credits })
 
   return (
     <section className={S.container}>
