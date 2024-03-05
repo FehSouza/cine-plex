@@ -1,6 +1,8 @@
 import { PersonCast, PersonCrew } from '@/@types'
 
 export const getListCredits = (list: (PersonCast | PersonCrew)[]) => {
+  if (!list?.length) return
+
   const setDateAndYear = list.map((item) => {
     const date = item.release_date ?? item.first_air_date ?? '-'
     const year = new Date(date).getFullYear()

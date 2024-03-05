@@ -2,6 +2,8 @@ import { listProps } from '../formatCastList'
 import { removeDuplicatesById } from '../removeDuplicatesById'
 
 export const crewList = ({ credits }: listProps) => {
+  if (!credits) return
+
   const crewList = removeDuplicatesById(credits.crew)
   if (!crewList) return
 

@@ -11,8 +11,6 @@ export default async function Todos({ params }: TodosProps) {
   const id = params.id
 
   const [credits] = await Promise.all([getCreditsMovie(id)])
-  const setCast = new Set()
-  const setCrew = new Set()
   const listCast = castList({ credits })
   const listCrew = crewList({ credits })
 

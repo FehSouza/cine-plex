@@ -84,9 +84,9 @@ export default async function Person({ params }: PersonProps) {
           </div>
         )}
 
-        {!!listCreditsOrdered.length && <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />}
+        {!!listCreditsOrdered?.length && <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />}
 
-        {!listCreditsOrdered.length && (
+        {!listCreditsOrdered?.length && (
           <div className={S.content}>
             <span className={S.warning}>
               Infelizmente, estamos passando por uma instabilidade em nosso banco de dados de filmes associados.
