@@ -7,9 +7,11 @@ import { useCallback } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { MovieCard } from '../MovieCard'
 import S from './styles.module.scss'
+import Link from 'next/link'
 
 interface CarouselProps {
   title: string
+  hrefTitle?: string
   movies: Movie[]
   upcoming?: boolean
   moviePage?: boolean
@@ -30,7 +32,7 @@ export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
   return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
-export function Carousel({ title, movies, upcoming, moviePage }: CarouselProps) {
+export function Carousel({ title, hrefTitle, movies, upcoming, moviePage }: CarouselProps) {
   const movieList = movies?.slice(0, 10)
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align: 'start' })
@@ -42,7 +44,9 @@ export function Carousel({ title, movies, upcoming, moviePage }: CarouselProps) 
 
   return (
     <section className={S.carousel}>
-      <h2 className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>{title}</h2>
+      <h2 className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>
+        {hrefTitle ? <Link href={hrefTitle}>{title}</Link> : title}
+      </h2>
 
       <div className={[S.embla, moviePage ? S.emblaMoviePage : ''].join(' ')} ref={emblaRef}>
         <div className={S.emblaContainer}>

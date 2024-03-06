@@ -9,11 +9,11 @@ export default async function Home() {
     <main className={S.main}>
       <div className={S.content}>
         <MainBanner movies={bestMovies} />
-        <Carousel title="Em Cartaz" movies={nowPlaying} />
+        <Carousel title="Em Cartaz" hrefTitle="/cartaz" movies={nowPlaying} />
         <hr className={S.division} />
-        <Carousel title="Em Breve" movies={upcoming} upcoming={true} />
+        <Carousel title="Em Breve" hrefTitle="/estreias" movies={upcoming} upcoming={true} />
         <hr className={S.division} />
-        <Carousel title="Nossas Sugestões" movies={popular} />
+        <Carousel title="Nossas Sugestões" hrefTitle="/sugestoes" movies={popular} />
       </div>
     </main>
   )

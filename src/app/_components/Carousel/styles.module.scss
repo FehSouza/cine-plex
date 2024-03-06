@@ -24,6 +24,14 @@
   @media (max-width: 768px) {
     font-size: 18px;
   }
+
+  a {
+    transition-duration: 350ms;
+
+    &:hover {
+      color: #669aff;
+    }
+  }
 }
 
 .titleMoviePage {
