@@ -7,5 +7,6 @@ export default defineConfig({
   plugins: [tsconfigPaths(), react()],
   test: {
     environment: 'jsdom',
+    setupFiles: ['./testConfig.ts', './jest-setup.ts'],
   },
 })

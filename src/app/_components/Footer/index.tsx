@@ -7,6 +7,10 @@ import { IoIosArrowDown } from 'react-icons/io'
 import { Logo } from '../Logo'
 import S from './styles.module.scss'
 
+const styleInstitutional = { height: '122px', opacity: '1' }
+const styleAccount = { height: '82px', opacity: '1' }
+const styleContact = { height: '142px', opacity: '1' }
+
 export const Footer = () => {
   const isBreakpoint = useMediaQuery(768)
   const isDesktop = isBreakpoint === false
@@ -19,15 +23,11 @@ export const Footer = () => {
     setSelected((prev) => (prev === i ? null : i))
   }
 
-  const styleInstitutional = { height: '122px', opacity: '1' }
-  const styleAccount = { height: '82px', opacity: '1' }
-  const styleContact = { height: '142px', opacity: '1' }
-
   return (
     <footer className={S.footer}>
       <div className={S.container}>
         <div className={S.footerTop}>
-          <Logo hasText={true} />
+          <Logo hasText />
         </div>
 
         <div className={S.footerMiddle}>

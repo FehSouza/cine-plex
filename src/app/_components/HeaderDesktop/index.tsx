@@ -12,7 +12,7 @@ export const HeaderDesktop = () => {
   return (
     <header className={S.header}>
       <div className={S.container}>
-        <Logo hasText={false} />
+        <Logo />
 
         {openSearch ? <NavbarSearch /> : <Navbar />}
 

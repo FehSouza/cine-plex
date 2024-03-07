@@ -30,7 +30,7 @@ export const HeaderMobile = () => {
         <RiMenuLine size={28} />
       </button>
 
-      <Logo hasText={true} />
+      <Logo hasText />
 
       <button
         className={[S.searchButton, openMenu ? S.opacity25 : '', openSearch ? S.opacity0 : ''].join(' ')}
@@ -57,7 +57,7 @@ export const HeaderMobile = () => {
             onClick={(e) => e.stopPropagation()}
             onAnimationEnd={handleAnimateEnd}
           >
-            <Logo hasText={true} closeMenuMobile={handleCloseMenu} />
+            <Logo hasText closeMenuMobile={handleCloseMenu} />
 
             <Link className={S.account} href="/conta" onClick={handleCloseMenu} aria-label="Navegue para a sua conta">
               <BsPerson className={S.accountImage} />
