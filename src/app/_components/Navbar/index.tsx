@@ -16,14 +16,14 @@ const menu = [
 
 export const Navbar = ({ closeMenuMobile }: NavbarProps) => {
   return (
-    <nav className={S.container}>
+    <nav data-testid="navbar" className={S.container}>
       {menu.map((item) => (
-        <Link key={item.id} className={[S.item, S[item.id]].join(' ')} href={item.link} onClick={closeMenuMobile}>
+        <Link data-testid={item.id} key={item.id} className={[S.item, S[item.id]].join(' ')} href={item.link} onClick={closeMenuMobile}>
           {item.name}
         </Link>
       ))}
 
-      <button className={S.searchButton} aria-label="button-search" onClick={handleOpenSearch}>
+      <button data-testid="navbar-search-button" className={S.searchButton} aria-label="button-search" onClick={handleOpenSearch}>
         <BsSearch size={20} />
       </button>
     </nav>

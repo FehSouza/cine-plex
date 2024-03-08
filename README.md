@@ -6,6 +6,8 @@ Este projeto trata-se de um site estilo catálogo de filmes (apenas para visuali
 
 Está sendo desenvolvido com o intuito de se aprofundar no NextJS e no consumo de informações do banco de dados do TMDB (The Movie DB).
 
+Além disto, está sendo utilizado para o aprendizado de testes unitários realizados com Vitest e com React Testing Library.
+
 Toda a implementação está sendo realizada visando uma boa performance de navegação, além de atender aos critérios de acessibilidade e de SEO.
 
 <h4>Prévia Desktop:</h4>
@@ -20,7 +22,11 @@ Toda a implementação está sendo realizada visando uma boa performance de nave
 
 Front-end:
 
-Desenvolvido usando: HTML5, SASS, React, re-state, Typescript, Embla Carousel, Next JS, eslint, prettier
+HTML5, SASS, React, re-state, Typescript, Embla Carousel, Next JS, eslint, prettier
+
+Testes:
+
+Vitest, React Testing Library
 
 &nbsp;
 
@@ -29,6 +35,14 @@ Desenvolvido usando: HTML5, SASS, React, re-state, Typescript, Embla Carousel, N
 Front-end:
 
 yarn install
+
+&nbsp;
+
+## Testando a aplicação
+
+Front-end:
+
+yarn test
 
 &nbsp;
 

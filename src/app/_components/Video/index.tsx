@@ -7,8 +7,9 @@ interface VideoProps {
 
 export const Video = ({ videoKey, alt }: VideoProps) => {
   return (
-    <div className={S.videoWrapper}>
+    <div data-testid="video" className={S.videoWrapper}>
       <iframe
+        data-testid="video-iframe"
         className={S.video}
         aria-label={`${alt}`}
         width="100%"

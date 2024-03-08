@@ -10,7 +10,7 @@ interface LogoProps {
 
 export const Logo = ({ hasText, closeMenuMobile }: LogoProps) => {
   return (
-    <Link data-testid="Logo" className={S.logo} href="/" onClick={closeMenuMobile}>
+    <Link data-testid="logo" className={S.logo} href="/" onClick={closeMenuMobile}>
       <Image width={32} height={32} className={S.image} src={LogoImg} alt="Logo Cine Plex" priority={true} />
       {hasText && 'Cine Plex'}
     </Link>

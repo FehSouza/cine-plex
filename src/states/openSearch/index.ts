@@ -5,4 +5,4 @@ const initialValue = false
 
 export const handleOpenSearch = () => dispatchOpenSearch(true)
 
-export const { useOpenSearch, dispatchOpenSearch } = createReStateMethods(searchKey, initialValue)
+export const { useOpenSearch, dispatchOpenSearch, getOpenSearch } = createReStateMethods(searchKey, initialValue)

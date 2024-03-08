@@ -10,7 +10,7 @@ export const HeaderDesktop = () => {
   const [openSearch] = useOpenSearch()
 
   return (
-    <header className={S.header}>
+    <header className={S.header} data-testid="header-desktop">
       <div className={S.container}>
         <Logo />
 

@@ -25,7 +25,7 @@ export const HeaderMobile = () => {
   }
 
   return (
-    <header className={S.header}>
+    <header className={S.header} data-testid="header-mobile">
       <button className={S.menuIcon} aria-label="Botão do menu mobile" onClick={handleOpenMenu}>
         <RiMenuLine size={28} />
       </button>
