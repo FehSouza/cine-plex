@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
-import { Navbar } from '.'
+import { Navbar, menu } from '.'
 import { getOpenSearch } from '@/states/openSearch'
 
 describe('Navbar', () => {
@@ -11,26 +11,24 @@ describe('Navbar', () => {
 
   it('deve renderizar a navbar com itens no menu', () => {
     render(<Navbar />)
-    const elemMenuHome = screen.getByTestId('home')
-    expect(elemMenuHome).toBeVisible()
-
-    const elemMenuDepart = screen.getByTestId('depart-1')
-    expect(elemMenuDepart).toBeVisible()
+    for (const item of menu) {
+      const elemMenuHome = screen.getByTestId(item.id)
+      expect(elemMenuHome).toBeVisible()
+    }
   })
 
   it('deve renderizar os itens do menu com link de navegação', () => {
     render(<Navbar />)
-    const elemMenuHome = screen.getByTestId('home')
-    expect(elemMenuHome.getAttribute('href')).toBe('/')
-
-    const elemMenuDepart = screen.getByTestId('depart-1')
-    expect(elemMenuDepart.getAttribute('href')).toBe('/cartaz')
+    for (const item of menu) {
+      const elemMenuHome = screen.getByTestId(item.id)
+      expect(elemMenuHome.getAttribute('href')).toBe(item.link)
+    }
   })
 
   it('deve chamar a função ao clicar no item do menu', () => {
     const onClickFn = vi.fn()
     render(<Navbar closeMenuMobile={onClickFn} />)
-    const elemMenuHome = screen.getByTestId('home')
+    const elemMenuHome = screen.getByTestId(menu[0].id)
     expect(elemMenuHome).toBeVisible()
     fireEvent.click(elemMenuHome)
     expect(onClickFn).toHaveBeenCalled()

@@ -7,7 +7,7 @@ interface NavbarProps {
   closeMenuMobile?: () => void
 }
 
-const menu = [
+export const menu = [
   { id: 'home', name: 'Home', link: '/' },
   { id: 'depart-1', name: 'Em Cartaz', link: '/cartaz' },
   { id: 'depart-2', name: 'Em Breve', link: '/estreias' },

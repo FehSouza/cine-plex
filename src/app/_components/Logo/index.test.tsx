@@ -29,4 +29,9 @@ describe('Logo', () => {
     expect(elem).toBeVisible()
     expect(elem.tagName).toBe('A')
   })
+
+  it('o texto não deve ser renderizado', () => {
+    render(<Logo />)
+    expect(() => screen.getByText(/cine plex/i)).toThrow('Unable to find an element')
+  })
 })

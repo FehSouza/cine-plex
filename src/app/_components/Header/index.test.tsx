@@ -34,4 +34,16 @@ describe('Header', () => {
     const headerMobile = screen.getByTestId('header-mobile')
     expect(headerMobile).toBeVisible()
   })
+
+  it('o header mobile não deve ser renderizado', () => {
+    resizeScreenSize(1024)
+    render(<Header />)
+    expect(() => screen.getByTestId('header-mobile')).toThrow('Unable to find an element')
+  })
+
+  it('o header desktop não deve ser renderizado', () => {
+    resizeScreenSize(580)
+    render(<Header />)
+    expect(() => screen.getByTestId('header-desktop')).toThrow('Unable to find an element')
+  })
 })
