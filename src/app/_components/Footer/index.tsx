@@ -81,7 +81,7 @@ export const Footer = () => {
         </div>
 
         <div className={S.footerBottom}>
-          <span className={S.brand}>© 2023 Cine Plex</span>
+          <span className={S.brand}>© 2024 Cine Plex</span>
         </div>
       </div>
     </footer>

@@ -4,7 +4,7 @@ import { Movie } from '@/@types'
 import useEmblaCarousel from 'embla-carousel-react'
 import Image, { ImageLoader } from 'next/image'
 import Link from 'next/link'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { BsFillStarFill } from 'react-icons/bs'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import S from './styles.module.scss'
@@ -29,7 +29,7 @@ export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
 }
 
 export function MainBanner({ movies }: MainBannerProps) {
-  const movieList = movies?.slice(0, 5)
+  const movieList = useMemo(() => movies?.slice(0, 5), [movies])
 
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const handlePrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])

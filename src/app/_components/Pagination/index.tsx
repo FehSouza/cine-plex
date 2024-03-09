@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import S from './styles.module.scss'
 
@@ -20,7 +20,7 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
 
   const limitPages = 500
   const realTotalPage = totalPages <= limitPages ? totalPages : limitPages
-  const pagesList = new Array(realTotalPage >= 5 ? 5 : realTotalPage).fill(null).map((_, i) => i + 1)
+  const pagesList = useMemo(() => new Array(realTotalPage >= 5 ? 5 : realTotalPage).fill(null).map((_, i) => i + 1), [realTotalPage])
 
   useEffect(() => {
     if (pageInitial > realTotalPage) {
@@ -31,12 +31,14 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
     if (!searchPage) setPage(1)
   }, [pageInitial, realTotalPage, router, searchPage, searchQuery])
 
-  const pagination = pagesList.map((page) => {
-    if (currentPage > limitPages) return page
-    if (currentPage <= 3) return page
-    if (currentPage - 2 + pagesList.length > realTotalPage) return page + realTotalPage - pagesList.length
-    return currentPage + page - 3
-  })
+  const pagination = useMemo(() => {
+    return pagesList.map((page) => {
+      if (currentPage > limitPages) return page
+      if (currentPage <= 3) return page
+      if (currentPage - 2 + pagesList.length > realTotalPage) return page + realTotalPage - pagesList.length
+      return currentPage + page - 3
+    })
+  }, [currentPage, pagesList, realTotalPage])
 
   const newPage = (page: number) => {
     document.querySelector('#content')?.scrollTo({ top: -1, behavior: 'smooth' })

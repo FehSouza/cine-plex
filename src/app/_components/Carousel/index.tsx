@@ -3,7 +3,7 @@
 import { Movie } from '@/@types'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ImageLoader } from 'next/image'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { MovieCard } from '../MovieCard'
 import S from './styles.module.scss'
@@ -33,7 +33,7 @@ export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
 }
 
 export function Carousel({ title, hrefTitle, movies, upcoming, moviePage }: CarouselProps) {
-  const movieList = movies?.slice(0, 10)
+  const movieList = useMemo(() => movies?.slice(0, 10), [movies])
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1, containScroll: 'trimSnaps', align: 'start' })
   const handlePrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
