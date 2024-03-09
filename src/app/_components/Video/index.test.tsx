@@ -22,7 +22,7 @@ describe('Video', () => {
     expect(elemIframe.ariaLabel).toBe('test')
   })
 
-  it('a videoKey usada no Iframe deve ser a videoKey fornecido ao componente', () => {
+  it('a videoKey usada no Iframe deve ser a videoKey fornecida ao componente', () => {
     render(<Video alt="" videoKey="videoKeyTest" />)
     const elemIframe = screen.getByTestId<HTMLIFrameElement>('video-iframe')
     expect(elemIframe).toBeVisible()

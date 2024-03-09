@@ -10,13 +10,14 @@ interface VideoLazyLoadProps {
 }
 
 export const VideoLazyLoad = ({ videoKey, alt }: VideoLazyLoadProps) => {
+  const renderCondition = !!videoKey && !!alt
   const [showVideo, setShowVideo] = useState(false)
   const toggleShowVideo = () => setShowVideo((prev) => !prev)
 
-  return (
+  return renderCondition ? (
     <>
       {!showVideo && <VideoThumbnail videoKey={videoKey} onClick={toggleShowVideo} />}
       {showVideo && <Video videoKey={videoKey} alt={alt} />}
     </>
-  )
+  ) : null
 }

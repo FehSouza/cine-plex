@@ -40,7 +40,7 @@ export default async function Movie({ params }: MovieProps) {
   const directorId = directorInfo?.id
   const castList = credits.cast.slice(0, 8)
   const actorsNames = castList.slice(0, 3).map((actor) => ({ name: actor.name, id: actor.id }))
-  const videoList = videos.slice(0, 2)
+  const videoList = videos.filter((video) => video.key).slice(0, 2)
 
   const availableToStream = watch?.flatrate
   const availableToRent = watch?.rent
