@@ -16,7 +16,7 @@ export const HeaderDesktop = () => {
 
         {openSearch ? <NavbarSearch /> : <Navbar />}
 
-        <Link className={S.account} href="/conta" aria-label="Navegue para a sua conta">
+        <Link data-testid="header-desktop-account" className={S.account} href="/conta" aria-label="Navegue para a sua conta">
           <BsPerson className={S.accountImage} />
         </Link>
       </div>

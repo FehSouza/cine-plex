@@ -65,7 +65,7 @@ export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
   }, [handleCloseSearch])
 
   return (
-    <div className={S.container}>
+    <div data-testid='navbar-search' className={S.container}>
       <nav className={S.navContent}>
         <input
           className={S.searchInput}
