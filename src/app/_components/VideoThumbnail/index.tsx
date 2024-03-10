@@ -10,7 +10,7 @@ export const VideoThumbnail = ({ videoKey, onClick }: VideoThumbnailProps) => {
   return (
     <div data-testid="video-thumbnail" className={S.videoWrapper}>
       <div
-      data-testid="video-thumbnail-image"
+        data-testid="video-thumbnail-image"
         className={S.imageVideo}
         onClick={onClick}
         style={{ backgroundImage: `url('https://i.ytimg.com/vi/${videoKey}/hqdefault.jpg')` }}

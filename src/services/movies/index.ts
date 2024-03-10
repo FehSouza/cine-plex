@@ -119,7 +119,7 @@ export async function getVideo(id: string) {
     results = resultsEn
   }
 
-  const filteredList = results?.filter((res) => res.site === 'YouTube')
+  const filteredList = results?.filter((res) => res.site === 'YouTube' && res.key && res.official)
   return filteredList
 }
 

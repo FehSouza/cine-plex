@@ -1,6 +1,6 @@
 import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/app/_components'
 import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
-import { formatHours, formatReleaseDate } from '@/utils'
+import { formatDate, formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill, BsImage, BsPerson } from 'react-icons/bs'
@@ -29,18 +29,22 @@ export default async function Movie({ params }: MovieProps) {
   const duration = movie.runtime
   const classificationBR = classifications.find((c) => c.country === 'BR')
   const classificationUS = classifications.find((c) => c.country === 'US')
-  const releaseYear = formatReleaseDate(movie.release_date)
+  const releaseDate = movie.release_date
+  const releaseDateFormatted = formatDate(releaseDate)
+  const releaseYear = formatReleaseDate(releaseDate)
+  const status = movie.status
 
   const genres = movie.genres
   const tagline = movie.tagline
   const originalTitle = movie.original_title
   const description = movie.overview
+  const productionCompanies = movie.production_companies
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
   const directorId = directorInfo?.id
   const castList = credits.cast.slice(0, 8)
   const actorsNames = castList.slice(0, 3).map((actor) => ({ name: actor.name, id: actor.id }))
-  const videoList = videos.filter((video) => video.key).slice(0, 2)
+  const videoList = videos.slice(0, 2)
 
   const availableToStream = watch?.flatrate
   const availableToRent = watch?.rent
@@ -101,10 +105,17 @@ export default async function Movie({ params }: MovieProps) {
             )}
           </div>
 
-          {!!releaseYear && (
+          {status === 'Released' && !!releaseYear && (
             <>
               <span className={S.subTitle2}>Lançamento</span>
               <span className={S.content}>{releaseYear}</span>
+            </>
+          )}
+
+          {status !== 'Released' && !!releaseDateFormatted && (
+            <>
+              <span className={S.subTitle2}>Estreia</span>
+              <span className={S.content}>{releaseDateFormatted}</span>
             </>
           )}
 
@@ -144,6 +155,15 @@ export default async function Movie({ params }: MovieProps) {
           </>
         )}
 
+        {!!productionCompanies?.length && (
+          <>
+            <span className={S.subTitle2}>Produção</span>
+            <span key={`company-${productionCompanies[0].id}`} className={S.content}>
+              {productionCompanies[0].name}
+            </span>
+          </>
+        )}
+
         {!!directorName && (
           <>
             <span className={S.subTitle2}>Direção</span>
@@ -153,7 +173,7 @@ export default async function Movie({ params }: MovieProps) {
           </>
         )}
 
-        {!!actorsNames.length && (
+        {!!actorsNames?.length && (
           <>
             <span className={S.subTitle2}>Estrelando</span>
             <div className={S.actorsList}>
@@ -174,8 +194,8 @@ export default async function Movie({ params }: MovieProps) {
         )}
       </section>
 
-      {!!videoList.length && <hr className={S.division} />}
-      {!!videoList.length && (
+      {!!videoList?.length && <hr className={S.division} />}
+      {!!videoList?.length && (
         <section className={S.container}>
           <h2 className={S.subTitle}>Trailers</h2>
           <div className={S.contentVideos}>
@@ -196,8 +216,8 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
-      {!!castList.length && <hr className={S.division} />}
-      {!!castList.length && (
+      {!!castList?.length && <hr className={S.division} />}
+      {!!castList?.length && (
         <section className={S.container}>
           <h2 className={S.subTitle}>Elenco principal</h2>
 
@@ -237,8 +257,8 @@ export default async function Movie({ params }: MovieProps) {
         </section>
       )}
 
-      {!!recommendations.length && <hr className={S.division} />}
-      {!!recommendations.length && <Carousel title="Nossas Recomendações" movies={recommendations} moviePage />}
+      {!!recommendations?.length && <hr className={S.division} />}
+      {!!recommendations?.length && <Carousel title="Nossas Recomendações" movies={recommendations} moviePage />}
     </main>
   )
 }
