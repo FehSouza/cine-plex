@@ -14,23 +14,37 @@ interface TeamListProps {
 
 export const TeamCard = ({ id, image, name, subName, gender }: TeamListProps) => {
   const subNameFormatted = subName
-    .replace('(voice)', '(voz)')
+    ?.replace('(voice)', '(voz)')
     .replace('(uncredited)', '(sem créditos)')
     .replace('(archive footage)', '(imagens de arquivo)')
     .replace('(archival footage)', '(imagens de arquivo)')
     .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
 
   return (
-    <li className={S.cardWrapper} key={`cast-${id}`}>
-      <Link className={S.cardLink} href={`/pessoa/${id}`}>
+    <li data-testid="team-card" className={S.cardWrapper} key={`cast-${id}`}>
+      <Link data-testid="team-card-link" className={S.cardLink} href={`/pessoa/${id}`}>
         <div className={S.ImageWrapper}>
-          {image && <Image className={S.image} loader={TMDBPosterLoader} src={image} alt={`Imagem de ${name}`} fill sizes="200w" />}
-          {!image && <BsPerson size={32} className={S.imagePerson} />}
+          {image && (
+            <Image
+              data-testid="team-card-image"
+              className={S.image}
+              loader={TMDBPosterLoader}
+              src={image}
+              alt={`Imagem de ${name}`}
+              fill
+              sizes="200w"
+            />
+          )}
+          {!image && <BsPerson data-testid="team-card-image-icon" size={32} className={S.imagePerson} />}
         </div>
 
         <div className={S.infosWrapper}>
-          <span className={S.name}>{name}</span>
-          <span className={S.subName}>{subNameFormatted}</span>
+          <span data-testid="team-card-name" className={S.name}>
+            {name}
+          </span>
+          <span data-testid="team-card-sub-name" className={S.subName}>
+            {subNameFormatted}
+          </span>
         </div>
       </Link>
     </li>
