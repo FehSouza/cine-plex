@@ -10,16 +10,16 @@ interface TeamCrewProps {
 export const TeamCrew = ({ list }: TeamCrewProps) => {
   return (
     <>
-      {list.map((item) => {
+      {list?.map((item) => {
         const name = item[0] as keyof typeof DICTIONARY_CREW_DEPARTMENT
         const list = item[1] as Crew[]
 
         return (
-          <div key={`department-${name}`} className={S.listDepart}>
+          <div data-testid={`team-crew-${name}`} key={`team-crew-${name}`} className={S.listDepart}>
             <h3 className={S.departName}>{DICTIONARY_CREW_DEPARTMENT[name] ? DICTIONARY_CREW_DEPARTMENT[name] : name}</h3>
 
             <ul className={S.listWrapper}>
-              {list.map((item) => {
+              {list?.map((item) => {
                 const id = item.id
                 const image = item.profile_path
                 const name = item.name

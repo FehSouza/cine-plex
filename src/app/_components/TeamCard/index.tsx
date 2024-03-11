@@ -21,7 +21,7 @@ export const TeamCard = ({ id, image, name, subName, gender }: TeamListProps) =>
     .replace('Self', `${gender === 1 ? 'Ela própria' : 'Ele próprio'}`)
 
   return (
-    <li data-testid="team-card" className={S.cardWrapper} key={`cast-${id}`}>
+    <li data-testid={`team-card-${id}`} className={S.cardWrapper} key={`team-card-${id}`}>
       <Link data-testid="team-card-link" className={S.cardLink} href={`/pessoa/${id}`}>
         <div className={S.ImageWrapper}>
           {image && (

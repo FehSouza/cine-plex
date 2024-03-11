@@ -15,8 +15,8 @@ export default async function Elenco({ params }: ElencoProps) {
 
   return (
     <section className={S.container}>
-      {!!list && <TeamCast list={list} />}
-      {!list && <span>Não possuímos uma lista de elenco para este filme</span>}
+      {!!list?.length && <TeamCast list={list} />}
+      {!list?.length && <span>Não possuímos uma lista de elenco para este filme</span>}
     </section>
   )
 }

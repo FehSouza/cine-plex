@@ -15,8 +15,8 @@ export default async function Equipe({ params }: EquipeProps) {
 
   return (
     <section className={S.container}>
-      {!!list && <TeamCrew list={list} />}
-      {!list && <span>Não possuímos uma lista de equipe técnica para este filme</span>}
+      {!!list?.length && <TeamCrew list={list} />}
+      {!list?.length && <span>Não possuímos uma lista de equipe técnica para este filme</span>}
     </section>
   )
 }

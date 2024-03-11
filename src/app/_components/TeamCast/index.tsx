@@ -8,8 +8,8 @@ interface TeamCastProps {
 
 export const TeamCast = ({ list }: TeamCastProps) => {
   return (
-    <ul className={S.listWrapper}>
-      {list.map((item) => {
+    <ul data-testid="team-cast" className={S.listWrapper}>
+      {list?.map((item) => {
         const id = item.id
         const image = item.profile_path
         const name = item.name

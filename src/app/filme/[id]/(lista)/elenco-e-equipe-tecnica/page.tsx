@@ -17,14 +17,14 @@ export default async function Todos({ params }: TodosProps) {
   return (
     <section className={S.container}>
       <h2 className={S.listName}>Elenco</h2>
-      {!!listCast && <TeamCast list={listCast} />}
-      {!listCast && <span>Não possuímos uma lista de elenco para este filme</span>}
+      {!!listCast?.length && <TeamCast list={listCast} />}
+      {!listCast?.length && <span>Não possuímos uma lista de elenco para este filme</span>}
 
       <hr className={S.division} />
 
       <h2 className={S.listName}>Equipe Técnica</h2>
-      {!!listCrew && <TeamCrew list={listCrew} />}
-      {!listCrew && <span>Não possuímos uma lista de equipe técnica para este filme</span>}
+      {!!listCrew?.length && <TeamCrew list={listCrew} />}
+      {!listCrew?.length && <span>Não possuímos uma lista de equipe técnica para este filme</span>}
     </section>
   )
 }

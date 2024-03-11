@@ -5,7 +5,7 @@ import { TeamCard } from '.'
 describe('TeamCard', () => {
   it('deve renderizar o TeamCard', () => {
     render(<TeamCard gender={1} id={1} image="" name="" subName="" />)
-    expect(screen.getByTestId('team-card')).toBeVisible()
+    expect(screen.getByTestId('team-card-1')).toBeVisible()
   })
 
   it('deve renderizar o TeamCard com link', () => {
