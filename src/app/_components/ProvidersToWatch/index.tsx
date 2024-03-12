@@ -11,22 +11,33 @@ interface ProvidersToWatchProps {
 
 export const ProvidersToWatch = ({ providers, id, title, titleMovie }: ProvidersToWatchProps) => {
   return (
-    <div className={S.container}>
-      <h2 className={S.title}>{title}</h2>
+    <div data-testid="providers-to-watch" className={S.container}>
+      {title && (
+        <h2 data-testid="providers-to-watch-title" className={S.title}>
+          {title}
+        </h2>
+      )}
 
       <div className={S.content}>
-        {providers.map((provider) => (
-          <Image
-            key={`Watch Provider - ${id} - stream - ${provider.provider_id}`}
-            src={`https://www.themoviedb.org/t/p/original${provider.logo_path}`}
-            alt={`Assista ${titleMovie} na ${provider.provider_name}`}
-            title={`Assista na ${provider.provider_name}`}
-            priority
-            width={48}
-            height={48}
-            className={S.image}
-          />
-        ))}
+        {providers.map((provider) => {
+          const providerId = provider.provider_id
+          const providerName = provider.provider_name
+          const providerLogo = provider.logo_path
+
+          return (
+            <Image
+              data-testid={`providers-to-watch-image-${providerId}`}
+              key={`Watch Provider - ${id} - stream - ${providerId}`}
+              src={`https://www.themoviedb.org/t/p/original${providerLogo}`}
+              alt={`Assista ${titleMovie} na ${providerName}`}
+              title={`Assista na ${providerName}`}
+              priority
+              width={48}
+              height={48}
+              className={S.image}
+            />
+          )
+        })}
       </div>
     </div>
   )

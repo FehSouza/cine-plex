@@ -49,7 +49,8 @@ export default async function Movie({ params }: MovieProps) {
   const availableToStream = watch?.flatrate
   const availableToRent = watch?.rent
   const availableToBuy = watch?.buy
-  const watchProvider = availableToStream ?? availableToRent ?? availableToBuy
+  const availableToAds = watch?.ads
+  const watchProvider = availableToStream ?? availableToRent ?? availableToBuy ?? availableToAds
 
   return (
     <main className={S.main}>
@@ -213,6 +214,7 @@ export default async function Movie({ params }: MovieProps) {
           {availableToStream && <ProvidersToWatch id={id} providers={availableToStream} titleMovie={title} title="Stream" />}
           {availableToRent && <ProvidersToWatch id={id} providers={availableToRent} titleMovie={title} title="Alugar" />}
           {availableToBuy && <ProvidersToWatch id={id} providers={availableToBuy} titleMovie={title} title="Comprar" />}
+          {availableToAds && <ProvidersToWatch id={id} providers={availableToAds} titleMovie={title} title="Propagandas" />}
         </section>
       )}
 

@@ -174,6 +174,7 @@ export interface WatchResults {
   rent?: WatchData[]
   flatrate?: WatchData[]
   buy?: WatchData[]
+  ads?: WatchData[]
 }
 
 export interface WatchData {
