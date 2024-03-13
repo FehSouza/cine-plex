@@ -17,12 +17,21 @@ interface MovieCardProps {
 
 export const MovieCard = ({ id, date, grade, poster, title, upcoming, department }: MovieCardProps) => {
   return (
-    <Link href={`/filme/${id}`} className={[S.container, department ? S.department : ''].join(' ')}>
+    <Link data-testid="movie-card" href={`/filme/${id}`} className={[S.container, department ? S.department : ''].join(' ')}>
       <div className={S.imageWrapper}>
-        {poster && <Image className={S.image} loader={TMDBPosterLoader} src={poster} alt={`Poster do Filme ${title}`} fill />}
+        {poster && (
+          <Image
+            data-testid="movie-card-image"
+            className={S.image}
+            loader={TMDBPosterLoader}
+            src={poster}
+            alt={`Poster do Filme ${title}`}
+            fill
+          />
+        )}
 
         {!poster && (
-          <div className={[S.image, S.withoutImage].join(' ')}>
+          <div data-testid="movie-card-icon" className={[S.image, S.withoutImage].join(' ')}>
             <BsImage size={80} />
           </div>
         )}
@@ -31,16 +40,24 @@ export const MovieCard = ({ id, date, grade, poster, title, upcoming, department
       {!upcoming && (
         <div className={S.gradeWrapper}>
           {!!grade && (
-            <span className={S.grade}>
+            <span data-testid="movie-card-grade" className={S.grade}>
               <BsFillStarFill /> {grade.toFixed(1)}
             </span>
           )}
         </div>
       )}
 
-      {upcoming && date && <span className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
-      <span className={S.titleMovie}>{title}</span>
-      <button className={S.seeMore}>Veja detalhes</button>
+      {upcoming && date && <span data-testid="movie-card-date" className={S.upcoming}>{`Estreia ${formatDate(date)}`}</span>}
+
+      {title && (
+        <span data-testid="movie-card-title" className={S.titleMovie}>
+          {title}
+        </span>
+      )}
+
+      <button data-testid="movie-card-button" className={S.seeMore}>
+        Veja detalhes
+      </button>
     </Link>
   )
 }

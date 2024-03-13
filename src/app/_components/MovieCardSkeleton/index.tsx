@@ -9,11 +9,11 @@ export const MovieCardSkeleton = ({ upcoming }: MovieCardSkeletonProps) => {
 
   return (
     <>
-      {repeat.map((r) => (
-        <div key={r} className={S.container}>
+      {repeat.map((r, i) => (
+        <div data-testid={`movie-card-skeleton-${i}`} key={r} className={S.container}>
           <div className={S.image}></div>
-          {!upcoming && <div className={S.grade}></div>}
-          {upcoming && <span className={S.upcoming}></span>}
+          {!upcoming && <div data-testid={`movie-card-skeleton-grade-${i}`} className={S.grade}></div>}
+          {upcoming && <span data-testid={`movie-card-skeleton-upcoming-${i}`} className={S.upcoming}></span>}
           <span className={S.title}></span>
           <button className={S.seeMore}></button>
         </div>
