@@ -63,21 +63,30 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
 
   return (
     <>
-      {realTotalPage !== 1 && (
-        <div className={S.container}>
-          {currentPage !== 1 && <IoIosArrowBack className={S.arrow} size={20} onClick={handlePrevPage} />}
+      {realTotalPage > 1 && (
+        <div data-testid="pagination" className={S.container}>
+          {currentPage !== 1 && (
+            <IoIosArrowBack data-testid="pagination-button-prev" className={S.arrow} size={20} onClick={handlePrevPage} />
+          )}
 
           {pagination.map((page) => {
             const active = page === currentPage
 
             return (
-              <button key={`page-${page}`} className={[S.page, active ? S.active : ''].join(' ')} onClick={() => handleSelectPage(page)}>
+              <button
+                data-testid={`pagination-button-${page}`}
+                key={`page-${page}`}
+                className={[S.page, active ? S.active : ''].join(' ')}
+                onClick={() => handleSelectPage(page)}
+              >
                 {page}
               </button>
             )
           })}
 
-          {currentPage !== realTotalPage && <IoIosArrowForward className={S.arrow} size={20} onClick={handleNextPage} />}
+          {currentPage !== realTotalPage && (
+            <IoIosArrowForward data-testid="pagination-button-next" className={S.arrow} size={20} onClick={handleNextPage} />
+          )}
         </div>
       )}
     </>
