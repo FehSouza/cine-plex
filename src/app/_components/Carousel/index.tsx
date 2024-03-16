@@ -4,10 +4,10 @@ import { Movie } from '@/@types'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ImageLoader } from 'next/image'
 import { useCallback, useMemo } from 'react'
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { CarouselArrow } from '../CarouselArrow'
+import { CarouselTitle } from '../CarouselTitle'
 import { MovieCard } from '../MovieCard'
 import S from './styles.module.scss'
-import Link from 'next/link'
 
 interface CarouselProps {
   title: string
@@ -44,9 +44,7 @@ export function Carousel({ title, hrefTitle, movies, upcoming, moviePage }: Caro
 
   return (
     <section className={S.carousel}>
-      <h2 className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>
-        {hrefTitle ? <Link href={hrefTitle}>{title}</Link> : title}
-      </h2>
+      <CarouselTitle moviePage={moviePage} hrefTitle={hrefTitle} title={title} />
 
       <div className={[S.embla, moviePage ? S.emblaMoviePage : ''].join(' ')} ref={emblaRef}>
         <div className={S.emblaContainer}>
@@ -61,35 +59,8 @@ export function Carousel({ title, hrefTitle, movies, upcoming, moviePage }: Caro
           })}
         </div>
 
-        <button
-          aria-label="Botão de voltar"
-          className={[
-            S.emblaArrow,
-            S.emblaPrev,
-            hideArrowsMobile ? S.hideArrowsMobile : '',
-            hideArrowsDesktop ? S.hideArrowsDesktop : '',
-          ].join(' ')}
-          onClick={handlePrev}
-        >
-          <div className={S.emblaArrowInternal}>
-            <IoIosArrowBack size={18} />
-          </div>
-        </button>
-
-        <button
-          aria-label="Botão de avançar"
-          className={[
-            S.emblaArrow,
-            S.emblaNext,
-            hideArrowsMobile ? S.hideArrowsMobile : '',
-            hideArrowsDesktop ? S.hideArrowsDesktop : '',
-          ].join(' ')}
-          onClick={handleNext}
-        >
-          <div className={S.emblaArrowInternal}>
-            <IoIosArrowForward size={18} />
-          </div>
-        </button>
+        <CarouselArrow handleClick={handlePrev} hideMobile={hideArrowsMobile} hideDesktop={hideArrowsDesktop} prev />
+        <CarouselArrow handleClick={handleNext} hideMobile={hideArrowsMobile} hideDesktop={hideArrowsDesktop} />
       </div>
     </section>
   )

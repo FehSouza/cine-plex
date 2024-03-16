@@ -2,30 +2,13 @@
 
 import { Movie } from '@/@types'
 import useEmblaCarousel from 'embla-carousel-react'
-import Image, { ImageLoader } from 'next/image'
-import Link from 'next/link'
 import { useCallback, useMemo } from 'react'
-import { BsFillStarFill } from 'react-icons/bs'
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { CarouselArrow } from '../CarouselArrow'
+import { MainBannerCard } from '../MainBannerCard'
 import S from './styles.module.scss'
 
 interface MainBannerProps {
   movies: Movie[]
-}
-
-export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
-  const DICTIONARY_WIDTH = {
-    640: 'w500',
-    750: 'w500',
-    828: 'w500',
-    1080: 'w1280',
-    1200: 'w1280',
-    1920: 'w1280',
-    2048: 'original',
-    3840: 'original',
-  }
-
-  return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`
 }
 
 export function MainBanner({ movies }: MainBannerProps) {
@@ -40,45 +23,27 @@ export function MainBanner({ movies }: MainBannerProps) {
       <div className={S.emblaContainer}>
         {movieList?.map((movie, index) => {
           const id = movie.id
+          const backdrop = movie.backdrop_path
           const title = movie.title
           const description = movie.overview
           const grade = movie.vote_average
 
           return (
-            <Link href={`/filme/${id}`} className={S.emblaSlide} key={id}>
-              <Image
-                className={S.image}
-                loader={TMDBBackdropLoader}
-                src={movie.backdrop_path}
-                alt={`Imagem do Filme ${title}`}
-                fill
-                priority={index === 0 ? true : false}
-              />
-              <div className={S.info}>
-                <div className={S.infoWrapper}>
-                  <span className={S.title}>{title}</span>
-                  <span className={S.description}>{description}</span>
-                  <span className={S.grade}>
-                    <BsFillStarFill /> {grade}
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <MainBannerCard
+              key={`main-banner-card-${id}`}
+              index={index}
+              id={id}
+              backdrop={backdrop}
+              title={title}
+              description={description}
+              grade={grade}
+            />
           )
         })}
       </div>
 
-      <button aria-label="Botão de voltar" className={[S.emblaArrow, S.emblaPrev].join(' ')} onClick={handlePrev}>
-        <div className={S.emblaArrowInternal}>
-          <IoIosArrowBack size={20} />
-        </div>
-      </button>
-
-      <button aria-label="Botão de avançar" className={[S.emblaArrow, S.emblaNext].join(' ')} onClick={handleNext}>
-        <div className={S.emblaArrowInternal}>
-          <IoIosArrowForward size={20} />
-        </div>
-      </button>
+      <CarouselArrow handleClick={handlePrev} banner prev />
+      <CarouselArrow handleClick={handleNext} banner />
     </div>
   )
 }

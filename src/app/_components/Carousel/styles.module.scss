@@ -16,32 +16,6 @@
   }
 }
 
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-
-  a {
-    transition-duration: 350ms;
-
-    &:hover {
-      color: #669aff;
-    }
-  }
-}
-
-.titleMoviePage {
-  font-size: 20px;
-
-  @media (max-width: 768px) {
-    font-size: 18px;
-  }
-}
-
 .embla {
   margin-top: 40px;
   overflow: hidden;
@@ -62,65 +36,4 @@
 
 .emblaContainer {
   display: flex;
-}
-
-.emblaArrow {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: transparent;
-  position: absolute;
-  top: 35%;
-  left: -8px;
-  z-index: 2;
-
-  &:hover > .emblaArrowInternal {
-    background-color: #4283ff;
-  }
-
-  @media (max-width: 1024px) {
-    top: 37%;
-  }
-
-  @media (max-width: 768px) {
-    top: 38%;
-  }
-
-  @media (max-width: 500px) {
-    top: 32%;
-  }
-}
-
-.emblaArrowInternal {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: #669aff;
-  transition-duration: 350ms;
-
-  & svg {
-    fill: #ffffff;
-    margin-right: 2px;
-  }
-}
-
-.emblaNext {
-  left: unset;
-  right: -8px;
-
-  & svg {
-    margin-right: 0px;
-    margin-left: 2px;
-  }
-}
-
-.hideArrowsMobile,
-.hideArrowsDesktop {
-  display: none;
 }

@@ -47,7 +47,10 @@ export async function getBestMovies() {
     optionsOneDay
   )
   const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
+  const filteredList = result.results?.filter(
+    (res) => res.id && res.title && res.backdrop_path && res.poster_path && res.overview && res.vote_average
+  )
+
   return filteredList
 }
 
