@@ -1,4 +1,4 @@
-import { Department } from '@/app/_components'
+import { Department } from '@/components'
 import { getSearch } from '@/services'
 import S from './styles.module.scss'
 

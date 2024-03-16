@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react'
-import { render, RenderOptions } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
+import { render, RenderOptions } from '@testing-library/react'
+import React, { ReactElement } from 'react'
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>

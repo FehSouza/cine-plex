@@ -1,10 +1,10 @@
-import { TMDBPosterLoader, TeamTabs } from '@/app/_components'
+import { TMDBPosterLoader, TeamTabs } from '@/components'
 import { getMovie } from '@/services'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BsImage } from 'react-icons/bs'
 import { MdKeyboardArrowLeft } from 'react-icons/md'
 import S from './styles.module.scss'
-import { BsImage } from 'react-icons/bs'
 
 interface RootLayoutProps {
   children: React.ReactNode

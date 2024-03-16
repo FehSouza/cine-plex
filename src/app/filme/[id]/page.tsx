@@ -1,4 +1,4 @@
-import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/app/_components'
+import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/components'
 import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
 import { formatDate, formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'

@@ -1,5 +1,5 @@
 import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from '@/services'
-import { Carousel, MainBanner } from './_components'
+import { Carousel, MainBanner } from '../components'
 import S from './styles.module.scss'
 
 export default async function Home() {

@@ -1,5 +1,5 @@
 import { getFullUpcoming } from '@/services'
-import { Department } from '../_components'
+import { Department } from '../../components'
 import S from './styles.module.scss'
 
 export default async function Premieres() {

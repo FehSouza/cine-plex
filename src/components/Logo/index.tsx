@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import LogoImg from '../../../../public/logo.svg'
+import LogoImg from '../../../public/logo.svg'
 import S from './styles.module.scss'
 
 interface LogoProps {

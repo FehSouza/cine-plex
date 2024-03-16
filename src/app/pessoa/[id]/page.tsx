@@ -1,4 +1,4 @@
-import { Biography, CreditsList } from '@/app/_components'
+import { Biography, CreditsList } from '@/components'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits } from '@/services'
 import { getListCredits, removeDuplicatesById } from '@/utils'
