@@ -1,7 +1,7 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { render, screen } from '@testing-library/react'
 import mediaQuery from 'css-mediaquery'
+import { describe, expect, it } from 'vitest'
 import { Header } from '.'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
 const createMatchMedia = (width: number) => {
   return (query: string) => {
