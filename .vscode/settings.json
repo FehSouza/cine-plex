@@ -3,9 +3,11 @@
     "facebook",
     "flatrate",
     "mediaquery",
+    "Reconflex",
     "TBDB",
     "tecnica",
     "testid",
     "TMDB"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }

@@ -1,0 +1,60 @@
+export const MOCK_GET_MOVIES = {
+  page: 1,
+  results: [
+    {
+      adult: false,
+      backdrop_path: '/hziiv14OpD73u9gAak4XDDfBKa2.jpg',
+      genre_ids: [12, 14],
+      id: 671,
+      original_language: 'en',
+      original_title: "Harry Potter and the Philosopher's Stone",
+      overview:
+        'Harry Potter é um garoto órfão que vive infeliz com seus tios, os Dursley. Em seu aniversário de 11 anos ele recebe uma carta que mudará sua vida: um convite para ingressar em Hogwarts.',
+      popularity: 197.446,
+      poster_path: '/4rtsbE9aQ1qw4gv7yYwaNYfWFoS.jpg',
+      release_date: '2001-11-23',
+      title: 'Harry Potter e a Pedra Filosofal',
+      video: false,
+      vote_average: 7.9,
+      vote_count: 26463,
+    },
+    {
+      adult: false,
+      backdrop_path: '/1stUIsjawROZxjiCMtqqXqgfZWC.jpg',
+      genre_ids: [12, 14],
+      id: 672,
+      original_language: 'en',
+      original_title: 'Harry Potter and the Chamber of Secrets',
+      overview:
+        'Carros voadores, árvores que lutam e um misterioso elfo, com um aviso ainda mais misterioso. Harry Potter está pronto para dar início ao segundo ano de sua maravilhosa jornada no mundo da bruxaria. Em Hogwarts nesse ano, aranhas falam, cartas dão broncas e a habilidade de Harry para falar com cobras voltará contra ele. De clubes de duelo a jogadores de quadribol desonestos, esse será um ano de aventura e perigo para todos. Quando a mensagem sangrenta na parede anuncia que a Câmara Secreta foi aberta, Harry, Rony e Hermione percebem que para salvar Hogwarts será preciso muita mágica e coragem. Confira essa enfeitiçante adaptação do segundo livro da obra da escritora J.K. Rowling e prepare-se para ficar petrificado quando Harry Potter demonstrar que, mais que um bruxo, é um verdadeiro herói.',
+      popularity: 147.252,
+      poster_path: '/811j0Jf2D0mK1U6RxXJoZgOB29n.jpg',
+      release_date: '2002-11-22',
+      title: 'Harry Potter e a Câmara Secreta',
+      video: false,
+      vote_average: 7.7,
+      vote_count: 21236,
+    },
+    {
+      adult: false,
+      backdrop_path: '/obKmfNexgL4ZP5cAmzdL4KbHHYX.jpg',
+      genre_ids: [12, 14],
+      id: 673,
+      original_language: 'en',
+      original_title: 'Harry Potter and the Prisoner of Azkaban',
+      overview:
+        'Quando a desprezível Tia Guida voa pelo céu na noite, Harry parte para o que será seu terceiro ano em Hogwarts. Um passeio no Nôitibus o leva para o Beco Diagonal onde ele fica sabendo que um prisioneiro foragido, Sirius Black está atrás dele. Em Hogwarts, Harry e seus amigos aprendem a delicada arte de se aproximar de um Hipogrifo, como transformar monstros em risadas e até mesmo a voltar no tempo. Dementadores sugadores de almas pairam sobre Hogwarts, ameaçando Harry, enquanto um seguidor de Aquele-Que-Não-Se-Deve-Nomear espreita pela escola. E Harry será forçado a confrontar todos eles. Dirigido por Alfonso Cuarón e baseado no terceiro livro de J.K. Rowling, essa maravilhosa história traz risadas, suspense e surpresas de tirar o fôlego, a especialidade dos filmes de Harry Potter. Prepare-se!',
+      popularity: 149.381,
+      poster_path: '/1HdMUghqlgOIvbsU9ZtO40IPRzl.jpg',
+      release_date: '2004-06-04',
+      title: 'Harry Potter e o Prisioneiro de Azkaban',
+      video: false,
+      vote_average: 8,
+      vote_count: 20833,
+    },
+  ],
+  total_pages: 2,
+  total_results: 10,
+}
+
+export const MOCK_GET_MOVIES_WITHOUT_RESULTS = { page: 1, results: [], total_pages: 1, total_results: 0 }

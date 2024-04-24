@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+  xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce"
+>
+  <head>
+    <title>Carrinho Abandonado</title>
+    <vtex:metaTags />
+
+    <style type="text/css">
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      span,
+      a {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #303030;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19px;
+        font-display: swap;
+      }
+
+      button,
+      input,
+      textarea {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        font-family: 'Helvetica Neue LT Std', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 11px;
+        font-display: swap;
+      }
+
+      button {
+        transition-duration: 350ms;
+        color: #ffffff;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: #ffffff;
+        transition-duration: 350ms;
+      }
+
+      a:hover {
+        cursor: pointer;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        background-color: #ffffff;
+        margin: 32px auto;
+      }
+
+      /* HEADER */
+      .header {
+        width: 100%;
+        height: 90px;
+        background-color: #ed1c24;
+      }
+
+      .header__link {
+        display: block;
+        margin: 0 auto;
+        padding: 26px;
+      }
+
+      .header__link--logo {
+        display: block;
+        margin: 0 auto;
+      }
+      /* HEADER */
+
+      /* MAIN */
+      .main {
+        width: 600px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px 42px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+      }
+
+      .main__title {
+        display: block;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        text-align: center;
+        color: #ed1c24;
+      }
+
+      .main__description {
+        margin-top: 30px;
+      }
+
+      .main__description--text {
+        display: block;
+        margin-top: 19px;
+      }
+
+      .main__table {
+        margin-top: 30px;
+      }
+
+      .main__table--title {
+        display: block;
+        font-weight: 700;
+      }
+
+      .main__table--container {
+        margin-top: 10px;
+        border: 1px solid #ededed;
+        border-radius: 10px;
+      }
+
+      .main__table--container li {
+        padding: 0 10px;
+        border-bottom: 1px solid #ededed;
+      }
+
+      .main__table--container li.last {
+        border-bottom: none;
+      }
+
+      .main__table--container li img {
+        width: 54px;
+        height: 54px;
+      }
+
+      .main__checkout {
+        width: 280px;
+        display: block;
+        margin: 30px auto;
+        margin-bottom: 0;
+        padding: 16px 59px;
+        background-color: #ed1c24;
+        border-radius: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      /* MAIN */
+
+      /* FOOTER */
+      .footer {
+        width: 100%;
+        height: 70px;
+        display: inline-block;
+        background-color: #ed1c24;
+      }
+
+      .footer__container {
+        display: table;
+        margin: 0 auto;
+      }
+
+      .footer__social {
+        max-width: 42px;
+        max-height: 42px;
+        padding: 14px 15px;
+      }
+      /* FOOTER */
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <a class="header__link" target="_blank" href="https://www.reconflex.com.br/">
+          <img class="header__link--logo" src="/arquivos/carrinho-abandonado-logo.png" width="211" height="37" alt="Logo Reconflex" />
+        </a>
+      </div>
+
+      <div class="main">
+        <h2 class="main__title">Seu carrinho está te esperando!</h2>
+
+        <div class="main__description">
+          <span class="main__description--text">Olá!</span>
+          <span class="main__description--text">Seu carrinho ainda está aguardando por você.</span>
+          <span class="main__description--text">Aproveita para garantir agora as suas melhores noites de sono.</span>
+        </div>
+
+        <div class="main__table">
+          <span class="main__table--title">Seu carrinho</span>
+
+          <div class="main__table--container">
+            <vtex.cmc:ProductQueryStringReferenceShelf
+              layout="d9d76394-1813-44ac-9552-dd19a603566d"
+              itemCount="50"
+              columnCount="100"
+              showUnavailable="true"
+            />
+          </div>
+        </div>
+
+        <a
+          target="_blank"
+          class="main__checkout"
+          href="https://www.reconflex.com.br/checkout/cart/{!rclastcart}&amp;utm_source=VTEXCEM&amp;utm_medium=Abandono_carrinho&amp;utm_campaign=Abandono"
+          >Finalizar compra</a
+        >
+      </div>
+
+      <div class="footer">
+        <div class="footer__container">
+          <a target="_blank" href="https://www.facebook.com/reconflexoficial/" aria-label="Link para o Facebook da Reconflex">
+            <img class="footer__social" src="/arquivos/carrinho-abandonado-facebook.png" width="42" height="42" alt="Logo Facebook" />
+          </a>
+          <a target="_blank" href="https://www.instagram.com/reconflex/" aria-label="Link para o Instagram da Reconflex">
+            <img class="footer__social" src="/arquivos/carrinho-abandonado-instagram.png" width="42" height="42" alt="Logo Facebook" />
+          </a>
+          <a target="_blank" href="https://www.youtube.com/channel/UCqR3d_iMI--AjgULu6Y9Xgg" aria-label="Link para o YouTube da Reconflex">
+            <img class="footer__social" src="/arquivos/carrinho-abandonado-youtube.png" width="42" height="42" alt="Logo Facebook" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

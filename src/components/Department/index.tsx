@@ -11,16 +11,20 @@ interface DepartmentProps {
 }
 
 export const Department = ({ title, movies, upcoming }: DepartmentProps) => {
-  const results = movies.results
-  const totalPages = movies.total_pages
+  const results = movies?.results
+  const totalPages = movies?.total_pages
 
   return (
-    <div className={S.container}>
-      <h1 className={S.title}>{title}</h1>
+    <div data-testid="department" className={S.container}>
+      {!!title && (
+        <h1 data-testid="department-title" className={S.title}>
+          {title}
+        </h1>
+      )}
 
       <div className={S.gallery}>
-        {!!movies.total_results && (
-          <section className={[S.moviesContainer, !results.length ? S.skeleton : ''].join(' ')}>
+        {!!movies?.total_results && (
+          <section data-testid="department-movies-container" className={[S.moviesContainer, !results.length ? S.skeleton : ''].join(' ')}>
             {!!results.length &&
               results.map((movie) => {
                 const id = movie.id
@@ -36,8 +40,8 @@ export const Department = ({ title, movies, upcoming }: DepartmentProps) => {
           </section>
         )}
 
-        {!movies.total_results && (
-          <section className={S.notFoundContainer}>
+        {(!movies || !movies.total_results) && (
+          <section data-testid="department-not-found-container" className={S.notFoundContainer}>
             <p>Não encontramos filmes que correspondam aos seus critérios de busca.</p>
             <p className={S.warning}>Tente seguir essas dicas e realize a sua busca novamente:</p>
             <ul className={S.listTips}>

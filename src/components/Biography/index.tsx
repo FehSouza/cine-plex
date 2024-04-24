@@ -28,7 +28,7 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
   const [socialMedia] = await Promise.all([getSocialMedia(id)])
 
   return (
-    <section className={S.container}>
+    <section data-testid="biography" className={S.container}>
       <div className={S.imageWrapper}>
         {image && <Image className={S.image} src={image} alt={`Imagem de ${name}`} width={264} height={396} priority />}
         {!image && <BsPerson size={48} className={S.imagePerson} />}
