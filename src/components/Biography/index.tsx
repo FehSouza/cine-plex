@@ -1,6 +1,5 @@
 import { Person } from '@/@types'
 import { DICTIONARY_CREW_DEPARTMENT, DICTIONARY_GENDER } from '@/dictionary'
-import { getSocialMedia } from '@/services'
 import { formatDate, getAge } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,9 +9,10 @@ import S from './styles.module.scss'
 interface BiographyProps {
   person: Person
   quantCredits: number
+  socialMedia: string[][]
 }
 
-export const Biography = async ({ person, quantCredits }: BiographyProps) => {
+export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps) => {
   const id = person.id
   const name = person.name
   const image = person.profile_path ? `https://image.tmdb.org/t/p/w300${person.profile_path}` : null
@@ -24,8 +24,6 @@ export const Biography = async ({ person, quantCredits }: BiographyProps) => {
   const knownFor = person.known_for_department as keyof typeof DICTIONARY_CREW_DEPARTMENT
   const alsoKnown = person.also_known_as
   const quantCreditsText = quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`
-
-  const [socialMedia] = await Promise.all([getSocialMedia(id)])
 
   return (
     <section data-testid="biography" className={S.container}>

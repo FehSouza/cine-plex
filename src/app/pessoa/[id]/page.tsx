@@ -1,6 +1,6 @@
 import { Biography, CreditsList } from '@/components'
 import { DICTIONARY_GENDER } from '@/dictionary'
-import { getPerson, getPersonCredits } from '@/services'
+import { getPerson, getPersonCredits, getSocialMedia } from '@/services'
 import { getListCredits, removeDuplicatesById } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,6 +19,8 @@ export default async function Person({ params }: PersonProps) {
   const name = person.name
   const biography = person.biography
   const gender = person.gender as keyof typeof DICTIONARY_GENDER
+  const personId = person.id
+  const socialMedia = await getSocialMedia(personId)
 
   const listCredits = [...credits.cast, ...credits.crew]
   const creditsFormatted = removeDuplicatesById(listCredits)
@@ -35,7 +37,7 @@ export default async function Person({ params }: PersonProps) {
 
   return (
     <main className={S.main}>
-      <Biography person={person} quantCredits={creditsFormatted ? creditsFormatted.length : 0} />
+      <Biography person={person} quantCredits={creditsFormatted ? creditsFormatted.length : 0} socialMedia={socialMedia} />
 
       <section className={S.container}>
         <h1 className={S.titleDesktop}>{name}</h1>
