@@ -1,7 +1,7 @@
+import { MOCK_GET_WATCH } from '@/mocks'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { ProvidersToWatch } from '.'
-import { MOCK_GET_WATCH } from '@/mocks/getWatch'
 
 describe('ProvidersToWatch', () => {
   it('deve renderizar o ProvidersToWatch', () => {

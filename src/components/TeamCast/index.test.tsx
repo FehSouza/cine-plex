@@ -249,4 +249,3 @@ describe('TeamCast', () => {
     expect(teamCast.children.length).toBe(0)
   })
 })
-

@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { getListCredits } from '.'
 import { MOCK_LIST_CREDITS } from '@/mocks'
+import { describe, expect, it } from 'vitest'
+import { getListCredits } from '.'
 
 const MOCK_LIST_CREDITS_FORMATTED = [
   [

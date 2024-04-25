@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest'
-import { crewList } from '.'
 import {
   MOCK_GET_CREDITS_MOVIES_EMPTY_CAST_SUCCESS,
   MOCK_GET_CREDITS_MOVIES_EMPTY_CREW_SUCCESS,
   MOCK_GET_CREDITS_MOVIES_SUCCESS,
 } from '@/mocks'
+import { describe, expect, it } from 'vitest'
+import { crewList } from '.'
 
 const MOCK_CREW_FORMATTED = [
   [

@@ -1,4 +1,4 @@
-import { MOCK_GET_MOVIES, MOCK_GET_MOVIES_WITHOUT_RESULTS } from '@/mocks/getMovies'
+import { MOCK_GET_MOVIES, MOCK_GET_MOVIES_WITHOUT_RESULTS } from '@/mocks'
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { Department } from '.'
