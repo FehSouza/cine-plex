@@ -14,6 +14,12 @@ describe('MovieCard', () => {
     expect(movieCard.href).contain('212121')
   })
 
+  it('deve renderizar o MovieCard com a classe de department', () => {
+    render(<MovieCard id={212121} date="2024/03/14" grade={1} poster="" title="" department />)
+    const movieCard = screen.getByTestId<HTMLLinkElement>('movie-card')
+    expect(movieCard.classList.contains('department'))
+  })
+
   it('deve renderizar o MovieCard com a imagem do poster', () => {
     render(<MovieCard id={1} date="2024/03/14" grade={1} poster="test" title="" />)
     const image = screen.getByTestId<HTMLImageElement>('movie-card-image')
@@ -23,10 +29,16 @@ describe('MovieCard', () => {
   })
 
   it('deve renderizar o MovieCard com o ícone - filme sem poster', () => {
-    render(<MovieCard id={1} date="2024/03/14" grade={1} poster="" title="" />)
-    const icon = screen.getByTestId<HTMLDivElement>('movie-card-icon')
+    const { rerender } = render(<MovieCard id={1} date="2024/03/14" grade={1} poster="" title="" />)
+    const icon1 = screen.getByTestId<HTMLDivElement>('movie-card-icon')
     expect(() => screen.getByTestId<HTMLImageElement>('movie-card-image')).toThrow('Unable to find an element')
-    expect(icon).toBeVisible()
+    expect(icon1).toBeVisible()
+
+    // @ts-ignore
+    rerender(<MovieCard id={1} date="2024/03/14" grade={1} poster={undefined} title="" />)
+    const icon2 = screen.getByTestId<HTMLDivElement>('movie-card-icon')
+    expect(() => screen.getByTestId<HTMLImageElement>('movie-card-image')).toThrow('Unable to find an element')
+    expect(icon2).toBeVisible()
   })
 
   it('deve renderizar o MovieCard com a pontuação', () => {

@@ -87,7 +87,7 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
 
         {!!knownFor && (
           <div className={S.personalInfoWrapper}>
-            <h3 className={S.subTitle}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h3>
+            <h3 data-testid="biography-known-for-title" className={S.subTitle}>{`${gender === 1 ? 'Conhecida' : 'Conhecido'} por`}</h3>
             <span data-testid="biography-known-for" className={S.text}>
               {DICTIONARY_CREW_DEPARTMENT[knownFor]}
             </span>
@@ -96,7 +96,7 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
 
         {typeof quantCredits === 'number' && (
           <div className={S.personalInfoWrapper}>
-            <h3 className={S.subTitle}>{`${gender === 1 ? 'Creditada' : 'Creditado'} em`}</h3>
+            <h3 data-testid="biography-quant-credits-title" className={S.subTitle}>{`${gender === 1 ? 'Creditada' : 'Creditado'} em`}</h3>
             <span data-testid="biography-quant-credits" className={S.text}>
               {quantCredits === 0 ? '-' : quantCreditsText}
             </span>
@@ -132,7 +132,9 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
         </div>
 
         <div className={S.personalInfoWrapper}>
-          <h3 className={S.subTitle}>{`Também ${gender === 1 ? 'conhecida' : 'conhecido'} como`}</h3>
+          <h3 data-testid="biography-also-known-title" className={S.subTitle}>{`Também ${
+            gender === 1 ? 'conhecida' : 'conhecido'
+          } como`}</h3>
 
           {!alsoKnown?.length && (
             <span data-testid="biography-without-also-known" className={S.text}>

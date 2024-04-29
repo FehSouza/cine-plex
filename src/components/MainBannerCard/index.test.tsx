@@ -25,6 +25,18 @@ describe('MainBannerCard', () => {
     expect(image.src).contain('test')
   })
 
+  it('deve renderizar a primeira imagem do MainBannerCard com prioridade', () => {
+    render(<MainBannerCard index={0} id={1} backdrop="test" title="" description="" grade={1} />)
+    const priority = screen.getByTestId('main-banner-card-image').getAttribute('fetchpriority')
+    expect(priority).toBe('high')
+  })
+
+  it('deve renderizar a partir da segunda imagem do MainBannerCard sem prioridade', () => {
+    render(<MainBannerCard index={1} id={1} backdrop="test" title="" description="" grade={1} />)
+    const priority = screen.getByTestId('main-banner-card-image').getAttribute('fetchpriority')
+    expect(priority).toBe(null)
+  })
+
   it('deve renderizar o MainBannerCard sem a imagem', () => {
     render(<MainBannerCard index={0} id={1} backdrop="" title="" description="" grade={1} />)
     expect(() => screen.getByTestId('main-banner-card-image')).toThrow('Unable to find an element')

@@ -57,6 +57,13 @@ describe('Department', () => {
     expect(() => screen.getByTestId('department-not-found-container')).toThrow('Unable to find an element')
   })
 
+  it('deve renderizar a gallery com a classe de skeleton', () => {
+    const movies = { ...MOCK_GET_MOVIES, results: [] }
+    render(<Department title="" movies={movies} />)
+    const container = screen.getByTestId('department-movies-container')
+    expect(container.classList.contains('skeleton'))
+  })
+
   it('deve renderizar a gallery sem filmes', () => {
     // @ts-ignore
     const { rerender } = render(<Department title="" movies={undefined} />)

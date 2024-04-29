@@ -27,4 +27,10 @@ describe('CarouselTitle', () => {
     expect(link).toHaveTextContent('testTitle')
     expect(link.href).contain('testLink')
   })
+
+  it('deve renderizar o componente CarouselTitle com a prop de moviePage como classe', () => {
+    render(<CarouselTitle title="" moviePage />)
+    const title = screen.getByTestId('carousel-title')
+    expect(title.classList.contains('titleMoviePage'))
+  })
 })

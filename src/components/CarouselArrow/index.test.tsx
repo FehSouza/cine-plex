@@ -6,6 +6,9 @@ describe('CarouselArrow', () => {
   it('deve renderizar o CarouselArrow', () => {
     render(<CarouselArrow handleClick={() => {}} />)
     expect(screen.getByTestId('carousel-arrow')).toBeVisible()
+
+    const arrow = screen.getByTestId('carousel-arrow')
+    expect(arrow.classList.contains('next'))
   })
 
   it('deve renderizar o CarouselArrow de voltar', () => {
@@ -30,5 +33,13 @@ describe('CarouselArrow', () => {
     const button = screen.getByTestId<HTMLButtonElement>('carousel-arrow')
     fireEvent.click(button)
     expect(onClickFn).toHaveBeenCalled()
+  })
+
+  it('deve renderizar o CarouselArrow com as props como classes', () => {
+    render(<CarouselArrow handleClick={() => {}} hideMobile hideDesktop banner />)
+    const arrow = screen.getByTestId('carousel-arrow')
+    expect(arrow.classList.contains('hideMobile'))
+    expect(arrow.classList.contains('hideDesktop'))
+    expect(arrow.classList.contains('banner'))
   })
 })

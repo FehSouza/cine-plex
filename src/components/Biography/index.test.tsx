@@ -52,6 +52,24 @@ describe('Biography', () => {
     expect(screen.getByTestId('biography-known-for')).toBeVisible()
   })
 
+  it('deve renderizar o componente Biography com o knownFor - gênero / title', () => {
+    const person1 = { ...MOCK_GET_PERSON, gender: 0 }
+    const { rerender } = render(<Biography person={person1} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-known-for-title')).toHaveTextContent('Conhecido por')
+
+    const person2 = { ...MOCK_GET_PERSON, gender: 1 }
+    rerender(<Biography person={person2} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-known-for-title')).toHaveTextContent('Conhecida por')
+
+    rerender(<Biography person={MOCK_GET_PERSON} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-known-for-title')).toHaveTextContent('Conhecido por')
+
+    const person3 = { ...MOCK_GET_PERSON, gender: undefined }
+    // @ts-ignore
+    rerender(<Biography person={person3} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-known-for-title')).toHaveTextContent('Conhecido por')
+  })
+
   it('deve renderizar o componente Biography sem o knownFor', () => {
     const person = { ...MOCK_GET_PERSON, known_for_department: '' }
     render(<Biography person={person} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
@@ -65,6 +83,24 @@ describe('Biography', () => {
     const person = { ...MOCK_GET_PERSON, gender: 0 }
     rerender(<Biography person={person} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
     expect(screen.getByTestId('biography-quant-credits')).toBeVisible()
+  })
+
+  it('deve renderizar o componente Biography com o quantCredits - gênero / title', () => {
+    const person1 = { ...MOCK_GET_PERSON, gender: 0 }
+    const { rerender } = render(<Biography person={person1} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits-title')).toHaveTextContent('Creditado em')
+
+    const person2 = { ...MOCK_GET_PERSON, gender: 1 }
+    rerender(<Biography person={person2} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits-title')).toHaveTextContent('Creditada em')
+
+    rerender(<Biography person={MOCK_GET_PERSON} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits-title')).toHaveTextContent('Creditado em')
+
+    const person3 = { ...MOCK_GET_PERSON, gender: undefined }
+    // @ts-ignore
+    rerender(<Biography person={person3} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits-title')).toHaveTextContent('Creditado em')
   })
 
   it('deve renderizar o componente Biography sem o quantCredits', () => {
@@ -168,5 +204,23 @@ describe('Biography', () => {
     for (let i = 0; i < alsoKnownAs.length; i++) {
       expect(screen.getByTestId(`biography-also-known-${i}`)).toBeVisible()
     }
+  })
+
+  it('deve renderizar o componente Biography com o alsoKnown - gênero / title', () => {
+    const person1 = { ...MOCK_GET_PERSON, gender: 0 }
+    const { rerender } = render(<Biography person={person1} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-also-known-title')).toHaveTextContent('Também conhecido como')
+
+    const person2 = { ...MOCK_GET_PERSON, gender: 1 }
+    rerender(<Biography person={person2} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-also-known-title')).toHaveTextContent('Também conhecida como')
+
+    rerender(<Biography person={MOCK_GET_PERSON} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-also-known-title')).toHaveTextContent('Também conhecido como')
+
+    const person3 = { ...MOCK_GET_PERSON, gender: undefined }
+    // @ts-ignore
+    rerender(<Biography person={person3} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-also-known-title')).toHaveTextContent('Também conhecido como')
   })
 })
