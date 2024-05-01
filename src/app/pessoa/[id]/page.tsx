@@ -86,7 +86,7 @@ export default async function Person({ params }: PersonProps) {
           </div>
         )}
 
-        {!!listCreditsOrdered?.length && <CreditsList gender={gender} id={id} listCredits={listCreditsOrdered} />}
+        {!!listCreditsOrdered?.length && <CreditsList gender={gender} listCredits={listCreditsOrdered} />}
 
         {!listCreditsOrdered?.length && (
           <div className={S.content}>

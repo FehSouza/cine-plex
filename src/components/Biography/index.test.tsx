@@ -103,6 +103,17 @@ describe('Biography', () => {
     expect(screen.getByTestId('biography-quant-credits-title')).toHaveTextContent('Creditado em')
   })
 
+  it('deve renderizar o componente Biography com o quantCredits - filme / filmes', () => {
+    const { rerender } = render(<Biography person={MOCK_GET_PERSON} quantCredits={0} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits')).toHaveTextContent('-')
+
+    rerender(<Biography person={MOCK_GET_PERSON} quantCredits={1} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits')).toHaveTextContent('1 filme')
+
+    rerender(<Biography person={MOCK_GET_PERSON} quantCredits={2} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)
+    expect(screen.getByTestId('biography-quant-credits')).toHaveTextContent('2 filmes')
+  })
+
   it('deve renderizar o componente Biography sem o quantCredits', () => {
     // @ts-ignore
     render(<Biography person={MOCK_GET_PERSON} quantCredits={'2'} socialMedia={MOCK_GET_SOCIAL_MEDIA} />)

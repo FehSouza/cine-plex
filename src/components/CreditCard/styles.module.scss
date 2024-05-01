@@ -1,0 +1,22 @@
+.container {
+  width: fit-content;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &:hover .movieName {
+    color: #669aff;
+  }
+}
+
+.movieName {
+  font-size: 14px;
+  font-weight: 700;
+  transition-duration: 350ms;
+}
+
+.characterText {
+  font-size: 14px;
+  color: #b9bbbd;
+}

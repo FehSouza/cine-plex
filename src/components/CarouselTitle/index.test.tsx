@@ -30,7 +30,7 @@ describe('CarouselTitle', () => {
 
   it('deve renderizar o componente CarouselTitle com a prop de moviePage como classe', () => {
     render(<CarouselTitle title="" moviePage />)
-    const title = screen.getByTestId('carousel-title')
-    expect(title.classList.contains('titleMoviePage'))
+    const titleClass = screen.getByTestId('carousel-title').classList
+    expect(String(titleClass).includes('titleMoviePage')).toBe(true)
   })
 })

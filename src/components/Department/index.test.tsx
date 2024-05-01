@@ -60,8 +60,8 @@ describe('Department', () => {
   it('deve renderizar a gallery com a classe de skeleton', () => {
     const movies = { ...MOCK_GET_MOVIES, results: [] }
     render(<Department title="" movies={movies} />)
-    const container = screen.getByTestId('department-movies-container')
-    expect(container.classList.contains('skeleton'))
+    const containerClass = screen.getByTestId('department-movies-container').classList
+    expect(String(containerClass).includes('skeleton')).toBe(true)
   })
 
   it('deve renderizar a gallery sem filmes', () => {

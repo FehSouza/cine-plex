@@ -6,9 +6,8 @@ describe('CarouselArrow', () => {
   it('deve renderizar o CarouselArrow', () => {
     render(<CarouselArrow handleClick={() => {}} />)
     expect(screen.getByTestId('carousel-arrow')).toBeVisible()
-
-    const arrow = screen.getByTestId('carousel-arrow')
-    expect(arrow.classList.contains('next'))
+    const carouselArrowClass = screen.getByTestId('carousel-arrow').classList
+    expect(String(carouselArrowClass).includes('next')).toBe(true)
   })
 
   it('deve renderizar o CarouselArrow de voltar', () => {
@@ -37,9 +36,9 @@ describe('CarouselArrow', () => {
 
   it('deve renderizar o CarouselArrow com as props como classes', () => {
     render(<CarouselArrow handleClick={() => {}} hideMobile hideDesktop banner />)
-    const arrow = screen.getByTestId('carousel-arrow')
-    expect(arrow.classList.contains('hideMobile'))
-    expect(arrow.classList.contains('hideDesktop'))
-    expect(arrow.classList.contains('banner'))
+    const carouselArrowClass = screen.getByTestId('carousel-arrow').classList
+    expect(String(carouselArrowClass).includes('hideMobile')).toBe(true)
+    expect(String(carouselArrowClass).includes('hideDesktop')).toBe(true)
+    expect(String(carouselArrowClass).includes('banner')).toBe(true)
   })
 })

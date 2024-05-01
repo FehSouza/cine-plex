@@ -16,8 +16,8 @@ describe('MovieCard', () => {
 
   it('deve renderizar o MovieCard com a classe de department', () => {
     render(<MovieCard id={212121} date="2024/03/14" grade={1} poster="" title="" department />)
-    const movieCard = screen.getByTestId<HTMLLinkElement>('movie-card')
-    expect(movieCard.classList.contains('department'))
+    const movieCardClass = screen.getByTestId('movie-card').classList
+    expect(String(movieCardClass).includes('department')).toBe(true)
   })
 
   it('deve renderizar o MovieCard com a imagem do poster', () => {

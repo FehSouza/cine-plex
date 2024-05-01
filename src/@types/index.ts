@@ -236,7 +236,7 @@ export interface PersonCast {
   video?: boolean
   vote_average: number
   vote_count: number
-  character: string
+  character?: string
   credit_id: string
   order?: number
   media_type: string
@@ -266,7 +266,7 @@ export interface PersonCrew {
   vote_count: number
   credit_id: string
   department: string
-  job: string
+  job?: string
   media_type: string
   origin_country?: string[]
   original_name?: string
