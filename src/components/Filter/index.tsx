@@ -14,7 +14,7 @@ export const Filter = ({ title, filterOptions, handleFilter, filters, orderBy }:
   return (
     <>
       {!!title && !!filterOptions?.length && (
-        <div data-testid="filter" className={S.container}>
+        <div data-testid={`filter-${title}`} className={S.container}>
           <div className={S.filterTitle}>
             <span data-testid="filter-title">{title}</span>
             <IoIosArrowDown size={12} className={S.filterArrow} />

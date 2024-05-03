@@ -16,7 +16,7 @@ export const CreditsList = ({ listCredits, gender }: CreditsListProps) => {
   const [orderBy, setOrderBy] = useState('Descendente')
 
   return (
-    <div className={S.container}>
+    <div data-testid="credits-list" className={S.container}>
       <CreditsFilters listCredits={listCredits} filters={filters} setFilters={setFilters} orderBy={orderBy} setOrderBy={setOrderBy} />
 
       {listCredits.map((list) => (

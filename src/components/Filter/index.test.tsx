@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 import { Filter } from '.'
 
 describe('Filter', () => {
   it('deve renderizar o componente de Filter', () => {
     render(<Filter title="Test" filterOptions={['Ascendente', 'Descendente']} handleFilter={() => {}} orderBy="Descendente" />)
-    expect(screen.getByTestId('filter')).toBeVisible()
+    expect(screen.getByTestId('filter-Test')).toBeVisible()
   })
 
   it('não deve renderizar o componente de Filter', () => {
@@ -30,5 +30,28 @@ describe('Filter', () => {
     for (let i = 0; i < filters.length; i++) {
       expect(screen.getByTestId(`filter-${filters[i]}-${i}`)).toBeVisible()
     }
+  })
+
+  it('deve atualizar a ordenação ao escolher um ordem', () => {
+    const filterOptions = ['Ascendente', 'Descendente']
+    const handleFilter = vi.fn()
+    render(<Filter title="Test" filterOptions={filterOptions} handleFilter={handleFilter} orderBy="Descendente" />)
+
+    const button = screen.getByTestId(`filter-${filterOptions[0]}-0`)
+    expect(button).toBeVisible()
+    fireEvent.click(button)
+    expect(handleFilter).toHaveBeenCalledWith('Ascendente')
+  })
+
+  it('deve atualizar os filtros ao escolher um filtro novo', () => {
+    const filterOptions = ['Acting', 'Art', 'Camera']
+    let filters: string[] = []
+    const handleFilter = (newFilters: any) => (filters = [...filters, newFilters])
+    render(<Filter title="Test" filterOptions={filterOptions} handleFilter={handleFilter} filters={filters} />)
+
+    const button = screen.getByTestId(`filter-${filterOptions[0]}-0`)
+    expect(button).toBeVisible()
+    fireEvent.click(button)
+    expect(filters).toStrictEqual(['Acting'])
   })
 })
