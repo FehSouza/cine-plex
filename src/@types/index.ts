@@ -275,3 +275,15 @@ export interface PersonCrew {
   episode_count?: number
   character?: string
 }
+
+export type ListCredits = (
+  | string
+  | Record<
+      string,
+      {
+        year: number
+        date: string
+        info: PersonCast | PersonCrew
+      }[]
+    >
+)[]

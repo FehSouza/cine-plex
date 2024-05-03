@@ -1,0 +1,85 @@
+.container {
+  position: relative;
+
+  &:hover {
+    .filterTitle {
+      color: #669aff;
+    }
+
+    .filterWrapper {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .filterArrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.filterTitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-size: 14px;
+  transition-duration: 350ms;
+
+  span {
+    font-size: 14px;
+  }
+
+  @media (min-width: 769px) {
+    &:hover {
+      color: #669aff;
+      cursor: pointer;
+    }
+  }
+}
+
+.filterArrow {
+  transition-duration: 350ms;
+}
+
+.filterWrapper {
+  min-width: max-content;
+  margin-top: 2px;
+  padding: 4px 8px;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  opacity: 0;
+  z-index: -1;
+  border-radius: 4px;
+  background-color: #010b13;
+  box-shadow: 0px 0px 12px 2px #010b13;
+  border: 1px solid #b9bbbd40;
+  cursor: pointer;
+  transition-duration: 350ms;
+
+  @media (max-width: 580px) {
+    right: unset;
+    left: 0;
+  }
+}
+
+.filterItem {
+  min-width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  padding: 4px;
+  user-select: none;
+  transition-duration: 350ms;
+
+  &.active {
+    color: #669aff;
+  }
+
+  @media (min-width: 769px) {
+    &:hover {
+      color: #669aff;
+    }
+  }
+}

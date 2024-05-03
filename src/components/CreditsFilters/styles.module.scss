@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  position: absolute;
+  right: 0;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 580px) {
+    position: unset;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 380px) {
+    gap: 18px;
+  }
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-size: 14px;
+  transition-duration: 350ms;
+
+  span {
+    font-size: 14px;
+  }
+
+  @media (min-width: 769px) {
+    &:hover {
+      color: #669aff;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 580px) {
+    order: 1;
+  }
+}
