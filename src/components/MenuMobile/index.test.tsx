@@ -18,6 +18,25 @@ describe('MenuMobile', () => {
     expect(screen.getByTestId('menu-mobile-content')).toBeVisible()
   })
 
+  it('ao clicar no content, ele deve se manter aberto', () => {
+    render(<MenuMobile openMenu setOpenMenu={() => {}} />)
+    const content = screen.getByTestId('menu-mobile-content')
+    fireEvent.click(content)
+    expect(content).toBeVisible()
+  })
+
+  it('content com animationEnd para fechamento do modal com animação', () => {
+    const { rerender } = render(<MenuMobile openMenu setOpenMenu={() => {}} />)
+    const content1 = screen.getByTestId('menu-mobile-content')
+    expect(content1).toBeVisible()
+    fireEvent.animationEnd(content1)
+
+    rerender(<MenuMobile openMenu={false} setOpenMenu={() => {}} />)
+    const content2 = screen.getByTestId('menu-mobile-content')
+    expect(content2).toBeVisible()
+    fireEvent.animationEnd(content2)
+  })
+
   it('deve renderizar o menu mobile com logo', () => {
     render(<MenuMobile openMenu setOpenMenu={() => {}} />)
     expect(screen.getByTestId('logo')).toBeVisible()

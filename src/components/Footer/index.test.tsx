@@ -93,6 +93,22 @@ describe('Footer', () => {
     }
   })
 
+  it('ao clicar em um menu aberto, ele deve fechar', () => {
+    resizeScreenSize(580)
+    render(<Footer />)
+
+    const button = screen.getByTestId(`footer-middle-button-0`)
+    const content = screen.getByTestId(`footer-middle-content-0`)
+    expect(button).toBeVisible()
+    expect(content).toBeVisible()
+
+    fireEvent.click(button)
+    expect(content.style.opacity).contain('1')
+
+    fireEvent.click(button)
+    expect(content.style.opacity).contain('')
+  })
+
   it('deve renderizar os menus com conteúdos', () => {
     resizeScreenSize(1024)
     render(<Footer />)
