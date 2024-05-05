@@ -26,6 +26,14 @@ describe('TeamTabs', () => {
     }
   })
 
+  it.skip('deve renderizar a primeira tab como ativa', () => {
+    const titles = Object.values(DICTIONARY_TEAM)
+    render(<TeamTabs id="test" />)
+    for (let i = 0; i < titles.length; i++) {
+      expect(screen.getByTestId(`tab-${titles[i]}`)).toBeVisible()
+    }
+  })
+
   it('o id renderizado no link da tab deve ser o id fornecido ao componente', () => {
     const titles = Object.values(DICTIONARY_TEAM)
     render(<TeamTabs id="test" />)
