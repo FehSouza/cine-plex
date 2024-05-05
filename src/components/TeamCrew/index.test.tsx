@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { TeamCrew } from '.'
+import { DICTIONARY_CREW_DEPARTMENT } from '@/dictionary'
 
 const MOCK_CREW_FORMATTED = [
   [
@@ -18,6 +19,37 @@ const MOCK_CREW_FORMATTED = [
         credit_id: '65b6bd2531234500e5da3bd5',
         department: 'Directing',
         job: 'Writer',
+      },
+    ],
+  ],
+  [
+    'Test',
+    [
+      {
+        adult: false,
+        gender: 2,
+        id: 701,
+        known_for_department: 'Directing',
+        name: 'Hayao Miyazaki',
+        original_name: 'Hayao Miyazaki',
+        popularity: 52.821,
+        profile_path: '/mG3cfxtA5jqDc7fpKgyzZMKoXDh.jpg',
+        credit_id: '65cfec1b323eba01493606d2',
+        department: 'Writing',
+        job: 'Co-Director',
+      },
+      {
+        adult: false,
+        gender: 2,
+        id: 610,
+        known_for_department: 'Directing',
+        name: 'Hayao Miyazaki',
+        original_name: 'Hayao Miyazaki',
+        popularity: 52.821,
+        profile_path: '/mG3cfxtA5jqDc7fpKgyzZMKoXDh.jpg',
+        credit_id: '65cfec1b323eba01493606d2',
+        department: 'Writing',
+        job: 'Original Story',
       },
     ],
   ],
@@ -59,6 +91,17 @@ describe('TeamCrew', () => {
     render(<TeamCrew list={MOCK_CREW_FORMATTED} />)
     for (const item of MOCK_CREW_FORMATTED) {
       expect(screen.getByTestId(`team-crew-${item[0]}`)).toBeVisible()
+    }
+  })
+
+  it('deve renderizar o TeamCrew com título', () => {
+    render(<TeamCrew list={MOCK_CREW_FORMATTED} />)
+
+    for (const team of MOCK_CREW_FORMATTED) {
+      const name = team[0] as keyof typeof DICTIONARY_CREW_DEPARTMENT
+      const nameFormatted = DICTIONARY_CREW_DEPARTMENT[name] ? DICTIONARY_CREW_DEPARTMENT[name] : name
+      expect(screen.getByTestId(`team-crew-${name}-title`)).toBeVisible()
+      expect(screen.getByTestId(`team-crew-${name}-title`)).toHaveTextContent(String(nameFormatted))
     }
   })
 

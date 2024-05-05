@@ -16,7 +16,9 @@ export const TeamCrew = ({ list }: TeamCrewProps) => {
 
         return (
           <div data-testid={`team-crew-${name}`} key={`team-crew-${name}`} className={S.listDepart}>
-            <h3 className={S.departName}>{DICTIONARY_CREW_DEPARTMENT[name] ? DICTIONARY_CREW_DEPARTMENT[name] : name}</h3>
+            <h3 data-testid={`team-crew-${name}-title`} className={S.departName}>
+              {DICTIONARY_CREW_DEPARTMENT[name] ? DICTIONARY_CREW_DEPARTMENT[name] : name}
+            </h3>
 
             <ul className={S.listWrapper}>
               {list?.map((item) => {
