@@ -51,15 +51,9 @@ export const Pagination = ({ totalPages }: PaginationProps) => {
     newPage(page)
   }
 
-  const handlePrevPage = () => {
-    if (currentPage === 1) return
-    newPage(currentPage - 1)
-  }
+  const handlePrevPage = () => newPage(currentPage - 1)
 
-  const handleNextPage = () => {
-    if (currentPage === realTotalPage) return
-    newPage(currentPage + 1)
-  }
+  const handleNextPage = () => newPage(currentPage + 1)
 
   return (
     <>
