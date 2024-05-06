@@ -1,25 +1,24 @@
 import { FullMovie, FullPerson } from '@/@types'
-import { MutableRefObject } from 'react'
+import { forwardRef } from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { SearchItem } from '../SearchItem'
 import S from './styles.module.scss'
 
 interface SearchResultsProps {
   title: string
-  titleRef: MutableRefObject<null>
   searchList: FullMovie | FullPerson | undefined
   loading: boolean
   isMobile?: boolean
   path: string
 }
 
-export const SearchResults = ({ title, titleRef, searchList, loading, isMobile, path }: SearchResultsProps) => {
+export const SearchResults = forwardRef<HTMLSpanElement, SearchResultsProps>(({ title, searchList, loading, isMobile, path }, ref) => {
   const titleFormatted = !!title ? title : 'Sugeridos'
   const results = searchList?.results
 
   return (
     <div data-testid="search-results">
-      <span data-testid="search-results-title" className={S.title} ref={titleRef}>
+      <span data-testid="search-results-title" className={S.title} ref={ref}>
         {titleFormatted}
       </span>
 
@@ -43,4 +42,4 @@ export const SearchResults = ({ title, titleRef, searchList, loading, isMobile, 
       </ul>
     </div>
   )
-}
+})

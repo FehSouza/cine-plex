@@ -52,8 +52,8 @@ export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
       {query && (
         <div className={S.resultsContainer} ref={resultsRef}>
           <SearchResults
+            ref={titleRef1}
             title="filmes sugeridos"
-            titleRef={titleRef1}
             searchList={movieSuggestions}
             loading={loading}
             isMobile={isMobile}
@@ -61,8 +61,8 @@ export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
           />
 
           <SearchResults
+            ref={titleRef2}
             title="pessoas sugeridas"
-            titleRef={titleRef2}
             searchList={personSuggestions}
             loading={loading}
             isMobile={isMobile}
