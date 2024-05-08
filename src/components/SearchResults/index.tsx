@@ -43,3 +43,5 @@ export const SearchResults = forwardRef<HTMLSpanElement, SearchResultsProps>(({ 
     </div>
   )
 })
+
+SearchResults.displayName = 'SearchResults'
