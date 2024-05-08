@@ -5,85 +5,42 @@ import { SearchResults } from '.'
 
 describe('SearchResults', () => {
   it('deve renderizar o componente de SearchResults', () => {
-    render(
-      <SearchResults
-        title=""
-        titleRef={null as any}
-        searchList={MOCK_GET_MOVIE_SUGGESTIONS}
-        loading={false}
-        isMobile={false}
-        path="/filme/"
-      />
-    )
+    render(<SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
     expect(screen.getByTestId('search-results')).toBeVisible()
   })
 
   it('deve renderizar o componente de SearchResults com título', () => {
-    render(
-      <SearchResults
-        title="Test"
-        titleRef={null as any}
-        searchList={MOCK_GET_MOVIE_SUGGESTIONS}
-        loading={false}
-        isMobile={false}
-        path="/filme/"
-      />
-    )
+    render(<SearchResults title="Test" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
     expect(screen.getByTestId('search-results-title')).toBeVisible()
     expect(screen.getByTestId('search-results-title')).toHaveTextContent('Test')
   })
 
   it('deve renderizar o componente de SearchResults com título default', () => {
-    render(
-      <SearchResults
-        title=""
-        titleRef={null as any}
-        searchList={MOCK_GET_MOVIE_SUGGESTIONS}
-        loading={false}
-        isMobile={false}
-        path="/filme/"
-      />
-    )
+    render(<SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
     expect(screen.getByTestId('search-results-title')).toBeVisible()
     expect(screen.getByTestId('search-results-title')).toHaveTextContent('Sugeridos')
   })
 
   it('deve renderizar o componente de SearchResults com o loading', () => {
     render(
-      <SearchResults
-        title=""
-        titleRef={null as any}
-        searchList={MOCK_GET_MOVIE_SUGGESTIONS_WITHOUT_RESULTS}
-        loading={true}
-        isMobile={false}
-        path="/filme/"
-      />
+      <SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS_WITHOUT_RESULTS} loading={true} isMobile={false} path="/filme/" />
     )
     expect(screen.getByTestId('search-results-loading')).toBeVisible()
   })
 
   it('deve renderizar o componente de SearchResults sem resultados', () => {
     const { rerender } = render(
-      <SearchResults
-        title=""
-        titleRef={null as any}
-        searchList={MOCK_GET_MOVIE_SUGGESTIONS_WITHOUT_RESULTS}
-        loading={false}
-        isMobile={false}
-        path="/filme/"
-      />
+      <SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS_WITHOUT_RESULTS} loading={false} isMobile={false} path="/filme/" />
     )
     expect(screen.getByTestId('search-results-without-items')).toBeVisible()
 
-    rerender(
-      <SearchResults title="" titleRef={null as any} searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="" />
-    )
+    rerender(<SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="" />)
     expect(screen.getByTestId('search-results-without-items')).toBeVisible()
   })
 
   it('deve renderizar o componente de SearchResults com resultados - para desktop', () => {
     const movies = MOCK_GET_MOVIE_SUGGESTIONS
-    render(<SearchResults title="" titleRef={null as any} searchList={movies} loading={false} isMobile={false} path="/filme/" />)
+    render(<SearchResults title="" searchList={movies} loading={false} isMobile={false} path="/filme/" />)
 
     for (let i = 0; i <= 5; i++) {
       if (i === 5) return expect(() => screen.getByTestId(`search-item-${movies.results[i].id}`)).toThrow('Unable to find an element')
@@ -93,7 +50,7 @@ describe('SearchResults', () => {
 
   it('deve renderizar o componente de SearchResults com resultados - para mobile', () => {
     const movies = MOCK_GET_MOVIE_SUGGESTIONS
-    render(<SearchResults title="" titleRef={null as any} searchList={movies} loading={false} isMobile path="/filme/" />)
+    render(<SearchResults title="" searchList={movies} loading={false} isMobile path="/filme/" />)
 
     for (let i = 0; i <= 4; i++) {
       if (i === 4) return expect(() => screen.getByTestId(`search-item-${movies.results[i].id}`)).toThrow('Unable to find an element')

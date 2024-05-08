@@ -1,6 +1,7 @@
 'use client'
 
 import { FullMovie, FullPerson } from '@/@types'
+import { getSearchResults } from '@/app/api/search'
 import { dispatchOpenSearch } from '@/states/openSearch'
 import { useRouter } from 'next/navigation'
 import { Dispatch, MutableRefObject, SetStateAction, useRef } from 'react'
@@ -43,8 +44,7 @@ export const SearchInput = ({
     clearTimeout(timerDebounce.current)
 
     timerDebounce.current = setTimeout(async () => {
-      const response = await fetch(`/api/search?q=${value}`)
-      const result = await response.json()
+      const result = await getSearchResults(value)
       setLoading(false)
       setMovieSuggestions(result.movies)
       setPersonSuggestions(result.people)
@@ -52,8 +52,9 @@ export const SearchInput = ({
   }
 
   return (
-    <nav className={S.container}>
+    <nav data-testid="search-input-button" className={S.container}>
       <input
+        data-testid="search-input"
         className={S.searchInput}
         ref={inputRef}
         placeholder="O que você está buscando?"
@@ -63,7 +64,13 @@ export const SearchInput = ({
         onKeyUp={(e) => e.key === 'Enter' && handleSearch()}
       />
 
-      <button className={S.searchButton} ref={buttonRef} aria-label="button-search" onClick={handleSearch}></button>
+      <button
+        data-testid="search-button"
+        className={S.searchButton}
+        ref={buttonRef}
+        aria-label="button-search"
+        onClick={handleSearch}
+      ></button>
 
       <BsSearch size={20} />
     </nav>
