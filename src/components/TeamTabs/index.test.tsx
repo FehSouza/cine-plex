@@ -3,12 +3,15 @@ import { describe, expect, it, vi } from 'vitest'
 import { TeamTabs } from '.'
 import { DICTIONARY_TEAM } from '@/dictionary'
 
+let page = ''
+
 vi.mock('next/navigation', () => {
   const actual = vi.importActual('next/navigation')
-
   return {
     ...actual,
-    useSelectedLayoutSegment: vi.fn(() => {}),
+    useSelectedLayoutSegment: vi.fn(() => {
+      return page
+    }),
   }
 })
 
@@ -26,12 +29,31 @@ describe('TeamTabs', () => {
     }
   })
 
-  it.skip('deve renderizar a primeira tab como ativa', () => {
+  it('deve renderizar a primeira tab como ativa', () => {
     const titles = Object.values(DICTIONARY_TEAM)
+    page = 'elenco'
     render(<TeamTabs id="test" />)
-    for (let i = 0; i < titles.length; i++) {
-      expect(screen.getByTestId(`tab-${titles[i]}`)).toBeVisible()
-    }
+    expect(screen.getByTestId(`tab-${titles[0]}`).getAttribute('aria-selected')).toBe('true')
+    expect(screen.getByTestId(`tab-${titles[1]}`).getAttribute('aria-selected')).toBe('false')
+    expect(screen.getByTestId(`tab-${titles[2]}`).getAttribute('aria-selected')).toBe('false')
+  })
+
+  it('deve renderizar a segunda tab como ativa', () => {
+    const titles = Object.values(DICTIONARY_TEAM)
+    page = 'equipe-tecnica'
+    render(<TeamTabs id="test" />)
+    expect(screen.getByTestId(`tab-${titles[0]}`).getAttribute('aria-selected')).toBe('false')
+    expect(screen.getByTestId(`tab-${titles[1]}`).getAttribute('aria-selected')).toBe('true')
+    expect(screen.getByTestId(`tab-${titles[2]}`).getAttribute('aria-selected')).toBe('false')
+  })
+
+  it('deve renderizar a segunda tab como ativa', () => {
+    const titles = Object.values(DICTIONARY_TEAM)
+    page = 'elenco-e-equipe-tecnica'
+    render(<TeamTabs id="test" />)
+    expect(screen.getByTestId(`tab-${titles[0]}`).getAttribute('aria-selected')).toBe('false')
+    expect(screen.getByTestId(`tab-${titles[1]}`).getAttribute('aria-selected')).toBe('false')
+    expect(screen.getByTestId(`tab-${titles[2]}`).getAttribute('aria-selected')).toBe('true')
   })
 
   it('o id renderizado no link da tab deve ser o id fornecido ao componente', () => {

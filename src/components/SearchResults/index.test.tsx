@@ -6,19 +6,19 @@ import { SearchResults } from '.'
 describe('SearchResults', () => {
   it('deve renderizar o componente de SearchResults', () => {
     render(<SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
-    expect(screen.getByTestId('search-results')).toBeVisible()
+    expect(screen.getByTestId('search-results-sugeridos')).toBeVisible()
   })
 
   it('deve renderizar o componente de SearchResults com título', () => {
-    render(<SearchResults title="Test" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
-    expect(screen.getByTestId('search-results-title')).toBeVisible()
-    expect(screen.getByTestId('search-results-title')).toHaveTextContent('Test')
+    render(<SearchResults title="test" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
+    expect(screen.getByTestId('search-results-title-test')).toBeVisible()
+    expect(screen.getByTestId('search-results-title-test')).toHaveTextContent('test')
   })
 
   it('deve renderizar o componente de SearchResults com título default', () => {
     render(<SearchResults title="" searchList={MOCK_GET_MOVIE_SUGGESTIONS} loading={false} isMobile={false} path="/filme/" />)
-    expect(screen.getByTestId('search-results-title')).toBeVisible()
-    expect(screen.getByTestId('search-results-title')).toHaveTextContent('Sugeridos')
+    expect(screen.getByTestId('search-results-title-sugeridos')).toBeVisible()
+    expect(screen.getByTestId('search-results-title-sugeridos')).toHaveTextContent('sugeridos')
   })
 
   it('deve renderizar o componente de SearchResults com o loading', () => {

@@ -15,7 +15,12 @@ export const TeamTabs = ({ id }: TeamTabsProps) => {
 
   return !!id ? (
     <section data-testid="team-tabs" className={[S.container, S.containerListNames].join(' ')}>
-      <Link data-testid="tab-cast" href={`/filme/${id}/elenco`} className={[S.listName, pageName === 'cast' ? S.active : ''].join(' ')}>
+      <Link
+        data-testid="tab-cast"
+        href={`/filme/${id}/elenco`}
+        className={[S.listName, pageName === 'cast' ? S.active : ''].join(' ')}
+        aria-selected={pageName === 'cast'}
+      >
         Elenco
       </Link>
 
@@ -23,6 +28,7 @@ export const TeamTabs = ({ id }: TeamTabsProps) => {
         data-testid="tab-crew"
         href={`/filme/${id}/equipe-tecnica`}
         className={[S.listName, pageName === 'crew' ? S.active : ''].join(' ')}
+        aria-selected={pageName === 'crew'}
       >
         Equipe Técnica
       </Link>
@@ -31,6 +37,7 @@ export const TeamTabs = ({ id }: TeamTabsProps) => {
         data-testid="tab-all"
         href={`/filme/${id}/elenco-e-equipe-tecnica`}
         className={[S.listName, pageName === 'all' ? S.active : ''].join(' ')}
+        aria-selected={pageName === 'all'}
       >
         Todos
       </Link>

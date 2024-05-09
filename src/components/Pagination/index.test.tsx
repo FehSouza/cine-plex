@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Pagination } from '.'
 
@@ -117,19 +117,50 @@ describe('Pagination', () => {
     }
   })
 
-  it('deve chamar a função de paginar ao clicar em algum botão', () => {
-    const totalPages = 5
-    render(<Pagination totalPages={totalPages} />)
+  it('deve chamar a função de paginar ao clicar em algum botão - sem busca', () => {
+    render(<Pagination totalPages={5} />)
     const button = screen.getByTestId(`pagination-button-2`)
     fireEvent.click(button)
     expect(params.page).toBe('2')
+    expect(params.q).toBe(undefined)
+  })
+
+  it('deve chamar a função de paginar ao clicar em algum botão - com busca', () => {
+    params = { q: 'test' }
+    render(<Pagination totalPages={5} />)
+    const button = screen.getByTestId(`pagination-button-2`)
+    fireEvent.click(button)
+    expect(params.page).toBe('2')
+    expect(params.q).toBe('test')
   })
 
   it('não deve chamar a função de paginar ao clicar no botão da página atual - página 1', () => {
-    const totalPages = 5
-    render(<Pagination totalPages={totalPages} />)
+    render(<Pagination totalPages={5} />)
     const button = screen.getByTestId(`pagination-button-1`)
     fireEvent.click(button)
     expect(params.page).toBe(undefined)
+  })
+
+  it('deve testar se a última página respeita o limite de páginas renderizadas - 500 páginas', () => {
+    params = { page: '520', q: 'test' }
+    const totalPages = 520
+    render(<Pagination totalPages={totalPages} />)
+    expect(() => screen.getByTestId(`pagination-button-${totalPages}`)).toThrow('Unable to find an element')
+    expect(screen.getByTestId(`pagination-button-${500}`)).toBeVisible()
+    expect(params.page).toBe('500')
+    expect(params.q).toBe('test')
+  })
+
+  it('deve testar se a primeira página é a ativa - sem params page', () => {
+    render(<Pagination totalPages={5} />)
+    const page = screen.getByTestId(`pagination-button-${1}`)
+    expect(params.page).toBe(undefined)
+  })
+
+  it('deve testar se a página acessada é a ativa - com params page', () => {
+    params = { page: '100' }
+    render(<Pagination totalPages={300} />)
+    const page = screen.getByTestId(`pagination-button-${params.page}`)
+    expect(params.page).toBe('100')
   })
 })

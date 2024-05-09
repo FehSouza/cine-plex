@@ -13,12 +13,12 @@ interface SearchResultsProps {
 }
 
 export const SearchResults = forwardRef<HTMLSpanElement, SearchResultsProps>(({ title, searchList, loading, isMobile, path }, ref) => {
-  const titleFormatted = !!title ? title : 'Sugeridos'
+  const titleFormatted = !!title ? title : 'sugeridos'
   const results = searchList?.results
 
   return (
-    <div data-testid="search-results">
-      <span data-testid="search-results-title" className={S.title} ref={ref}>
+    <div data-testid={`search-results-${titleFormatted.replace(/\s/g, '-')}`}>
+      <span data-testid={`search-results-title-${titleFormatted.replace(/\s/g, '-')}`} className={S.title} ref={ref}>
         {titleFormatted}
       </span>
 

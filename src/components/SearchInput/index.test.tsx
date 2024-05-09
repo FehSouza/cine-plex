@@ -2,7 +2,6 @@ import { dispatchOpenSearch, getOpenSearch, resetOpenSearch } from '@/states/ope
 import { fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { SearchInput } from '.'
-import { Navbar } from '../Navbar'
 
 const originalTimeout = setTimeout
 
@@ -74,24 +73,7 @@ describe('SearchInput', () => {
     expect(screen.getByTestId('search-button')).toBeVisible()
   })
 
-  it.skip('deve chamar a função ao digitar no input', () => {
-    render(
-      <SearchInput
-        buttonRef={null as any}
-        inputRef={null as any}
-        query=""
-        setQuery={() => {}}
-        setLoading={() => {}}
-        setMovieSuggestions={() => {}}
-        setPersonSuggestions={() => {}}
-      />
-    )
-
-    const input = screen.getByTestId('search-input')
-    expect(input).toBeVisible()
-    expect(input).toHaveValue('')
-    fireEvent.change(input, { target: { value: 'test' } })
-  })
+  it.todo('deve chamar a função ao digitar no input')
 
   it('deve chamar a função ao clicar com enter no input', () => {
     dispatchOpenSearch(true)

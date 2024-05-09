@@ -49,8 +49,8 @@ export const NavbarSearch = ({ isMobile }: NavbarSearchProps) => {
         setPersonSuggestions={setPersonSuggestions}
       />
 
-      {query && (
-        <div className={S.resultsContainer} ref={resultsRef}>
+      {!!query && (
+        <div data-testid="navbar-search-container" className={S.resultsContainer} ref={resultsRef}>
           <SearchResults
             ref={titleRef1}
             title="filmes sugeridos"
