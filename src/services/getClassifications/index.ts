@@ -1,5 +1,7 @@
 import { Certifications } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
+import { MOCK_GET_CLASSIFICATIONS } from '@/mocks/getClassifications'
+import { HttpResponse, http } from 'msw'
 import { optionsOneDay } from '../configs'
 
 export async function getClassifications(id: string) {
@@ -19,3 +21,7 @@ export async function getClassifications(id: string) {
 
   return filteredList
 }
+
+export const mockGetClassifications = http.get('https://api.themoviedb.org/3/movie/:id/release_dates', () =>
+  HttpResponse.json(MOCK_GET_CLASSIFICATIONS)
+)

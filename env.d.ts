@@ -1,6 +1,7 @@
-namespace NodeJS {
+export namespace NodeJS {
   interface ProcessEnv {
     API_KEY: string
     API_TOKEN: string
+    API_MOCK_ENABLED: boolean
   }
 }

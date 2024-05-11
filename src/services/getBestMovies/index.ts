@@ -1,4 +1,6 @@
 import { Movie } from '@/@types'
+import { MOCK_GET_BEST_MOVIES } from '@/mocks'
+import { HttpResponse, http } from 'msw'
 import { optionsOneDay } from '../configs'
 
 export async function getBestMovies() {
@@ -13,3 +15,5 @@ export async function getBestMovies() {
 
   return filteredList
 }
+
+export const mockGetBestMovies = http.get('https://api.themoviedb.org/3/discover/movie', () => HttpResponse.json(MOCK_GET_BEST_MOVIES))
