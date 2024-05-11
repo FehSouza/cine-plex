@@ -1,7 +1,7 @@
 'use client'
 
 import { FullMovie, FullPerson } from '@/@types'
-import { getSearchResults } from '@/app/api/search'
+import { getSearchResults } from '@/services'
 import { dispatchOpenSearch } from '@/states/openSearch'
 import { useRouter } from 'next/navigation'
 import { Dispatch, MutableRefObject, SetStateAction, useRef } from 'react'

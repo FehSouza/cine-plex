@@ -321,3 +321,12 @@ export type ListCredits = (
       }[]
     >
 )[]
+
+export interface getFullMoviesProps {
+  page: string
+}
+
+export interface getSearchProps {
+  query: string
+  page: string
+}
