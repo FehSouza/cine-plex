@@ -10,6 +10,10 @@ describe('getAge', () => {
     const SUT2 = getAge({ birthday: '1996-11-21', deathday: '1996-11-21' })
     const expected2 = 0
     expect(SUT2).toBe(expected2)
+
+    const SUT3 = getAge({ birthday: '1996-05-21', deathday: '2024-05-10' })
+    const expected3 = 27
+    expect(SUT3).toBe(expected3)
   })
 
   it('deve retornar a idade ao passar nascimento e não passar falecimento', () => {

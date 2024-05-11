@@ -19,13 +19,10 @@ export const getListCredits = (list: (PersonCast | PersonCrew)[]) => {
   const listCreditsForDepartments = listCreditsForDate.reduce((acc, item) => {
     const depart = item.info.department
 
-    if (!depart && !acc['Acting']) return { ...acc, ['Acting']: [item] }
-    if (!depart && acc['Acting']) return { ...acc, ['Acting']: [...acc['Acting'], item] }
+    if (!depart) return { ...acc, Acting: [...(acc['Acting'] ?? []), item] }
 
-    if (depart && !acc[depart]) return { ...acc, [depart]: [item] }
     if (depart && acc[depart]) return { ...acc, [depart]: [...acc[depart], item] }
-
-    return acc
+    return { ...acc, [depart]: [item] }
   }, {} as Record<string, { year: number; date: string; info: PersonCast | PersonCrew }[]>)
 
   const listCreditsForDepartmentsArr = Object.entries(listCreditsForDepartments)
