@@ -6,7 +6,7 @@ import S from './styles.module.scss'
 
 interface TeamListProps {
   id: number
-  image: string | undefined
+  image: string | undefined | null
   name: string
   subName: string
   gender: number
