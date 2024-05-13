@@ -1,3 +1,3 @@
-import { mockGetBestMovies, mockGetClassifications, mockGetCreditsMovie } from '@/services'
+import { mockGetBestMovies, mockGetClassifications, mockGetCreditsMovie, mockGetMovie, mockGetPerson } from '@/services'
 
-export const handlers = [mockGetBestMovies, mockGetClassifications, mockGetCreditsMovie]
+export const handlers = [mockGetBestMovies, mockGetClassifications, mockGetCreditsMovie, mockGetMovie, mockGetPerson]
