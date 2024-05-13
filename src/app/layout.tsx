@@ -3,10 +3,10 @@ import { Footer, Header } from '../components'
 import '../styles/globals.scss'
 import S from './styles.module.scss'
 
-if (process.env.API_MOCK_ENABLED) {
-  // @ts-ignore-next-line
-  await import('@/api_mocks')
-}
+// if (process.env.API_MOCK_ENABLED) {
+//   // @ts-ignore-next-line
+//   await import('@/api_mocks')
+// }
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700', '900'] })
 
