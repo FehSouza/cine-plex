@@ -2,6 +2,7 @@ import { Roboto } from 'next/font/google'
 import { Footer, Header } from '../components'
 import '../styles/globals.scss'
 import S from './styles.module.scss'
+import { Analytics } from '@vercel/analytics/react';
 
 // if (process.env.API_MOCK_ENABLED) {
 //   // @ts-ignore-next-line
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className={S.headerContainer} />
           {children}
           <Footer />
+          <Analytics />
         </div>
       </body>
     </html>
