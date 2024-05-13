@@ -258,10 +258,11 @@ export default async function Movie({ params }: MovieProps) {
                       {idImage && (
                         <Image
                           className={S.actorImage}
-                          src={image}
+                          loader={TMDBPosterLoader}
+                          src={idImage}
                           alt={`Imagem de ${name}`}
-                          width={134}
-                          height={201}
+                          sizes="w200"
+                          fill
                           unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                         />
                       )}

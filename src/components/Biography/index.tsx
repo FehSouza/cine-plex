@@ -26,8 +26,6 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
   const alsoKnown = person.also_known_as
   const quantCreditsText = quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`
 
-  console.log(image)
-
   return (
     <section data-testid="biography" className={S.container}>
       <div className={S.imageWrapper}>

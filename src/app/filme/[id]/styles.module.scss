@@ -349,12 +349,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .actorImage {
   width: 100%;
-  height: auto;
+  height: auto !important;
   aspect-ratio: 2/3;
+  top: 50% !important;
+  transform: translateY(-50%);
 }
 
 .imagePerson {
