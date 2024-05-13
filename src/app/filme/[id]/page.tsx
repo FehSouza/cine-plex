@@ -1,4 +1,5 @@
 import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/components'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
 import { formatDate, formatHours, formatReleaseDate } from '@/utils'
 import Image from 'next/image'
@@ -56,7 +57,17 @@ export default async function Movie({ params }: MovieProps) {
     <main className={S.main}>
       <section className={S.imageWrapper}>
         <div className={S.gradient} />
-        {image && <Image className={S.image} loader={TMDBBackdropLoader} src={image} alt={`Imagem do Filme ${title}`} fill priority />}
+        {image && (
+          <Image
+            className={S.image}
+            loader={TMDBBackdropLoader}
+            src={image}
+            alt={`Imagem do Filme ${title}`}
+            fill
+            priority
+            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
+          />
+        )}
         {!image && <div className={S.withoutImage} />}
       </section>
 
@@ -70,6 +81,7 @@ export default async function Movie({ params }: MovieProps) {
             sizes="(min-width: 769px) w400, (max-width: 768px) w200"
             fill
             priority
+            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />
         )}
 
@@ -136,6 +148,7 @@ export default async function Movie({ params }: MovieProps) {
                 width={48}
                 height={48}
                 priority
+                unoptimized={DISABLE_IMAGE_OPTIMIZATION}
               />
               <span>{availableToStream ? 'Assista agora!' : 'Disponível para alugar ou comprar!'}</span>
             </div>
@@ -242,7 +255,16 @@ export default async function Movie({ params }: MovieProps) {
                 <li className={S.actorWrapper} key={id}>
                   <Link className={S.actorLink} href={`/pessoa/${id}`}>
                     <div className={S.actorImageWrapper}>
-                      {idImage && <Image className={S.actorImage} src={image} alt={`Imagem de ${name}`} width={134} height={201} />}
+                      {idImage && (
+                        <Image
+                          className={S.actorImage}
+                          src={image}
+                          alt={`Imagem de ${name}`}
+                          width={134}
+                          height={201}
+                          unoptimized={DISABLE_IMAGE_OPTIMIZATION}
+                        />
+                      )}
                       {!idImage && <BsPerson size={32} className={S.imagePerson} />}
                     </div>
                     <span className={S.actorName}>{name}</span>

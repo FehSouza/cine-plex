@@ -1,4 +1,5 @@
 import { Biography, CreditsList } from '@/components'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits, getSocialMedia } from '@/services'
 import { getListCredits, removeDuplicatesById } from '@/utils'
@@ -67,6 +68,7 @@ export default async function Person({ params }: PersonProps) {
                             width={134}
                             height={201}
                             priority
+                            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                           />
                         )}
 

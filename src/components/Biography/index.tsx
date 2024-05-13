@@ -1,4 +1,5 @@
 import { Person } from '@/@types'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_CREW_DEPARTMENT, DICTIONARY_GENDER } from '@/dictionary'
 import { formatDate, getAge } from '@/utils'
 import Image from 'next/image'
@@ -25,7 +26,7 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
   const alsoKnown = person.also_known_as
   const quantCreditsText = quantCredits === 1 ? `${quantCredits} filme` : `${quantCredits} filmes`
 
-console.log(image)
+  console.log(image)
 
   return (
     <section data-testid="biography" className={S.container}>
@@ -39,6 +40,7 @@ console.log(image)
             width={264}
             height={396}
             priority
+            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />
         )}
         {!image && <BsPerson data-testid="biography-image-person" size={48} className={S.imagePerson} />}

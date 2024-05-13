@@ -1,4 +1,5 @@
 import { WatchData } from '@/@types'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import Image from 'next/image'
 import S from './styles.module.scss'
 
@@ -35,6 +36,7 @@ export const ProvidersToWatch = ({ providers, id, title, titleMovie }: Providers
               width={48}
               height={48}
               className={S.image}
+              unoptimized={DISABLE_IMAGE_OPTIMIZATION}
             />
           )
         })}

@@ -1,3 +1,4 @@
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsPerson } from 'react-icons/bs'
@@ -33,6 +34,7 @@ export const TeamCard = ({ id, image, name, subName, gender }: TeamListProps) =>
               alt={`Imagem de ${name}`}
               fill
               sizes="200w"
+              unoptimized={DISABLE_IMAGE_OPTIMIZATION}
             />
           )}
           {!image && <BsPerson data-testid="team-card-image-icon" size={32} className={S.imagePerson} />}

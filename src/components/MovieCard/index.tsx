@@ -1,3 +1,4 @@
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { formatDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -27,6 +28,7 @@ export const MovieCard = ({ id, date, grade, poster, title, upcoming, department
             src={poster}
             alt={`Poster do Filme ${title}`}
             fill
+            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />
         )}
 

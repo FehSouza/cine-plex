@@ -1,4 +1,5 @@
 import { TMDBPosterLoader, TeamTabs } from '@/components'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getMovie } from '@/services'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,6 +31,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             sizes="200w"
             fill
             priority
+            unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />
         )}
 

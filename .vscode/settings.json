@@ -7,7 +7,8 @@
     "TBDB",
     "tecnica",
     "testid",
-    "TMDB"
+    "TMDB",
+    "unoptimized"
   ],
   "liveServer.settings.port": 5501
 }

@@ -1,4 +1,5 @@
 import { Movie, PersonSearch } from '@/@types'
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import Image from 'next/image'
 import { BsImage } from 'react-icons/bs'
 import { TMDBPosterLoader } from '../Carousel'
@@ -29,6 +30,7 @@ export const SearchItem = ({ suggestion, path }: SearchItemProps) => {
                   alt={`Imagem ${name}`}
                   fill
                   sizes="200w"
+                  unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                 />
               )}
               {!image && <BsImage data-testid="search-item-icon" className={S.imagePerson} />}

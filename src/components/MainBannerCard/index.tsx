@@ -1,5 +1,6 @@
 'use client'
 
+import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import Image, { ImageLoader } from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill } from 'react-icons/bs'
@@ -43,6 +44,7 @@ export function MainBannerCard({ index, id, backdrop, title, description, grade 
           alt={`Imagem do Filme ${title}`}
           fill
           priority={index === 0 ? true : false}
+          unoptimized={DISABLE_IMAGE_OPTIMIZATION}
         />
       )}
       <div className={S.info}>
