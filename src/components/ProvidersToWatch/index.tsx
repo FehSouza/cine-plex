@@ -1,7 +1,7 @@
 import { WatchData } from '@/@types'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
+import { loaderOriginal } from '@/utils'
 import Image from 'next/image'
-import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface ProvidersToWatchProps {
@@ -34,14 +34,12 @@ export const ProvidersToWatch = ({ providers, id, title, titleMovie }: Providers
             >
               <Image
                 data-testid={`providers-to-watch-image-${providerId}`}
-                loader={TMDBPosterLoader}
+                className={S.image}
+                loader={loaderOriginal}
                 src={providerLogo}
                 alt={`Assista ${titleMovie} na ${providerName}`}
                 title={`Assista na ${providerName}`}
-                priority
                 fill
-                sizes="w200"
-                className={S.image}
                 unoptimized={DISABLE_IMAGE_OPTIMIZATION}
               />
             </div>

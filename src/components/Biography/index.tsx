@@ -5,7 +5,7 @@ import { formatDate, getAge } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFacebook, BsInstagram, BsPerson, BsTwitter } from 'react-icons/bs'
-import { TMDBPosterLoader } from '../Carousel'
+import { LoaderPoster } from '../Carousel'
 import S from './styles.module.scss'
 
 interface BiographyProps {
@@ -34,10 +34,9 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
           <Image
             data-testid="biography-image"
             className={S.image}
-            loader={TMDBPosterLoader}
+            loader={LoaderPoster}
             src={image}
             alt={`Imagem de ${name}`}
-            sizes="(min-width: 769px) w400, (max-width: 768px) w200"
             fill
             priority
             unoptimized={DISABLE_IMAGE_OPTIMIZATION}

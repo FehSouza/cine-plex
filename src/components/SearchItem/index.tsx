@@ -1,8 +1,8 @@
 import { Movie, PersonSearch } from '@/@types'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
+import { loader200 } from '@/utils'
 import Image from 'next/image'
 import { BsImage } from 'react-icons/bs'
-import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface SearchItemProps {
@@ -25,11 +25,10 @@ export const SearchItem = ({ suggestion, path }: SearchItemProps) => {
                 <Image
                   data-testid="search-item-image"
                   className={S.image}
-                  loader={TMDBPosterLoader}
+                  loader={loader200}
                   src={image}
                   alt={`Imagem ${name}`}
                   fill
-                  sizes="200w"
                   unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                 />
               )}

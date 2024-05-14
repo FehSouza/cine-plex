@@ -1,8 +1,8 @@
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
+import { loader200 } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsPerson } from 'react-icons/bs'
-import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface TeamListProps {
@@ -29,11 +29,10 @@ export const TeamCard = ({ id, image, name, subName, gender }: TeamListProps) =>
             <Image
               data-testid="team-card-image"
               className={S.image}
-              loader={TMDBPosterLoader}
+              loader={loader200}
               src={image}
               alt={`Imagem de ${name}`}
               fill
-              sizes="200w"
               unoptimized={DISABLE_IMAGE_OPTIMIZATION}
             />
           )}

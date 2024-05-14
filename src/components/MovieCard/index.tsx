@@ -3,7 +3,7 @@ import { formatDate } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill, BsImage } from 'react-icons/bs'
-import { TMDBPosterLoader } from '../Carousel'
+import { LoaderPoster } from '../Carousel'
 import S from './styles.module.scss'
 
 interface MovieCardProps {
@@ -24,7 +24,7 @@ export const MovieCard = ({ id, date, grade, poster, title, upcoming, department
           <Image
             data-testid="movie-card-image"
             className={S.image}
-            loader={TMDBPosterLoader}
+            loader={LoaderPoster}
             src={poster}
             alt={`Poster do Filme ${title}`}
             fill

@@ -17,7 +17,7 @@ interface CarouselProps {
   moviePage?: boolean
 }
 
-export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
+export const LoaderPoster: ImageLoader = ({ src, width }) => {
   const DICTIONARY_WIDTH = {
     640: 'w200',
     750: 'w200',
@@ -25,8 +25,8 @@ export const TMDBPosterLoader: ImageLoader = ({ src, width }) => {
     1080: 'w400',
     1200: 'w400',
     1920: 'w400',
-    2048: 'w500',
-    3840: 'original',
+    2048: 'w400',
+    3840: 'w400',
   }
 
   return `https://image.tmdb.org/t/p/${DICTIONARY_WIDTH[width as keyof typeof DICTIONARY_WIDTH]}${src}`

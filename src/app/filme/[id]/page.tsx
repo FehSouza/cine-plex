@@ -1,7 +1,8 @@
-import { Carousel, ProvidersToWatch, TMDBBackdropLoader, TMDBPosterLoader, VideoLazyLoad } from '@/components'
+import { Carousel, LoaderBackdrop, LoaderPoster, ProvidersToWatch, VideoLazyLoad } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
-import { formatDate, formatHours, formatReleaseDate } from '@/utils'
+import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill, BsImage, BsPerson } from 'react-icons/bs'
@@ -60,11 +61,10 @@ export default async function Movie({ params }: MovieProps) {
         {image && (
           <Image
             className={S.image}
-            loader={TMDBBackdropLoader}
+            loader={LoaderBackdrop}
             src={image}
             alt={`Imagem do Filme ${title}`}
             fill
-            priority
             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />
         )}
@@ -75,10 +75,9 @@ export default async function Movie({ params }: MovieProps) {
         {poster && (
           <Image
             className={S.imagePoster}
-            loader={TMDBPosterLoader}
+            loader={LoaderPoster}
             src={poster}
             alt={`Poster do Filme ${title}`}
-            sizes="(min-width: 769px) w400, (max-width: 768px) w200"
             fill
             priority
             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
@@ -143,13 +142,11 @@ export default async function Movie({ params }: MovieProps) {
               <div className={S.watchImageWrapper}>
                 <Image
                   className={S.watchImage}
-                  loader={TMDBPosterLoader}
+                  loader={loaderOriginal}
                   src={watchProvider[0].logo_path}
                   alt={`Assista ${title} na ${watchProvider[0].provider_name}`}
                   title={`Assista na ${watchProvider[0].provider_name}`}
-                  sizes="w200"
                   fill
-                  priority
                   unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                 />
               </div>
@@ -260,10 +257,9 @@ export default async function Movie({ params }: MovieProps) {
                       {image && (
                         <Image
                           className={S.actorImage}
-                          loader={TMDBPosterLoader}
+                          loader={loader200}
                           src={image}
                           alt={`Imagem de ${name}`}
-                          sizes="w200"
                           fill
                           unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                         />

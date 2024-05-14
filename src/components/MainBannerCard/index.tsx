@@ -15,7 +15,7 @@ interface MainBannerCardProps {
   grade: number
 }
 
-export const TMDBBackdropLoader: ImageLoader = ({ src, width }) => {
+export const LoaderBackdrop: ImageLoader = ({ src, width }) => {
   const DICTIONARY_WIDTH = {
     640: 'w500',
     750: 'w500',
@@ -39,7 +39,7 @@ export function MainBannerCard({ index, id, backdrop, title, description, grade 
         <Image
           data-testid="main-banner-card-image"
           className={S.image}
-          loader={TMDBBackdropLoader}
+          loader={LoaderBackdrop}
           src={backdrop}
           alt={`Imagem do Filme ${title}`}
           fill

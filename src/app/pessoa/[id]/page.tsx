@@ -1,8 +1,8 @@
-import { Biography, CreditsList, TMDBPosterLoader } from '@/components'
+import { Biography, CreditsList } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits, getSocialMedia } from '@/services'
-import { getListCredits, removeDuplicatesById } from '@/utils'
+import { getListCredits, loader200, removeDuplicatesById } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsImage } from 'react-icons/bs'
@@ -63,12 +63,10 @@ export default async function Person({ params }: PersonProps) {
                         {poster && (
                           <Image
                             className={S.movieImage}
-                            loader={TMDBPosterLoader}
+                            loader={loader200}
                             src={poster}
                             alt={`Imagem do Filme ${movie.title ?? movie.name}`}
-                            sizes="w200"
                             fill
-                            priority
                             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                           />
                         )}

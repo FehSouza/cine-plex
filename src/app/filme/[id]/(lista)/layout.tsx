@@ -1,6 +1,7 @@
-import { TMDBPosterLoader, TeamTabs } from '@/components'
+import { TeamTabs } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getMovie } from '@/services'
+import { loader200 } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsImage } from 'react-icons/bs'
@@ -25,10 +26,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         {poster && (
           <Image
             className={S.infoBarImage}
-            loader={TMDBPosterLoader}
+            loader={loader200}
             src={poster}
             alt={`Poster do Filme ${title}`}
-            sizes="200w"
             fill
             priority
             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
