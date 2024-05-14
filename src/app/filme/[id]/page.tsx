@@ -140,16 +140,19 @@ export default async function Movie({ params }: MovieProps) {
 
           {watchProvider && (
             <div className={S.watchWrapper}>
-              <Image
-                className={S.watchImage}
-                src={`https://www.themoviedb.org/t/p/original${watchProvider[0].logo_path}`}
-                alt={`Assista ${title} na ${watchProvider[0].provider_name}`}
-                title={`Assista na ${watchProvider[0].provider_name}`}
-                width={48}
-                height={48}
-                priority
-                unoptimized={DISABLE_IMAGE_OPTIMIZATION}
-              />
+              <div className={S.watchImageWrapper}>
+                <Image
+                  className={S.watchImage}
+                  loader={TMDBPosterLoader}
+                  src={watchProvider[0].logo_path}
+                  alt={`Assista ${title} na ${watchProvider[0].provider_name}`}
+                  title={`Assista na ${watchProvider[0].provider_name}`}
+                  sizes="w200"
+                  fill
+                  priority
+                  unoptimized={DISABLE_IMAGE_OPTIMIZATION}
+                />
+              </div>
               <span>{availableToStream ? 'Assista agora!' : 'Disponível para alugar ou comprar!'}</span>
             </div>
           )}
@@ -239,8 +242,7 @@ export default async function Movie({ params }: MovieProps) {
           <ul className={S.castWrapper}>
             {castList.map((actor) => {
               const id = actor.id
-              const idImage = actor.profile_path
-              const image = `https://image.tmdb.org/t/p/w200${idImage}`
+              const image = actor.profile_path
               const name = actor.name
               const gender = actor.gender
               const character = actor.character
@@ -255,18 +257,18 @@ export default async function Movie({ params }: MovieProps) {
                 <li className={S.actorWrapper} key={id}>
                   <Link className={S.actorLink} href={`/pessoa/${id}`}>
                     <div className={S.actorImageWrapper}>
-                      {idImage && (
+                      {image && (
                         <Image
                           className={S.actorImage}
                           loader={TMDBPosterLoader}
-                          src={idImage}
+                          src={image}
                           alt={`Imagem de ${name}`}
                           sizes="w200"
                           fill
                           unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                         />
                       )}
-                      {!idImage && <BsPerson size={32} className={S.imagePerson} />}
+                      {!image && <BsPerson size={32} className={S.imagePerson} />}
                     </div>
                     <span className={S.actorName}>{name}</span>
                     {character && <span className={S.actorCharacter}>{characterFormatted}</span>}

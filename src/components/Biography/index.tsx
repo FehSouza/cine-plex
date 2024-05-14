@@ -5,6 +5,7 @@ import { formatDate, getAge } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFacebook, BsInstagram, BsPerson, BsTwitter } from 'react-icons/bs'
+import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface BiographyProps {
@@ -16,7 +17,7 @@ interface BiographyProps {
 export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps) => {
   const id = person.id
   const name = person.name
-  const image = person.profile_path ? `https://image.tmdb.org/t/p/w300${person.profile_path}` : null
+  const image = person.profile_path
   const birthday = !/\d{4}-\d{1,2}-\d{1,2}/.test(person.birthday) ? '' : person.birthday
   const deathday = !/\d{4}-\d{1,2}-\d{1,2}/.test(person.deathday) ? '' : person.deathday
   const age = getAge({ birthday, deathday })
@@ -33,10 +34,11 @@ export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps)
           <Image
             data-testid="biography-image"
             className={S.image}
+            loader={TMDBPosterLoader}
             src={image}
             alt={`Imagem de ${name}`}
-            width={264}
-            height={396}
+            sizes="(min-width: 769px) w400, (max-width: 768px) w200"
+            fill
             priority
             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
           />

@@ -23,7 +23,7 @@ describe('ProvidersToWatch', () => {
     const providerBuy = MOCK_GET_WATCH.buy
     render(<ProvidersToWatch providers={providerBuy} id="" title="" titleMovie="" />)
     for (const item of providerBuy) {
-      expect(screen.getByTestId(`providers-to-watch-image-${item.provider_id}`)).toBeVisible()
+      expect(screen.getByTestId(`providers-to-watch-image-container-${item.provider_id}`)).toBeVisible()
     }
   })
 
@@ -32,6 +32,7 @@ describe('ProvidersToWatch', () => {
     render(<ProvidersToWatch providers={providerBuy} id="" title="" titleMovie="" />)
     for (const item of providerBuy) {
       const image = screen.getByTestId<HTMLImageElement>(`providers-to-watch-image-${item.provider_id}`)
+      expect(image).toBeVisible()
       expect(image.src).includes(item.logo_path.replace('/', ''))
     }
   })

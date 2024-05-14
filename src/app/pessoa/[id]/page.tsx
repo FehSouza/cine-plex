@@ -1,4 +1,4 @@
-import { Biography, CreditsList } from '@/components'
+import { Biography, CreditsList, TMDBPosterLoader } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits, getSocialMedia } from '@/services'
@@ -63,10 +63,11 @@ export default async function Person({ params }: PersonProps) {
                         {poster && (
                           <Image
                             className={S.movieImage}
-                            src={`https://image.tmdb.org/t/p/w200${poster}`}
+                            loader={TMDBPosterLoader}
+                            src={poster}
                             alt={`Imagem do Filme ${movie.title ?? movie.name}`}
-                            width={134}
-                            height={201}
+                            sizes="w200"
+                            fill
                             priority
                             unoptimized={DISABLE_IMAGE_OPTIMIZATION}
                           />

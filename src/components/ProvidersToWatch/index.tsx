@@ -1,6 +1,7 @@
 import { WatchData } from '@/@types'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import Image from 'next/image'
+import { TMDBPosterLoader } from '../Carousel'
 import S from './styles.module.scss'
 
 interface ProvidersToWatchProps {
@@ -26,18 +27,24 @@ export const ProvidersToWatch = ({ providers, id, title, titleMovie }: Providers
           const providerLogo = provider.logo_path
 
           return (
-            <Image
-              data-testid={`providers-to-watch-image-${providerId}`}
+            <div
+              data-testid={`providers-to-watch-image-container-${providerId}`}
               key={`Watch Provider - ${id} - stream - ${providerId}`}
-              src={`https://www.themoviedb.org/t/p/original${providerLogo}`}
-              alt={`Assista ${titleMovie} na ${providerName}`}
-              title={`Assista na ${providerName}`}
-              priority
-              width={48}
-              height={48}
-              className={S.image}
-              unoptimized={DISABLE_IMAGE_OPTIMIZATION}
-            />
+              className={S.imageWrapper}
+            >
+              <Image
+                data-testid={`providers-to-watch-image-${providerId}`}
+                loader={TMDBPosterLoader}
+                src={providerLogo}
+                alt={`Assista ${titleMovie} na ${providerName}`}
+                title={`Assista na ${providerName}`}
+                priority
+                fill
+                sizes="w200"
+                className={S.image}
+                unoptimized={DISABLE_IMAGE_OPTIMIZATION}
+              />
+            </div>
           )
         })}
       </div>

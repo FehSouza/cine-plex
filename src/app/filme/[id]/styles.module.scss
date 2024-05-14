@@ -255,10 +255,18 @@
   }
 }
 
-.watchImage {
+.watchImageWrapper {
+  position: relative;
   width: 48px;
   height: 48px;
   border-radius: 4px;
+  overflow: hidden;
+}
+
+.watchImage {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 1/1;
 }
 
 .contentTagline {
