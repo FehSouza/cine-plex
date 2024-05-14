@@ -17,6 +17,7 @@
     "@types/react": "18.2.11",
     "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "embla-carousel-react": "^8.0.0-rc07",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
