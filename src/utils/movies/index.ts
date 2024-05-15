@@ -5,5 +5,9 @@ export function sortByReleaseDate(movies: Movie[]) {
 }
 
 export function removeMovieWithoutThumbnail(movies: Movie[]) {
-  return movies.filter((result) => result.backdrop_path && result.poster_path)
+  return movies.filter((res) => res.backdrop_path && res.poster_path)
+}
+
+export function removeMovieWithoutInfos(movies: Movie[]) {
+  return movies.filter((res) => res.backdrop_path && res.poster_path && res.id && res.title && res.overview && res.vote_average)
 }
