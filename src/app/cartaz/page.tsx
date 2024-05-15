@@ -1,4 +1,4 @@
-import { getFullNowPlaying } from '@/services'
+import { getNowPlayingFull } from '@/services'
 import { Department } from '../../components'
 import S from './styles.module.scss'
 
@@ -12,7 +12,7 @@ interface TheatersProps {
 export default async function Theaters(props: TheatersProps) {
   const page = props.searchParams.page
 
-  const [nowPlaying] = await Promise.all([getFullNowPlaying({ page: page ?? '1' })])
+  const [nowPlaying] = await Promise.all([getNowPlayingFull({ page: page ?? '1' })])
 
   return (
     <main className={S.main}>

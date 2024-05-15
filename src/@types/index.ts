@@ -322,7 +322,7 @@ export type ListCredits = (
     >
 )[]
 
-export interface getFullMoviesProps {
+export interface getMoviesFullProps {
   page: string
 }
 

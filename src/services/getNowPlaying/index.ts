@@ -1,13 +1,21 @@
-import { Movie } from '@/@types'
+import { FullMovie } from '@/@types'
+import { clamp } from '@/utils'
 import { optionsOneHour } from '../configs'
 
-export async function getNowPlaying() {
-  const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&page=1', optionsOneHour)
-  const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
-  const sortByReleaseDate = filteredList?.sort((a, b) => {
-    return a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0
-  })
+export async function getNowPlaying(props: { page: string } = { page: '1' }) {
+  const page = clamp(Number(props.page), 1, 500)
 
-  return sortByReleaseDate
+  const searchParams = new URLSearchParams()
+  searchParams.append('language', 'pt-BR')
+  searchParams.append('page', String(page))
+
+  const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?${searchParams.toString()}`, optionsOneHour)
+  return (await response.json()) as FullMovie
 }
+
+// export const mockGetNowPlaying = http.get('https://api.themoviedb.org/3/movie/now_playing', ({ request }) => {
+//   const searchParams = new URLSearchParams(request.url)
+//   const page = searchParams.get('page')
+//   if (page === '2') return HttpResponse.json({})
+//   return HttpResponse.json({})
+// })

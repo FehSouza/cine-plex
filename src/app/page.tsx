@@ -1,9 +1,14 @@
-import { getBestMovies, getNowPlaying, getPopular, getUpcoming } from '@/services'
+import { getBestMovies, getNowPlayingWithThumbnail, getPopular, getUpcoming } from '@/services'
 import { Carousel, MainBanner } from '../components'
 import S from './styles.module.scss'
 
 export default async function Home() {
-  const [bestMovies, nowPlaying, upcoming, popular] = await Promise.all([getBestMovies(), getNowPlaying(), getUpcoming(), getPopular()])
+  const [bestMovies, nowPlaying, upcoming, popular] = await Promise.all([
+    getBestMovies(),
+    getNowPlayingWithThumbnail(),
+    getUpcoming(),
+    getPopular(),
+  ])
 
   return (
     <main className={S.main}>
