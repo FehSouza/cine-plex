@@ -5,7 +5,11 @@ import { optionsOneDay } from '../configs'
 
 export async function getPersonCredits(id: string) {
   try {
-    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?language=pt-BR`, optionsOneDay)
+    const searchParams = new URLSearchParams({
+      language: 'pt-BR',
+    })
+
+    const response = await fetch(`https://api.themoviedb.org/3/person/${id}/movie_credits?${searchParams.toString()}`, optionsOneDay)
     const result = (await response.json()) as PersonCredits
     return result
   } catch (error) {
