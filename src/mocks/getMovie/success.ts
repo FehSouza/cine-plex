@@ -34,7 +34,7 @@ export const MOCK_GET_MOVIE = {
   original_title: 'The Dark Knight',
   overview:
     'Após dois anos desde o surgimento do Batman, os criminosos de Gotham City têm muito o que temer. Com a ajuda do tenente James Gordon e do promotor público Harvey Dent, Batman luta contra o crime organizado. Acuados com o combate, os chefes do crime aceitam a proposta feita pelo Coringa e o contratam para combater o Homem-Morcego.',
-  popularity: 125.734,
+  popularity: 114.484,
   poster_path: '/4lj1ikfsSmMZNyfdi8R8Tv5tsgb.jpg',
   production_companies: [
     {
@@ -98,5 +98,5 @@ export const MOCK_GET_MOVIE = {
   title: 'Batman: O Cavaleiro das Trevas',
   video: false,
   vote_average: 8.515,
-  vote_count: 31919,
+  vote_count: 31921,
 }

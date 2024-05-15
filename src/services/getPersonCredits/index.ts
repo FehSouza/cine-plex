@@ -1,4 +1,6 @@
 import { PersonCredits } from '@/@types'
+import { MOCK_GET_PERSON_CREDITS } from '@/mocks'
+import { HttpResponse, http } from 'msw'
 import { optionsOneDay } from '../configs'
 
 export async function getPersonCredits(id: string) {
@@ -11,3 +13,7 @@ export async function getPersonCredits(id: string) {
     return { id: id, cast: [], crew: [] }
   }
 }
+
+export const mockGetPersonCredits = http.get('https://api.themoviedb.org/3/person/:id/movie_credits', () =>
+  HttpResponse.json(MOCK_GET_PERSON_CREDITS)
+)

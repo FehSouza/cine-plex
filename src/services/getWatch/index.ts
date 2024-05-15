@@ -1,4 +1,6 @@
 import { Watch, WatchData, WatchResults } from '@/@types'
+import { MOCK_GET_WATCH } from '@/mocks'
+import { HttpResponse, http } from 'msw'
 import { optionsOneDay } from '../configs'
 
 const filterProviders = (item: WatchData) => item.provider_id && item.provider_name && item.logo_path
@@ -17,3 +19,5 @@ export async function getWatch(id: string) {
   const filteredList = result?.results?.BR
   return filterWatch(filteredList)
 }
+
+export const mockGetWatch = http.get('https://api.themoviedb.org/3/movie/:id/watch/providers', () => HttpResponse.json(MOCK_GET_WATCH))
