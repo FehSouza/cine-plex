@@ -1,6 +1,6 @@
 import { Carousel, LoaderBackdrop, LoaderPoster, ProvidersToWatch, VideoLazyLoad } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
-import { getClassifications, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
+import { getClassificationsByRegion, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
 import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
 
 import Image from 'next/image'
@@ -17,7 +17,7 @@ export default async function Movie({ params }: MovieProps) {
 
   const [movie, classifications, credits, videos, watch, recommendations] = await Promise.all([
     getMovie(id),
-    getClassifications(id),
+    getClassificationsByRegion(id),
     getCreditsMovie(id),
     getVideo(id),
     getWatch(id),
