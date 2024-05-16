@@ -1,4 +1,4 @@
-import { Certification, Movie } from '@/@types'
+import { Certification, Movie, WatchData, WatchResults } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
 
 export function sortByReleaseDate(movies: Movie[]) {
@@ -24,4 +24,16 @@ export function filterClassificationsByRegion(certifications: Certification[]) {
 
     return acc
   }, [] as { country: string; certification: string; color: string }[])
+}
+
+export function filterProviders(item: WatchData) {
+  return item.provider_id && item.provider_name && item.logo_path
+}
+
+export function filterWatchWithInfos(data: WatchResults) {
+  const ads = data?.ads?.filter(filterProviders)
+  const buy = data?.buy?.filter(filterProviders)
+  const flatrate = data?.flatrate?.filter(filterProviders)
+  const rent = data?.rent?.filter(filterProviders)
+  return { ads, buy, flatrate, rent }
 }

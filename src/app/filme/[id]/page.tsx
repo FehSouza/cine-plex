@@ -1,8 +1,14 @@
 import { Carousel, LoaderBackdrop, LoaderPoster, ProvidersToWatch, VideoLazyLoad } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
-import { getClassificationsByRegion, getCreditsMovie, getMovie, getRecommendationsWithThumbnail, getVideo, getWatch } from '@/services'
+import {
+  getClassificationsByRegion,
+  getCreditsMovie,
+  getMovie,
+  getRecommendationsWithThumbnail,
+  getVideo,
+  getWatchWithInfos,
+} from '@/services'
 import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill, BsImage, BsPerson } from 'react-icons/bs'
@@ -20,7 +26,7 @@ export default async function Movie({ params }: MovieProps) {
     getClassificationsByRegion(id),
     getCreditsMovie(id),
     getVideo(id),
-    getWatch(id),
+    getWatchWithInfos(id),
     getRecommendationsWithThumbnail(id),
   ])
 
