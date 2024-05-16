@@ -1,7 +1,7 @@
 import { Biography, CreditsList } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
-import { getPerson, getPersonCredits, getSocialMedia } from '@/services'
+import { getPerson, getPersonCredits, getSocialMediaSelected } from '@/services'
 import { getListCredits, loader200, removeDuplicatesById } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -21,7 +21,7 @@ export default async function Person({ params }: PersonProps) {
   const biography = person.biography
   const gender = person.gender as keyof typeof DICTIONARY_GENDER
   const personId = person.id
-  const socialMedia = await getSocialMedia(personId)
+  const socialMedia = await getSocialMediaSelected(personId)
 
   const listCredits = [...credits.cast, ...credits.crew]
   const creditsFormatted = removeDuplicatesById(listCredits)
