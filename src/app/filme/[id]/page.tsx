@@ -1,6 +1,6 @@
 import { Carousel, LoaderBackdrop, LoaderPoster, ProvidersToWatch, VideoLazyLoad } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
-import { getClassificationsByRegion, getCreditsMovie, getMovie, getRecommendations, getVideo, getWatch } from '@/services'
+import { getClassificationsByRegion, getCreditsMovie, getMovie, getRecommendationsWithThumbnail, getVideo, getWatch } from '@/services'
 import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
 
 import Image from 'next/image'
@@ -21,7 +21,7 @@ export default async function Movie({ params }: MovieProps) {
     getCreditsMovie(id),
     getVideo(id),
     getWatch(id),
-    getRecommendations(id),
+    getRecommendationsWithThumbnail(id),
   ])
 
   const image = movie.backdrop_path
