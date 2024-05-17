@@ -3,6 +3,7 @@ import {
   mockGetClassifications,
   mockGetCreditsMovie,
   mockGetMovie,
+  mockGetNowPlaying,
   mockGetPerson,
   mockGetPersonCredits,
   mockGetRecommendations,
@@ -11,13 +12,16 @@ import {
 } from '@/services'
 
 export const handlers = [
+  mockGetNowPlaying,
+
   mockGetBestMovies,
   mockGetClassifications,
   mockGetCreditsMovie,
-  mockGetMovie,
   mockGetPerson,
   mockGetPersonCredits,
   mockGetRecommendations,
   mockGetSocialMedia,
   mockGetWatch,
+
+  mockGetMovie,
 ]
