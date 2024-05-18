@@ -1,4 +1,4 @@
-import { getBestMoviesWithInfos, getNowPlayingWithThumbnail, getPopular, getUpcoming } from '@/services'
+import { getBestMoviesWithInfos, getNowPlayingWithThumbnail, getPopularWithThumbnail, getUpcoming } from '@/services'
 import { Carousel, MainBanner } from '../components'
 import S from './styles.module.scss'
 
@@ -7,7 +7,7 @@ export default async function Home() {
     getBestMoviesWithInfos(),
     getNowPlayingWithThumbnail(),
     getUpcoming(),
-    getPopular(),
+    getPopularWithThumbnail(),
   ])
 
   return (

@@ -1,4 +1,4 @@
-import { getFullPopular } from '@/services'
+import { getPopularFull } from '@/services'
 import { Department } from '../../components'
 import S from './styles.module.scss'
 
@@ -12,7 +12,7 @@ interface SuggestionsProps {
 export default async function Suggestions(props: SuggestionsProps) {
   const page = props.searchParams.page
 
-  const [popular] = await Promise.all([getFullPopular({ page: page ?? '1' })])
+  const [popular] = await Promise.all([getPopularFull({ page: page ?? '1' })])
 
   return (
     <main className={S.main}>
