@@ -9,11 +9,13 @@ import {
   mockGetPopular,
   mockGetRecommendations,
   mockGetSocialMedia,
+  mockGetUpcoming,
   mockGetWatch,
 } from '@/services'
 
 export const handlers = [
   mockGetNowPlaying,
+  mockGetUpcoming,
   mockGetPopular,
 
   mockGetBestMovies,
