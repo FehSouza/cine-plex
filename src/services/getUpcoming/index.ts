@@ -1,14 +1,15 @@
-import { Movie } from '@/@types'
+import { FullMovie } from '@/@types'
 import { optionsOneHour } from '../configs'
 
-export async function getUpcoming() {
-  const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&region=BR', optionsOneHour)
-  const result = (await response.json()) as { results: Movie[] }
-  const filteredList = result.results?.filter((result) => result.backdrop_path && result.poster_path)
+const URL = 'https://api.themoviedb.org/3/movie/upcoming'
 
-  const sortByReleaseDate = filteredList?.sort((a, b) => {
-    return a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0
+export async function getUpcoming() {
+  const searchParams = new URLSearchParams({
+    language: 'pt-BR',
+    region: 'BR',
   })
 
-  return sortByReleaseDate
+  const response = await fetch(`${URL}?${searchParams.toString()}`, optionsOneHour)
+  const result = (await response.json()) as FullMovie
+  return result
 }

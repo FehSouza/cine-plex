@@ -1,7 +1,11 @@
 import { Certification, Movie, WatchData, WatchResults } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
 
-export function sortByReleaseDate(movies: Movie[]) {
+export function sortByReleaseDateAsc(movies: Movie[]) {
+  return movies?.sort((a, b) => (a.release_date < b.release_date ? -1 : a.release_date > b.release_date ? 1 : 0))
+}
+
+export function sortByReleaseDateDesc(movies: Movie[]) {
   return movies?.sort((a, b) => (a.release_date > b.release_date ? -1 : a.release_date < b.release_date ? 1 : 0))
 }
 

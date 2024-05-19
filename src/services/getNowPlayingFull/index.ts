@@ -1,9 +1,9 @@
 import { getMoviesFullProps } from '@/@types'
-import { sortByReleaseDate } from '@/utils'
+import { sortByReleaseDateDesc } from '@/utils'
 import { getNowPlaying } from '../getNowPlaying'
 
 export async function getNowPlayingFull({ page }: getMoviesFullProps) {
   const response = await getNowPlaying({ page })
-  const sortedList = sortByReleaseDate(response.results)
+  const sortedList = sortByReleaseDateDesc(response.results)
   return { ...response, results: sortedList }
 }
