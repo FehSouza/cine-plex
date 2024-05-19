@@ -6,6 +6,7 @@ import {
   mockGetNowPlaying,
   mockGetPerson,
   mockGetPersonCredits,
+  mockGetPopular,
   mockGetRecommendations,
   mockGetSocialMedia,
   mockGetWatch,
@@ -13,6 +14,7 @@ import {
 
 export const handlers = [
   mockGetNowPlaying,
+  mockGetPopular,
 
   mockGetBestMovies,
   mockGetClassifications,
