@@ -10,6 +10,7 @@ import {
   mockGetRecommendations,
   mockGetSocialMedia,
   mockGetUpcoming,
+  mockGetVideos,
   mockGetWatch,
 } from '@/services'
 
@@ -25,6 +26,7 @@ export const handlers = [
   mockGetPersonCredits,
   mockGetRecommendations,
   mockGetSocialMedia,
+  mockGetVideos,
   mockGetWatch,
 
   mockGetMovie,
