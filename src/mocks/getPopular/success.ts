@@ -689,3 +689,5 @@ export const MOCK_GET_POPULAR_PAGE_2 = {
   total_pages: 44222,
   total_results: 884428,
 }
+
+export const MOCK_GET_POPULAR_WITHOUT_RESULTS = { page: 1, results: [], total_pages: 1, total_results: 0 }

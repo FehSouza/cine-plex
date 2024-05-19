@@ -1,3 +1,5 @@
+import { PersonCast, PersonCrew } from '@/@types'
+
 export const MOCK_GET_PERSON_CREDITS = {
   cast: [
     {
@@ -396,7 +398,7 @@ export const MOCK_GET_PERSON_CREDITS = {
       credit_id: '65e76d6f6bdec301859b61b6',
       order: 3,
     },
-  ],
+  ] as PersonCast[],
   crew: [
     {
       adult: false,
@@ -538,6 +540,6 @@ export const MOCK_GET_PERSON_CREDITS = {
       department: 'Production',
       job: 'Co-Producer',
     },
-  ],
+  ] as PersonCrew[],
   id: 174514,
 }
