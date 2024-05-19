@@ -5,7 +5,7 @@ import {
   getCreditsMovie,
   getMovie,
   getRecommendationsWithThumbnail,
-  getVideo,
+  getVideosYouTube,
   getWatchWithInfos,
 } from '@/services'
 import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
@@ -25,7 +25,7 @@ export default async function Movie({ params }: MovieProps) {
     getMovie(id),
     getClassificationsByRegion(id),
     getCreditsMovie(id),
-    getVideo(id),
+    getVideosYouTube(id),
     getWatchWithInfos(id),
     getRecommendationsWithThumbnail(id),
   ])

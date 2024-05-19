@@ -1,4 +1,4 @@
-import { Certification, Movie, WatchData, WatchResults } from '@/@types'
+import { Certification, Movie, Video, WatchData, WatchResults } from '@/@types'
 import { COLOR_DICTIONARY } from '@/dictionary'
 
 export function sortByReleaseDateAsc(movies: Movie[]) {
@@ -11,6 +11,10 @@ export function sortByReleaseDateDesc(movies: Movie[]) {
 
 export function removeMovieWithoutThumbnail(movies: Movie[]) {
   return movies?.filter((res) => res.backdrop_path && res.poster_path)
+}
+
+export function removeVideosAreNotYouTube(videos: Video[]) {
+  return videos?.filter((res) => res.site === 'YouTube' && res.key && res.official)
 }
 
 export function removeMovieWithoutInfos(movies: Movie[]) {
