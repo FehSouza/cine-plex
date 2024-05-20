@@ -72,7 +72,7 @@ const MOCK_WATCH = {
   ],
 }
 
-describe.only('ProvidersToWatch', () => {
+describe('ProvidersToWatch', () => {
   it('deve renderizar o ProvidersToWatch', () => {
     render(<ProvidersToWatch providers={MOCK_WATCH.buy} id="" title="" titleMovie="" />)
     expect(screen.getByTestId('providers-to-watch')).toBeVisible()

@@ -11,7 +11,7 @@ import S from './styles.module.scss'
 interface BiographyProps {
   person: Person
   quantCredits: number
-  socialMedia: string[][]
+  socialMedia: [string, string | null][]
 }
 
 export const Biography = ({ person, quantCredits, socialMedia }: BiographyProps) => {

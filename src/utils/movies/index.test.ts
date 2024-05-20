@@ -1,6 +1,5 @@
 import { MOCK_GET_CLASSIFICATIONS, MOCK_GET_UPCOMING_PAGE_1, MOCK_GET_VIDEOS, MOCK_GET_WATCH } from '@/mocks'
-import { describe } from 'node:test'
-import { expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
   filterClassificationsByRegion,
   filterWatchWithInfos,
@@ -1196,7 +1195,7 @@ const MOCK_FILTER_WATCH_WITH_INFOS_FORMATTED = {
   ],
 }
 
-describe.only('movies', () => {
+describe('movies', () => {
   it('sortByReleaseDateAsc', () => {
     const mock = [...MOCK_GET_UPCOMING_PAGE_1.results]
     const SUT = sortByReleaseDateAsc(mock)
