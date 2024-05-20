@@ -448,6 +448,14 @@ export const MOCK_GET_WATCH = {
     },
     BR: {
       link: 'https://www.themoviedb.org/movie/787699-wonka/watch?locale=BR',
+      ads: [
+        {
+          logo_path: '/9ghgSC0MA082EL6HLCW3GalykFD.jpg',
+          provider_id: 2,
+          provider_name: 'Apple TV',
+          display_priority: 10,
+        },
+      ],
       rent: [
         {
           logo_path: '/9ghgSC0MA082EL6HLCW3GalykFD.jpg',

@@ -10,7 +10,6 @@ export async function getVideos(id: string) {
 
   const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?${searchParams.toString()}`, optionsOneDay)
   const results = (await response.json()) as Videos
-  console.log(JSON.stringify(results, null, 2))
   return results
 }
 

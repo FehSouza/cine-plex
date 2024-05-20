@@ -237,16 +237,16 @@ export interface KnownFor {
 
 export interface SocialMedia {
   id: number
-  freebase_mid: string
-  freebase_id: string
-  imdb_id: string
-  tvrage_id: number
-  wikidata_id: string
-  facebook_id: string
-  instagram_id: string
-  tiktok_id: string
-  twitter_id: string
-  youtube_id: string
+  freebase_mid: string | null
+  freebase_id: string | null
+  imdb_id: string | null
+  tvrage_id: number | null
+  wikidata_id: string | null
+  facebook_id: string | null
+  instagram_id: string | null
+  tiktok_id: string | null
+  twitter_id: string | null
+  youtube_id: string | null
 }
 
 export interface PersonCredits {
