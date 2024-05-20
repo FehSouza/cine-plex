@@ -301,7 +301,7 @@ export interface PersonCrew {
   credit_id: string
   department: string
   job?: string
-  media_type: string
+  media_type?: string
   origin_country?: string[]
   original_name?: string
   first_air_date?: string
