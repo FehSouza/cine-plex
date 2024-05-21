@@ -18,10 +18,19 @@ export async function generateMetadata({ params }: PersonProps): Promise<Metadat
   const person = await getPerson(id)
   const name = person.name
   const biography = person.biography
+  const image = person.profile_path
 
   return {
     title: name,
     description: !!biography ? biography : `Veja informações da biografia de ${name}`,
+    openGraph: {
+      title: name,
+      description: !!biography ? biography : `Veja informações da biografia de ${name}`,
+      images: [!!image ? `https://image.tmdb.org/t/p/w400${image}` : '../../favicon.ico'],
+      locale: 'pt_BR',
+      siteName: 'Cine Plex',
+      type: 'profile',
+    },
   }
 }
 

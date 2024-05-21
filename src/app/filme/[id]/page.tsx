@@ -27,10 +27,19 @@ export async function generateMetadata({ params }: MovieProps): Promise<Metadata
   const title = movie.title
   const titleFormatted = `${title} ${yearFormatted}`
   const overview = movie.overview
+  const image = movie.backdrop_path
 
   return {
     title: titleFormatted,
     description: !!overview ? `${titleFormatted} - ${overview}` : `Veja informações do filme ${titleFormatted}`,
+    openGraph: {
+      title: title,
+      description: !!overview ? overview : `Veja informações do filme ${title}`,
+      images: [!!image ? `https://image.tmdb.org/t/p/w1280${image}` : '../../favicon.ico'],
+      locale: 'pt_BR',
+      siteName: 'Cine Plex',
+      type: 'video.movie',
+    },
   }
 }
 
