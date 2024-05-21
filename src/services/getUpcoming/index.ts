@@ -1,9 +1,10 @@
 import { FullMovie } from '@/@types'
 import { MOCK_GET_UPCOMING_PAGE_1 } from '@/mocks'
+import { NEXT_PUBLIC_BASE_URL } from '@/utils'
 import { HttpResponse, http } from 'msw'
 import { optionsOneHour } from '../configs'
 
-const URL = 'https://api.themoviedb.org/3/movie/upcoming'
+const endpoint = `${NEXT_PUBLIC_BASE_URL}/movie/upcoming`
 
 export async function getUpcoming() {
   const searchParams = new URLSearchParams({
@@ -11,9 +12,9 @@ export async function getUpcoming() {
     region: 'BR',
   })
 
-  const response = await fetch(`${URL}?${searchParams.toString()}`, optionsOneHour)
+  const response = await fetch(`${endpoint}?${searchParams.toString()}`, optionsOneHour)
   const result = (await response.json()) as FullMovie
   return result
 }
 
-export const mockGetUpcoming = http.get(URL, () => HttpResponse.json(MOCK_GET_UPCOMING_PAGE_1))
+export const mockGetUpcoming = http.get(endpoint, () => HttpResponse.json(MOCK_GET_UPCOMING_PAGE_1))

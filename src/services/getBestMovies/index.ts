@@ -1,9 +1,10 @@
 import { FullMovie } from '@/@types'
 import { MOCK_GET_BEST_MOVIES } from '@/mocks'
+import { NEXT_PUBLIC_BASE_URL } from '@/utils'
 import { HttpResponse, http } from 'msw'
 import { optionsOneDay } from '../configs'
 
-const URL = 'https://api.themoviedb.org/3/discover/movie'
+const endpoint = `${NEXT_PUBLIC_BASE_URL}/discover/movie`
 
 export async function getBestMovies() {
   const searchParams = new URLSearchParams({
@@ -16,9 +17,9 @@ export async function getBestMovies() {
     'vote_average.gte': '8.5',
   })
 
-  const response = await fetch(`${URL}?${searchParams.toString()}`, optionsOneDay)
+  const response = await fetch(`${endpoint}?${searchParams.toString()}`, optionsOneDay)
   const result = (await response.json()) as FullMovie
   return result
 }
 
-export const mockGetBestMovies = http.get(URL, () => HttpResponse.json(MOCK_GET_BEST_MOVIES))
+export const mockGetBestMovies = http.get(endpoint, () => HttpResponse.json(MOCK_GET_BEST_MOVIES))

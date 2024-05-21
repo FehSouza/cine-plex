@@ -4,5 +4,6 @@ namespace NodeJS {
     API_TOKEN: string
     API_MOCK_ENABLED: boolean
     DISABLE_IMAGE_OPTIMIZATION?: boolean
+    NEXT_PUBLIC_BASE_URL: string
   }
 }
