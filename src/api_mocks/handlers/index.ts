@@ -9,6 +9,7 @@ import {
   mockGetPopular,
   mockGetRecommendations,
   mockGetSearch,
+  mockGetSearchPerson,
   mockGetSocialMedia,
   mockGetUpcoming,
   mockGetVideos,
@@ -23,13 +24,14 @@ export const handlers = [
   mockGetBestMovies,
   mockGetClassifications,
   mockGetCreditsMovie,
-  mockGetPerson,
   mockGetPersonCredits,
   mockGetRecommendations,
   mockGetSocialMedia,
   mockGetVideos,
   mockGetWatch,
   mockGetSearch,
+  mockGetSearchPerson,
 
   mockGetMovie,
+  mockGetPerson,
 ]
