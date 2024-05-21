@@ -3,6 +3,7 @@ import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
 import { getPerson, getPersonCredits, getSocialMediaSelected } from '@/services'
 import { getListCredits, loader200, removeDuplicatesById } from '@/utils'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsImage } from 'react-icons/bs'
@@ -10,6 +11,18 @@ import S from './styles.module.scss'
 
 interface PersonProps {
   params: { id: string }
+}
+
+export async function generateMetadata({ params }: PersonProps): Promise<Metadata> {
+  const id = params.id
+  const person = await getPerson(id)
+  const name = person.name
+  const biography = person.biography
+
+  return {
+    title: name,
+    description: !!biography ? biography : `Veja informações da biografia de ${name}`,
+  }
 }
 
 export default async function Person({ params }: PersonProps) {

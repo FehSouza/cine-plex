@@ -9,6 +9,7 @@ import {
   getWatchWithInfos,
 } from '@/services'
 import { formatDate, formatHours, formatReleaseDate, loader200, loaderOriginal } from '@/utils'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsFillStarFill, BsImage, BsPerson } from 'react-icons/bs'
@@ -16,6 +17,21 @@ import S from './styles.module.scss'
 
 interface MovieProps {
   params: { id: string }
+}
+
+export async function generateMetadata({ params }: MovieProps): Promise<Metadata> {
+  const id = params.id
+  const movie = await getMovie(id)
+  const year = movie.release_date
+  const yearFormatted = !!year ? `(${formatReleaseDate(year)})` : ''
+  const title = movie.title
+  const titleFormatted = `${title} ${yearFormatted}`
+  const overview = movie.overview
+
+  return {
+    title: titleFormatted,
+    description: !!overview ? `${titleFormatted} - ${overview}` : `Veja informações do filme ${titleFormatted}`,
+  }
 }
 
 export default async function Movie({ params }: MovieProps) {

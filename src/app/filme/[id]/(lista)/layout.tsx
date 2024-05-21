@@ -1,7 +1,8 @@
 import { TeamTabs } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getMovie } from '@/services'
-import { loader200 } from '@/utils'
+import { formatReleaseDate, loader200 } from '@/utils'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsImage } from 'react-icons/bs'
@@ -11,6 +12,20 @@ import S from './styles.module.scss'
 interface RootLayoutProps {
   children: React.ReactNode
   params: { id: string }
+}
+
+export async function generateMetadata({ params }: RootLayoutProps): Promise<Metadata> {
+  const id = params.id
+  const movie = await getMovie(id)
+  const year = movie.release_date
+  const yearFormatted = !!year ? `(${formatReleaseDate(year)})` : ''
+  const title = movie.title
+  const titleFormatted = `${title} ${yearFormatted}`
+
+  return {
+    title: `${titleFormatted} - Elenco & Equipe`,
+    description: `Veja o elenco e a equipe do filme ${titleFormatted}`,
+  }
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
