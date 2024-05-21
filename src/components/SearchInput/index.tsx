@@ -44,7 +44,7 @@ export const SearchInput = ({
     clearTimeout(timerDebounce.current)
 
     timerDebounce.current = setTimeout(async () => {
-      const result = await getSearchResults(value)
+      const result = await getSearchResults({ query: value })
       setLoading(false)
       setMovieSuggestions(result.movies)
       setPersonSuggestions(result.people)

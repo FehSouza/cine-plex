@@ -10,6 +10,7 @@ import {
   mockGetRecommendations,
   mockGetSearch,
   mockGetSearchPerson,
+  mockGetSearchResults,
   mockGetSocialMedia,
   mockGetUpcoming,
   mockGetVideos,
@@ -31,6 +32,7 @@ export const handlers = [
   mockGetWatch,
   mockGetSearch,
   mockGetSearchPerson,
+  mockGetSearchResults,
 
   mockGetMovie,
   mockGetPerson,
