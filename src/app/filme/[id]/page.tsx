@@ -1,4 +1,4 @@
-import { Carousel, LoaderBackdrop, LoaderPoster, ProvidersToWatch, VideoLazyLoad } from '@/components'
+import { Carousel, LoaderBackdrop, LoaderPoster, PageNotFound, ProvidersToWatch, VideoLazyLoad } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import {
   getClassificationsByRegion,
@@ -22,9 +22,11 @@ interface MovieProps {
 export async function generateMetadata({ params }: MovieProps): Promise<Metadata> {
   const id = params.id
   const movie = await getMovie(id)
+  const title = movie.title
+  if (!title) return { title: 'Page Not Found' }
+
   const year = movie.release_date
   const yearFormatted = !!year ? `(${formatReleaseDate(year)})` : ''
-  const title = movie.title
   const titleFormatted = `${title} ${yearFormatted}`
   const overview = movie.overview
   const image = movie.backdrop_path
@@ -54,6 +56,8 @@ export default async function Movie({ params }: MovieProps) {
     getWatchWithInfos(id),
     getRecommendationsWithThumbnail(id),
   ])
+
+  if (!movie.title) return <PageNotFound />
 
   const image = movie.backdrop_path
   const poster = movie.poster_path
