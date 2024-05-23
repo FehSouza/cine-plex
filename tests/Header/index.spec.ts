@@ -32,25 +32,40 @@ test.describe('Header', () => {
     await expect(page.getByRole('heading', { name: 'Filmes em Cartaz' })).toBeVisible()
   })
 
-  test.skip('Deve existir busca com sugestão', async ({ page }) => {
+  test('Deve existir busca com sugestão', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const navbarSearchButton = page.getByTestId('navbar-search-button')
-    await navbarSearchButton.click()
-    const navbarSearch = page.getByTestId('search-input')
-    await navbarSearch.fill('test')
-    const list = page.getByTestId('search-results-title-filmes-sugeridos')
+    await expect(navbarSearchButton).toBeVisible()
 
-    // const list2 = page.getByTestId('search-results-pessoas-sugeridas ul')
-    await expect(list).toBeVisible()
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+    await expect(searchInput).toBeVisible()
+
+    await searchInput.fill('test')
+    await page.waitForTimeout(1000)
+
+    const listMovies = page.getByTestId('search-results-filmes-sugeridos')
+    await expect(listMovies).toBeVisible()
+    const movies = listMovies.getByRole('link', { name: 'Test' })
+    await expect(movies).toHaveCount(5)
+
+    const listPeople = page.getByTestId('search-results-pessoas-sugeridas')
+    await expect(listPeople).toBeVisible()
+    const people = listPeople.getByRole('link', { name: 'Test' })
+    await expect(people).toHaveCount(5)
   })
 
-  test.skip('Deve existir busca ao navegar', async ({ page }) => {
+  test('Deve existir busca ao navegar', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await expect(navbarSearchButton).toBeVisible()
+
     await navbarSearchButton.click()
-    const navbarSearch = page.getByTestId('search-input')
-    await navbarSearch.fill('test')
-    await navbarSearch.press('Enter')
+    const searchInput = page.getByTestId('search-input')
+    await expect(searchInput).toBeVisible()
+
+    await searchInput.fill('test')
+    await searchInput.press('Enter')
     await expect(page.getByRole('heading', { name: 'test' })).toBeVisible()
   })
 
@@ -60,7 +75,6 @@ test.describe('Header', () => {
     await expect(accountButton).toBeVisible()
 
     await accountButton.click()
-    const text = page.getByText('Conta')
-    await expect(text).toBeInViewport()
+    await expect(page.getByRole('heading', { name: 'Conta' })).toBeVisible()
   })
 })
