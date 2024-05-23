@@ -11,7 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Account() {
   return (
     <main className={S.main}>
-      <div className={S.container}>Conta</div>
+      <div className={S.container}>
+        <h1 className={S.title}>Conta</h1>
+      </div>
     </main>
   )
 }
