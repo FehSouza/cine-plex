@@ -17,6 +17,7 @@ export default defineConfig({
         '**/src/services/index.ts**',
         '**/src/utils/index.ts**',
         ...coverageConfigDefaults.exclude,
+        '**/tests'
       ],
     },
   },
