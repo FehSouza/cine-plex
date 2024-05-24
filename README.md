@@ -27,7 +27,7 @@ Toda a implementação está sendo realizada visando uma boa performance de nave
 
 <h4>Front-end</h4>
 
-HTML5, SASS, ReactJS, re-state, Typescript, Embla Carousel, NextJS, eslint, prettier
+SASS, ReactJS, re-state, Typescript, Embla Carousel, NextJS, eslint, prettier
 
 &nbsp;
 
