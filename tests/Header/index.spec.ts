@@ -14,10 +14,14 @@ test.describe('Header', () => {
   })
 
   test('Deve existir logo', async ({ page }) => {
-    await page.goto('https://cine-plex.vercel.app/')
+    await page.goto('https://cine-plex.vercel.app/filme/278')
     const header = page.getByTestId('header-desktop')
     const logo = header.getByTestId('logo')
     await expect(logo).toBeVisible()
+
+    await logo.click()
+    await page.waitForTimeout(1000)
+    expect(page.url()).toBe('https://cine-plex.vercel.app/')
   })
 
   test('Deve existir menu', async ({ page }) => {
