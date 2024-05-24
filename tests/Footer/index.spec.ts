@@ -58,4 +58,14 @@ test.describe('Footer', () => {
     await expect(brand).toBeVisible()
     await expect(brand.getByText('Cine Plex')).toBeVisible()
   })
+
+  test('Deve estar com o ano vigente no rodapé', async ({ page }) => {
+    const date = new Date()
+    const year = String(date.getFullYear())
+
+    await page.goto('https://cine-plex.vercel.app/')
+    const brand = page.getByTestId('footer-bottom')
+    await brand.scrollIntoViewIfNeeded()
+    await expect(brand.getByText(year)).toBeVisible()
+  })
 })
