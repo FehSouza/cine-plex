@@ -15,10 +15,15 @@
 }
 
 .main {
-  flex: 1;
-  background-color: #010b13;
   display: flex;
+  flex: 1;
   margin-top: 96px;
+  padding-bottom: 40px;
+  background-color: #010b13;
+
+  @media (max-width: 768px) {
+    padding-bottom: 32px;
+  }
 }
 
 .content {
@@ -38,4 +43,59 @@
   background-color: #b9bbbd40;
   border: none;
   margin: 0 auto;
+}
+
+.containerNotFound {
+  width: 100%;
+  max-width: 1232px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.titleNotFound {
+  margin-top: 16px;
+  font-size: 28px;
+  font-weight: 700;
+
+  @media (max-width: 1024px) and (min-width: 769px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    font-size: 18px;
+  }
+}
+
+.textNotFound {
+  margin-top: 48px;
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+  }
+}
+
+.linkNotFound {
+  width: fit-content;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  margin-top: 48px;
+  padding: 0 16px;
+  background-color: #669aff;
+  border-radius: 8px;
+  color: #ffffff;
+  transition-duration: 350ms;
+
+  &:hover {
+    background-color: #4283ff;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 32px;
+  }
 }

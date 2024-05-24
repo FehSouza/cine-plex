@@ -1,3 +1,4 @@
+import PageNotFound from '@/app/not-found'
 import { TeamTabs } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { getMovie } from '@/services'
@@ -17,6 +18,8 @@ interface RootLayoutProps {
 export async function generateMetadata({ params }: RootLayoutProps): Promise<Metadata> {
   const id = params.id
   const movie = await getMovie(id)
+  if (!movie || !movie?.title) return { title: 'Page Not Found' }
+
   const year = movie.release_date
   const yearFormatted = !!year ? `(${formatReleaseDate(year)})` : ''
   const title = movie.title
@@ -32,6 +35,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   const id = params.id
 
   const [movie] = await Promise.all([getMovie(id)])
+  if (!movie || !movie?.title) return <PageNotFound />
+
   const poster = movie.poster_path
   const title = movie.title
 

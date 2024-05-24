@@ -1,3 +1,4 @@
+import PageNotFound from '@/app/not-found'
 import { Biography, CreditsList } from '@/components'
 import { DISABLE_IMAGE_OPTIMIZATION } from '@/config'
 import { DICTIONARY_GENDER } from '@/dictionary'
@@ -16,6 +17,8 @@ interface PersonProps {
 export async function generateMetadata({ params }: PersonProps): Promise<Metadata> {
   const id = params.id
   const person = await getPerson(id)
+  if (!person || !person?.name) return { title: 'Page Not Found' }
+
   const name = person.name
   const biography = person.biography
   const image = person.profile_path
@@ -38,6 +41,7 @@ export default async function Person({ params }: PersonProps) {
   const id = params.id
 
   const [person, credits] = await Promise.all([getPerson(id), getPersonCredits(id)])
+  if (!person || !person?.name) return <PageNotFound />
 
   const name = person.name
   const biography = person.biography
