@@ -12,7 +12,7 @@ interface CarouselArrowProps {
 export function CarouselArrow({ prev, hideMobile, hideDesktop, banner, handleClick }: CarouselArrowProps) {
   return (
     <button
-      data-testid="carousel-arrow"
+      data-testid={`carousel-arrow-${prev ? 'prev' : 'next'}`}
       aria-label={`Botão de ${prev ? 'voltar' : 'avançar'}`}
       className={[
         S.arrow,
@@ -25,9 +25,9 @@ export function CarouselArrow({ prev, hideMobile, hideDesktop, banner, handleCli
     >
       <div className={S.arrowInternal}>
         {prev ? (
-          <IoIosArrowBack data-testid="carousel-arrow-icon-prev" size={18} />
+          <IoIosArrowBack data-testid="carousel-arrow-prev-icon" size={18} />
         ) : (
-          <IoIosArrowForward data-testid="carousel-arrow-icon-next" size={18} />
+          <IoIosArrowForward data-testid="carousel-arrow-next-icon" size={18} />
         )}
       </div>
     </button>

@@ -34,7 +34,7 @@ export function MainBannerCard({ index, id, backdrop, title, description, grade 
   const formattedGrade = grade.toFixed(1).replace('.0', '')
 
   return (
-    <Link data-testid="main-banner-card" className={S.container} href={`/filme/${id}`}>
+    <Link data-testid={`main-banner-card-${index}`} className={S.container} href={`/filme/${id}`}>
       {!!backdrop && (
         <Image
           data-testid="main-banner-card-image"

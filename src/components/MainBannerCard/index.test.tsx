@@ -4,13 +4,15 @@ import { MainBannerCard } from '.'
 
 describe('MainBannerCard', () => {
   it('deve renderizar o MainBannerCard', () => {
-    render(<MainBannerCard index={0} id={1} backdrop="" title="" description="" grade={1} />)
-    expect(screen.getByTestId('main-banner-card')).toBeVisible()
+    const index = 0
+    render(<MainBannerCard index={index} id={1} backdrop="" title="" description="" grade={1} />)
+    expect(screen.getByTestId(`main-banner-card-${index}`)).toBeVisible()
   })
 
   it('o id no link deve conter o valor passado ao componente', () => {
-    render(<MainBannerCard index={0} id={212121} backdrop="" title="" description="" grade={1} />)
-    const link = screen.getByTestId<HTMLLinkElement>('main-banner-card')
+    const index = 0
+    render(<MainBannerCard index={index} id={212121} backdrop="" title="" description="" grade={1} />)
+    const link = screen.getByTestId<HTMLLinkElement>(`main-banner-card-${index}`)
     expect(link.href).contain('212121')
   })
 

@@ -19,7 +19,7 @@ export function MainBanner({ movies }: MainBannerProps) {
   const handleNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
 
   return (
-    <div className={S.embla} ref={emblaRef}>
+    <div data-testid="main-banner" className={S.embla} ref={emblaRef}>
       <div className={S.emblaContainer}>
         {movieList?.map((movie, index) => {
           const id = movie.id
