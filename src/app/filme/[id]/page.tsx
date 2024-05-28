@@ -75,7 +75,11 @@ export default async function Movie({ params }: MovieProps) {
   const tagline = movie.tagline
   const originalTitle = movie.original_title
   const description = movie.overview
-  const productionCompanies = movie.production_companies
+  const productionCompany = movie.production_companies?.[0]
+  const productionId = productionCompany?.id
+  const productionName = productionCompany?.name
+  const productionNameFormatted = productionName?.replace(/\s/g, '-')
+
   const directorInfo = credits.crew.find((person) => person.job === 'Director')
   const directorName = directorInfo?.name
   const directorId = directorInfo?.id
@@ -204,12 +208,12 @@ export default async function Movie({ params }: MovieProps) {
           </>
         )}
 
-        {!!productionCompanies?.length && (
+        {!!productionCompany && (
           <>
             <span className={S.subTitle2}>Produção</span>
-            <span key={`company-${productionCompanies[0].id}`} className={S.content}>
-              {productionCompanies[0].name}
-            </span>
+            <Link className={[S.content, S.contentLink].join(' ')} href={`/produtora/${productionId}-${productionNameFormatted}`}>
+              {productionName}
+            </Link>
           </>
         )}
 

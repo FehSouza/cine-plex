@@ -325,3 +325,8 @@ export type ListCredits = (
 export interface getMoviesFullProps {
   page: string
 }
+
+export interface getProductionCompanyMoviesProps {
+  page: string
+  idCompany: string
+}

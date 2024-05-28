@@ -1,7 +1,7 @@
 import {
-  mockGetBestMovies,
   mockGetClassifications,
   mockGetCreditsMovie,
+  mockGetDiscoverMovie,
   mockGetMovie,
   mockGetNowPlaying,
   mockGetPerson,
@@ -22,7 +22,7 @@ export const handlers = [
   mockGetUpcoming,
   mockGetPopular,
 
-  mockGetBestMovies,
+  mockGetDiscoverMovie,
   mockGetClassifications,
   mockGetCreditsMovie,
   mockGetPersonCredits,

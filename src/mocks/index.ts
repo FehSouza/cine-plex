@@ -1,6 +1,6 @@
-export * from './getBestMovies'
 export * from './getClassifications'
 export * from './getCreditsMovie'
+export * from './getDiscoverMovies'
 export * from './getMovie'
 export * from './getMovieSuggestions'
 export * from './getNowPlaying'

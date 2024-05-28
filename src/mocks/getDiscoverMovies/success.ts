@@ -1,4 +1,4 @@
-export const MOCK_GET_BEST_MOVIES = {
+export const MOCK_GET_DISCOVER_MOVIES = {
   page: 1,
   results: [
     {

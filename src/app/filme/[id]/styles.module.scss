@@ -280,8 +280,12 @@
   margin-top: 4px;
 }
 
-.contentLink:hover {
-  color: #b9bbbd;
+.contentLink {
+  text-decoration: underline;
+
+  &:hover {
+    color: #b9bbbd;
+  }
 }
 
 .comma {
