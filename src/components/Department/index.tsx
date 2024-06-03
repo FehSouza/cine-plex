@@ -26,14 +26,26 @@ export const Department = ({ title, movies, upcoming }: DepartmentProps) => {
         {!!movies?.total_results && (
           <section data-testid="department-movies-container" className={[S.moviesContainer, !results.length ? S.skeleton : ''].join(' ')}>
             {!!results.length &&
-              results.map((movie) => {
+              results.map((movie, index) => {
                 const id = movie.id
                 const date = movie.release_date
                 const grade = movie.vote_average
                 const poster = movie.poster_path
                 const title = movie.title
 
-                return <MovieCard key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} department />
+                return (
+                  <MovieCard
+                    index={index}
+                    key={id}
+                    id={id}
+                    date={date}
+                    grade={grade}
+                    poster={poster}
+                    title={title}
+                    upcoming={upcoming}
+                    department
+                  />
+                )
               })}
 
             {!results.length && <MovieCardSkeleton upcoming={upcoming} />}

@@ -42,20 +42,22 @@ export function Carousel({ title, hrefTitle, movies, upcoming, moviePage }: Caro
   const hideArrowsMobile = movies?.length <= 2
   const hideArrowsDesktop = movies?.length <= 4
 
+  const titleTestId = title?.replace(/\s/g, '-')?.toLowerCase()
+
   return (
-    <section className={S.carousel}>
-      <CarouselTitle moviePage={moviePage} hrefTitle={hrefTitle} title={title} />
+    <section data-testid={`carousel-${titleTestId}`} className={S.carousel}>
+      {!!title && <CarouselTitle moviePage={moviePage} hrefTitle={hrefTitle} title={title} />}
 
       <div className={[S.embla, moviePage ? S.emblaMoviePage : ''].join(' ')} ref={emblaRef}>
         <div className={S.emblaContainer}>
-          {movieList?.map((movie) => {
+          {movieList?.map((movie, index) => {
             const id = movie.id
             const date = movie.release_date
             const grade = movie.vote_average
             const poster = movie.poster_path
             const title = movie.title
 
-            return <MovieCard key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} />
+            return <MovieCard index={index} key={id} id={id} date={date} grade={grade} poster={poster} title={title} upcoming={upcoming} />
           })}
         </div>
 

@@ -8,10 +8,12 @@ interface CarouselTitleProps {
 }
 
 export function CarouselTitle({ moviePage, hrefTitle, title }: CarouselTitleProps) {
+  const titleTestId = title.replace(/\s/g, '-').toLowerCase()
+
   return (
-    <h2 data-testid="carousel-title" className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>
+    <h2 data-testid={`carousel-${titleTestId}-title`} className={[S.title, moviePage ? S.titleMoviePage : ''].join(' ')}>
       {hrefTitle ? (
-        <Link data-testid="carousel-title-link" href={hrefTitle}>
+        <Link data-testid={`carousel-${titleTestId}-title-link`} href={hrefTitle}>
           {title}
         </Link>
       ) : (

@@ -17,7 +17,7 @@ test.describe('Footer', () => {
     await expect(logo).toContainText('Cine Plex')
 
     await logo.click()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(750)
     expect(page.url()).toBe('https://cine-plex.vercel.app/')
   })
 
@@ -45,7 +45,7 @@ test.describe('Footer', () => {
     await expect(link).toBeVisible()
 
     await link.click()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(750)
     const popup = await newPagePromise
     expect(popup.url()).toBe('https://pt-br.facebook.com/')
   })

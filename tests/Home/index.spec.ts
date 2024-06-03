@@ -22,24 +22,45 @@ test.describe('Home', () => {
     await expect(arrowNext).toBeVisible()
   })
 
-  test.skip('Carrossel principal - deve passar a imagem ao clicar na arrow de próximo', async ({ page }) => {
+  test('Carrossel principal - deve passar a imagem ao clicar nas arrows', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const carousel = page.getByTestId('main-banner')
-
     const card0 = carousel.getByTestId('main-banner-card-0')
     const card1 = carousel.getByTestId('main-banner-card-1')
+    const card2 = carousel.getByTestId('main-banner-card-2')
+    const arrowNext = carousel.getByTestId('carousel-arrow-next')
+    const arrowPrev = carousel.getByTestId('carousel-arrow-prev')
+
     await expect(card0).toBeInViewport()
     await expect(card1).not.toBeInViewport()
+    await expect(card2).not.toBeInViewport()
 
-    const arrowNext = carousel.getByTestId('carousel-arrow-next')
     await arrowNext.click()
+    await page.waitForTimeout(250)
+    await arrowNext.click()
+    await page.waitForTimeout(250)
 
-    await page.waitForTimeout(3000)
+    await expect(card0).not.toBeInViewport()
+    await expect(card1).toBeInViewport()
+    await expect(card2).toBeInViewport()
 
-    const carouselD = page.getByTestId('main-banner')
-    const card0D = carouselD.getByTestId('main-banner-card-0')
-    const card1D = carouselD.getByTestId('main-banner-card-1')
-    await expect(card0D).toBeInViewport()
-    await expect(card1D).toBeInViewport()
+    await arrowPrev.click()
+    await page.waitForTimeout(250)
+    await arrowPrev.click()
+    await page.waitForTimeout(250)
+
+    await expect(card0).toBeInViewport()
+    await expect(card1).toBeInViewport()
+    await expect(card2).not.toBeInViewport()
+  })
+
+  test('Carrossel principal - deve navegar ao clicar em algum banner', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const carousel = page.getByTestId('main-banner')
+    const card0 = carousel.getByTestId('main-banner-card-0')
+
+    await card0.click()
+    await page.waitForTimeout(750)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
   })
 })

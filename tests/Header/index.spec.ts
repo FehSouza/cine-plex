@@ -20,7 +20,7 @@ test.describe('Header', () => {
     await expect(logo).toBeVisible()
 
     await logo.click()
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(750)
     expect(page.url()).toBe('https://cine-plex.vercel.app/')
   })
 
@@ -46,7 +46,7 @@ test.describe('Header', () => {
     await expect(searchInput).toBeVisible()
 
     await searchInput.fill('test')
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(750)
 
     const listMovies = page.getByTestId('search-results-filmes-sugeridos')
     await expect(listMovies).toBeVisible()

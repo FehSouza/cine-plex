@@ -7,6 +7,7 @@ import { LoaderPoster } from '../Carousel'
 import S from './styles.module.scss'
 
 interface MovieCardProps {
+  index: number
   id: number
   date: string
   grade: number
@@ -16,9 +17,9 @@ interface MovieCardProps {
   department?: boolean
 }
 
-export const MovieCard = ({ id, date, grade, poster, title, upcoming, department }: MovieCardProps) => {
+export const MovieCard = ({ index, id, date, grade, poster, title, upcoming, department }: MovieCardProps) => {
   return (
-    <Link data-testid="movie-card" href={`/filme/${id}`} className={[S.container, department ? S.department : ''].join(' ')}>
+    <Link data-testid={`movie-card-${index}`} href={`/filme/${id}`} className={[S.container, department ? S.department : ''].join(' ')}>
       <div className={S.imageWrapper}>
         {poster && (
           <Image
