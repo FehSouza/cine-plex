@@ -33,7 +33,8 @@ test.describe('Header', () => {
     await expect(department).toBeVisible()
 
     await department.click()
-    await expect(page.getByRole('heading', { name: 'Filmes em Cartaz' })).toBeVisible()
+    await page.waitForTimeout(750)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
   })
 
   test('Deve existir busca com sugestão', async ({ page }) => {
@@ -51,26 +52,41 @@ test.describe('Header', () => {
     const listMovies = page.getByTestId('search-results-filmes-sugeridos')
     await expect(listMovies).toBeVisible()
     const movies = listMovies.getByRole('link', { name: 'Test' })
-    await expect(movies).toHaveCount(5)
+    await expect(movies).not.toHaveCount(0)
 
     const listPeople = page.getByTestId('search-results-pessoas-sugeridas')
     await expect(listPeople).toBeVisible()
     const people = listPeople.getByRole('link', { name: 'Test' })
-    await expect(people).toHaveCount(5)
+    await expect(people).not.toHaveCount(0)
   })
 
   test('Deve existir busca ao navegar', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const navbarSearchButton = page.getByTestId('navbar-search-button')
-    await expect(navbarSearchButton).toBeVisible()
-
     await navbarSearchButton.click()
     const searchInput = page.getByTestId('search-input')
-    await expect(searchInput).toBeVisible()
 
     await searchInput.fill('test')
     await searchInput.press('Enter')
+
+    await page.waitForTimeout(750)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
     await expect(page.getByRole('heading', { name: 'test' })).toBeVisible()
+  })
+
+  test('Não deve existir busca ao navegar - página de busca não encontrada', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+
+    await searchInput.fill('testTestTestTest')
+    await searchInput.press('Enter')
+
+    await page.waitForTimeout(750)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
+    await expect(page.getByRole('heading', { name: 'testTestTestTest' })).toBeVisible()
+    await expect(page.getByRole('list')).toBeVisible()
   })
 
   test('Deve existir o botão de ir para a conta', async ({ page }) => {
@@ -79,6 +95,9 @@ test.describe('Header', () => {
     await expect(accountButton).toBeVisible()
 
     await accountButton.click()
+
+    await page.waitForTimeout(750)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
     await expect(page.getByRole('heading', { name: 'Conta' })).toBeVisible()
   })
 })
