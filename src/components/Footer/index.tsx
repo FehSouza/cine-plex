@@ -23,6 +23,9 @@ export const Footer = () => {
     setSelected((prev) => (prev === i ? null : i))
   }
 
+  const date = new Date()
+  const year = date.getFullYear()
+
   return (
     <footer data-testid="footer" className={S.footer}>
       <div className={S.container}>
@@ -81,7 +84,7 @@ export const Footer = () => {
         </div>
 
         <div data-testid="footer-bottom" className={S.footerBottom}>
-          <span className={S.brand}>© 2024 Cine Plex</span>
+          <span className={S.brand}>{`© ${year} Cine Plex`}</span>
         </div>
       </div>
     </footer>

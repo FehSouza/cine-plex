@@ -4,7 +4,6 @@ test.describe('Footer', () => {
   test('Deve existir footer', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const footer = page.getByTestId('footer')
-    await footer.scrollIntoViewIfNeeded()
     await expect(footer).toBeVisible()
   })
 
@@ -32,7 +31,7 @@ test.describe('Footer', () => {
     await expect(menus.getByText('Contatos')).toBeVisible()
   })
 
-  test('Deve navegar para outra página em uma nova aba', async ({ page }) => {
+  test('Deve navegar para outra página em uma nova aba - contatos', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const newPagePromise = page.waitForEvent('popup')
 
