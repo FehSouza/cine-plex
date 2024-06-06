@@ -136,7 +136,9 @@ export default async function Movie({ params }: MovieProps) {
             </span>
           )}
 
-          <h1 className={S.title}>{title}</h1>
+          <h1 data-testid="movie-page-title" className={S.title}>
+            {title}
+          </h1>
 
           <div className={S.infos}>
             {!!duration && <span className={[S.content, S.contentDuration].join(' ')}>{formatHours(duration)}</span>}
