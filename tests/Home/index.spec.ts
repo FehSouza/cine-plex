@@ -63,6 +63,25 @@ test.describe('Home', () => {
     expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
   })
 
+  test('Carrossel principal - deve navegar para o filme correto ao clicar em algum banner', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const carousel = page.getByTestId('main-banner')
+    const card = carousel.getByTestId('main-banner-card-0')
+    await expect(card).toBeVisible()
+    const cardTitle = card.getByTestId('main-banner-card-title')
+    await expect(cardTitle).toBeVisible()
+    const cardTitleText = await cardTitle.textContent()
+
+    await card.click()
+    await page.waitForTimeout(750)
+
+    const pageTitle = page.getByTestId('movie-page-title')
+    await expect(pageTitle).toBeVisible()
+    const pageTitleText = await pageTitle.textContent()
+
+    expect(cardTitleText?.toLowerCase()).toBe(pageTitleText?.toLowerCase())
+  })
+
   test('Carrossel secundário - deve renderizar pelo menos um carrossel secundário', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const numberCarousels = await page.locator('[data-testid="carousel"]').count()
@@ -126,5 +145,25 @@ test.describe('Home', () => {
     await card.dblclick()
     await page.waitForTimeout(1000)
     expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
+  })
+
+  test('Carrossel secundário - deve navegar para o filme correto ao clicar em algum banner', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const carousel = page.getByTestId('carousel').first()
+    await carousel.scrollIntoViewIfNeeded()
+    const card = carousel.getByTestId('movie-card-0')
+    await expect(card).toBeVisible()
+    const cardTitle = card.getByTestId('movie-card-title')
+    await expect(cardTitle).toBeVisible()
+    const cardTitleText = await cardTitle.textContent()
+
+    await card.dblclick()
+    await page.waitForTimeout(1000)
+
+    const pageTitle = page.getByTestId('movie-page-title')
+    await expect(pageTitle).toBeVisible()
+    const pageTitleText = await pageTitle.textContent()
+
+    expect(cardTitleText?.toLowerCase()).toBe(pageTitleText?.toLowerCase())
   })
 })

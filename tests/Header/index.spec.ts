@@ -89,6 +89,88 @@ test.describe('Header', () => {
     await expect(page.getByRole('list')).toBeVisible()
   })
 
+  test('Deve navegar para outra página ao clicar em um filme da busca', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+
+    await searchInput.fill('test')
+    await page.waitForTimeout(750)
+
+    const listMovies = page.getByTestId('search-results-filmes-sugeridos')
+    const movies = listMovies.getByRole('link', { name: 'Test' })
+
+    movies.first().click()
+    await page.waitForTimeout(1000)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
+  })
+
+  test('Deve navegar para o filme correto ao clicar em um filme da busca', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+
+    await searchInput.fill('test')
+    await page.waitForTimeout(750)
+
+    const listMovies = page.getByTestId('search-results-filmes-sugeridos')
+    const movies = listMovies.getByRole('link', { name: 'Test' })
+    const movie = movies.first()
+    const movieTitleText = await movie.textContent()
+
+    movie.click()
+    await page.waitForTimeout(1000)
+
+    const pageTitle = page.getByTestId('movie-page-title')
+    await expect(pageTitle).toBeVisible()
+    const pageTitleText = await pageTitle.textContent()
+
+    expect(movieTitleText?.toLowerCase()).toBe(pageTitleText?.toLowerCase())
+  })
+
+  test('Deve navegar para outra página ao clicar em uma pessoa da busca', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+
+    await searchInput.fill('test')
+    await page.waitForTimeout(750)
+
+    const listPeople = page.getByTestId('search-results-pessoas-sugeridas')
+    const people = listPeople.getByRole('link', { name: 'Test' })
+
+    people.first().click()
+    await page.waitForTimeout(1000)
+    expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
+  })
+
+  test('Deve navegar para a pessoa correta ao clicar em uma pessoa da busca', async ({ page }) => {
+    await page.goto('https://cine-plex.vercel.app/')
+    const navbarSearchButton = page.getByTestId('navbar-search-button')
+    await navbarSearchButton.click()
+    const searchInput = page.getByTestId('search-input')
+
+    await searchInput.fill('test')
+    await page.waitForTimeout(750)
+
+    const listPeople = page.getByTestId('search-results-pessoas-sugeridas')
+    const people = listPeople.getByRole('link', { name: 'Test' })
+    const person = people.first()
+    const personTitleText = await person.textContent()
+
+    person.click()
+    await page.waitForTimeout(1000)
+
+    const pageTitle = page.getByTestId('person-page-title')
+    await expect(pageTitle).toBeVisible()
+    const pageTitleText = await pageTitle.textContent()
+
+    expect(personTitleText?.toLowerCase()).toBe(pageTitleText?.toLowerCase())
+  })
+
   test('Deve existir o botão de ir para a conta', async ({ page }) => {
     await page.goto('https://cine-plex.vercel.app/')
     const accountButton = page.getByTestId('header-desktop-account')

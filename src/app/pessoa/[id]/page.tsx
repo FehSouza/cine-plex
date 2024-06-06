@@ -67,7 +67,9 @@ export default async function Person({ params }: PersonProps) {
       <Biography person={person} quantCredits={creditsFormatted ? creditsFormatted.length : 0} socialMedia={socialMedia} />
 
       <section className={S.container}>
-        <h1 className={S.titleDesktop}>{name}</h1>
+        <h1 data-testid="person-page-title" className={S.titleDesktop}>
+          {name}
+        </h1>
 
         <div className={S.content}>
           <h2 className={S.title}>Biografia</h2>
