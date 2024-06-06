@@ -124,7 +124,7 @@ test.describe('Home', () => {
     await carousel.scrollIntoViewIfNeeded()
     const card = carousel.getByTestId('movie-card-0')
     await card.dblclick()
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(1000)
     expect(page.url()).not.toBe('https://cine-plex.vercel.app/')
   })
 })

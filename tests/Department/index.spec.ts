@@ -47,7 +47,7 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(750)
 
     const card = page.getByTestId('movie-card-0')
     await expect(card).toBeVisible()
@@ -56,7 +56,7 @@ test.describe('Department', () => {
     const cardTitleText = await cardTitle.textContent()
 
     card.click()
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(1000)
 
     const pageTitle = page.getByTestId('movie-page-title')
     await expect(pageTitle).toBeVisible()
