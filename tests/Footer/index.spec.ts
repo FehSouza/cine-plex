@@ -49,22 +49,16 @@ test.describe('Footer', () => {
     expect(popup.url()).toBe('https://pt-br.facebook.com/')
   })
 
-  test('Deve existir a marca Cine Plex no rodapé', async ({ page }) => {
+  test('Deve existir a marca Cine Plex no rodapé, com a data correta', async ({ page }) => {
+    const date = new Date()
+    const year = String(date.getFullYear())
+
     await page.goto('https://cine-plex.vercel.app/')
     const footer = page.getByTestId('footer')
     await footer.scrollIntoViewIfNeeded()
     const brand = footer.getByTestId('footer-bottom')
     await expect(brand).toBeVisible()
     await expect(brand.getByText('Cine Plex')).toBeVisible()
-  })
-
-  test('Deve estar com o ano vigente no rodapé', async ({ page }) => {
-    const date = new Date()
-    const year = String(date.getFullYear())
-
-    await page.goto('https://cine-plex.vercel.app/')
-    const brand = page.getByTestId('footer-bottom')
-    await brand.scrollIntoViewIfNeeded()
     await expect(brand.getByText(year)).toBeVisible()
   })
 })

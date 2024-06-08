@@ -6,7 +6,7 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(750)
+    await page.waitForSelector('[data-testid="department-title"]')
 
     await expect(page.getByRole('heading')).toBeVisible()
   })
@@ -16,7 +16,7 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(750)
+    await page.waitForSelector('[data-testid="department-title"]')
 
     const moviesContainer = page.getByTestId('department-movies-container')
     await expect(moviesContainer).toBeVisible()
@@ -29,25 +29,9 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(750)
+    await page.waitForSelector('[data-testid="department-title"]')
 
     const url1 = page.url()
-    const card = page.getByTestId('movie-card-0')
-    await expect(card).toBeVisible()
-
-    card.click()
-    await page.waitForTimeout(1000)
-
-    const url2 = page.url()
-    expect(url2).not.toBe(url1)
-  })
-
-  test('Deve navegar para o filme correto ao clicar em um filme', async ({ page }) => {
-    await page.goto('https://cine-plex.vercel.app/')
-    const navbar = page.getByTestId('navbar')
-    const department = navbar.getByTestId('depart-1')
-    await department.click()
-    await page.waitForTimeout(750)
 
     const card = page.getByTestId('movie-card-0')
     await expect(card).toBeVisible()
@@ -56,12 +40,14 @@ test.describe('Department', () => {
     const cardTitleText = await cardTitle.textContent()
 
     card.click()
-    await page.waitForTimeout(1000)
+    await page.waitForSelector('[data-testid="movie-page-title"]')
+
+    const url2 = page.url()
+    expect(url2).not.toBe(url1)
 
     const pageTitle = page.getByTestId('movie-page-title')
     await expect(pageTitle).toBeVisible()
     const pageTitleText = await pageTitle.textContent()
-
     expect(cardTitleText?.toLowerCase()).toBe(pageTitleText?.toLowerCase())
   })
 
@@ -70,7 +56,7 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(750)
+    await page.waitForSelector('[data-testid="department-title"]')
 
     const pagination = page.getByTestId('pagination')
     await expect(pagination).toBeVisible()
@@ -104,7 +90,7 @@ test.describe('Department', () => {
     const navbar = page.getByTestId('navbar')
     const department = navbar.getByTestId('depart-1')
     await department.click()
-    await page.waitForTimeout(750)
+    await page.waitForSelector('[data-testid="department-title"]')
 
     const pagination = page.getByTestId('pagination')
     await expect(pagination).toBeVisible()

@@ -12,7 +12,9 @@ export default function Account() {
   return (
     <main className={S.main}>
       <div className={S.container}>
-        <h1 className={S.title}>Conta</h1>
+        <h1 data-testid="account-title" className={S.title}>
+          Conta
+        </h1>
       </div>
     </main>
   )
