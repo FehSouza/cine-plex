@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { Biography } from '.'
 
-const MOCK_SOCIAL_MEDIA = [
+const MOCK_SOCIAL_MEDIA: [string, string | null][] = [
   ['facebook', 'emmawatson'],
   ['instagram', 'EmmaWatson'],
   ['twitter', 'EmmaWatson'],
