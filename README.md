@@ -69,4 +69,4 @@ yarn dev
 
 ## Link Vercel
 
-https://cine-plex.vercel.app/
+https://cine-plex-lake.vercel.app/
